@@ -1,23 +1,23 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-class NPC {
+#include "Entity.h"
+#include "MathUtils.h"
+class NPC : public Entity {
 public:
 	NPC();
 	void npcInit();
-	void drawNPC(sf::RenderWindow& window);	
-	sf::Vector2f getRandomDirection();
-	void update(float dt);
-	void updateAnimation(float dt);
-	void wrapAroundScreen(float windowWidth, float windowHeight);
+	sf::Vector2f Wander();
+	void update(float dt) override;
+	void updateAnimation(float dt) override;
 	void smoothRotate(float targetAngle, float rotationSpeed, float dt);
-	void rotateNPCShip(float angle);
+	void setTarget(const sf::Vector2f& targetPosition);
 
 private:
+	SteeringOutput getSteering();
     //npc variables 
-	sf::Texture m_texture;
-	sf::Sprite m_npcSprite{ m_texture };
 	float m_speed;
+	sf::Vector2f m_targetPosition;
 	float m_maxSpeed;
 	float m_minSpeed;
 	float directionChangeTimer;
@@ -28,6 +28,8 @@ private:
 	float pivotOffset;
 
 	//animation variables
+	int frameWidth = 240 / 4;
+	int frameHeight = 60;
 	int m_currentFrame = 0;
 	int m_firstFrame = 0;
 	int m_lastFrame = 3;

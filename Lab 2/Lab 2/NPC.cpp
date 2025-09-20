@@ -1,9 +1,10 @@
 #include "NPC.h"
-#include <random>
+#include <cstdlib>
+#include <cmath>
 #include <iostream>
 
 NPC::NPC()
-	: m_speed(50.f), m_maxSpeed(300.f), m_minSpeed(-100.f), directionChangeTimer(0.0f), directionChangeInterval(2.0f), 
+	: m_speed(50.f), m_maxSpeed(100.f), m_minSpeed(-100.f), directionChangeTimer(0.0f), directionChangeInterval(2.0f), 
 	currentDirection(0.0f, 0.0f), m_currentRotation(0.0f), m_rotationSpeed(90.f)
 {
 	npcInit();
@@ -18,45 +19,50 @@ void NPC::npcInit()
 	else
 	{
 		std::cout << "Loaded npc texture successfully!" << std::endl;
-		m_npcSprite = sf::Sprite(m_texture);
+		m_sprite = sf::Sprite(m_texture);
 	}
 	int frameCount = 4;
-	int frameWidth = 240 / frameCount;
-	int frameHeight = 60;
 	int frameIndex = 0;
-	m_npcSprite.setTextureRect(sf::IntRect({ frameIndex * frameWidth, 0 }, { frameWidth, frameHeight }));
-	m_npcSprite.setOrigin(sf::Vector2f(frameWidth / 2.0f, frameHeight / 2.0f));
-	m_npcSprite.setScale(sf::Vector2f(1.5f, 1.5f));
-	m_npcSprite.setPosition(sf::Vector2f(200.f, 200.f));
+	m_sprite.setTextureRect(sf::IntRect({ frameIndex * frameWidth, 0 }, { frameWidth, frameHeight }));
+	m_sprite.setOrigin(sf::Vector2f(frameWidth / 2.0f, frameHeight / 2.0f));
+	m_sprite.setScale(sf::Vector2f(1.5f, 1.5f));
+	m_sprite.setPosition(sf::Vector2f(200.f, 200.f));
 
 }
 
-void NPC::drawNPC(sf::RenderWindow& window)
-{
-	window.draw(m_npcSprite);
-}
 
-sf::Vector2f NPC::getRandomDirection()
-{
-	static std::random_device rd;
-	static std::mt19937 gen(rd());
-	static std::uniform_real_distribution<float> dis(0.f, 2.f * 3.14159265f);
 
-	float angle = dis(gen);
-	return sf::Vector2f(std::cos(angle), std::sin(angle));
+sf::Vector2f NPC::Wander()
+{
+	float randomX = (static_cast<float>(rand()) / RAND_MAX) * 2.f - 1.f; 
+	float randomY = (static_cast<float>(rand()) / RAND_MAX) * 2.f - 1.f; 
+
+	currentDirection.x += randomX;
+	currentDirection.y += randomY;
+
+	currentDirection = MathUtils::normalize(currentDirection);
+	
+
+	return currentDirection;
 }
 
 void NPC::update(float dt)
 {
 	directionChangeTimer += dt;
 	if (directionChangeTimer >= directionChangeInterval) {
-		currentDirection = getRandomDirection();
-		directionChangeTimer = 0.0f;
+		sf::Vector2f newDirection = Wander();
+		
+		float interp = 0.1f; 
+		currentDirection = currentDirection + (newDirection - currentDirection) * interp;
+		directionChangeTimer = 0.f;
 	}
-	m_npcSprite.move(currentDirection * m_speed * dt);
+
+	SteeringOutput steering = getSteering();
+
+	m_sprite.move(steering.linear * dt);
 	
-	float angleRad = std::atan2(currentDirection.y, currentDirection.x);
-	float angleDegrees = angleRad * 180.0f / 3.14159265f;
+	
+	float angleDegrees = MathUtils::toDegrees(atan2(steering.linear.y, steering.linear.x));
 
 	smoothRotate(angleDegrees +90, m_rotationSpeed, dt);
 
@@ -66,33 +72,20 @@ void NPC::update(float dt)
 
 void NPC::updateAnimation(float dt)
 {
-	m_animationTimer += dt;
-	if (m_animationTimer >= m_animationDelay) {
-		m_animationTimer = 0.0f;
-		m_currentFrame++;
-		if (m_currentFrame > m_lastFrame) {
-			m_currentFrame = m_firstFrame;
+		m_animationTimer += dt;
+		if (m_animationTimer >= m_animationDelay) {
+			m_animationTimer = 0.0f;
+			m_currentFrame++;
+			if (m_currentFrame > m_lastFrame) {
+				m_currentFrame = m_firstFrame;
+			}
+
+			m_sprite.setTextureRect(sf::IntRect({ m_currentFrame * frameWidth, 0 }, { frameWidth, frameHeight }));
 		}
-		int frameWidth = 240 / 4;
-		int frameHeight = 60;
-		m_npcSprite.setTextureRect(sf::IntRect({ m_currentFrame * frameWidth, 0 }, { frameWidth, frameHeight }));
-	}
 }
 
-void NPC::wrapAroundScreen(float windowWidth, float windowHeight)
-{
-	sf::Vector2f pos = m_npcSprite.getPosition();
 
 
-	if (pos.x > windowWidth) pos.x = 0;
-	else if (pos.x < 0)      pos.x = windowWidth;
-
-
-	if (pos.y > windowHeight) pos.y = 0;
-	else if (pos.y < 0)       pos.y = windowHeight;
-
-	m_npcSprite.setPosition(pos);
-}
 
 void NPC::smoothRotate(float targetAngle, float rotationSpeed, float dt)
 {
@@ -105,24 +98,29 @@ void NPC::smoothRotate(float targetAngle, float rotationSpeed, float dt)
 	float angleDiff = targetAngle - m_currentRotation;
 	while (angleDiff > 180) angleDiff -= 360.f;
 	while (angleDiff < -180) angleDiff += 360.f;
-	float rotationStep = rotationSpeed * dt;
+	float rotationStep = angleDiff * 5.0f * dt;
+	float maxStep = rotationSpeed * dt;
 
-	if (angleDiff > rotationStep)
-	{
-		m_currentRotation += rotationStep;
-	}
-	else if (angleDiff < -rotationStep)
-	{
-		m_currentRotation -= rotationStep;
-	}
+	if (angleDiff > maxStep)
+		m_currentRotation += maxStep;
+	else if (angleDiff < -maxStep)
+		m_currentRotation -= maxStep;
 	else
-	{
 		m_currentRotation = targetAngle;
-	}
-	rotateNPCShip(m_currentRotation);
+	m_sprite.setRotation(sf::degrees(m_currentRotation));
 }
 
-void NPC::rotateNPCShip(float angle)
+void NPC::setTarget(const sf::Vector2f& targetPosition)
 {
-	m_npcSprite.setRotation(sf::degrees(angle));
+	m_targetPosition = targetPosition;
 }
+
+SteeringOutput NPC::getSteering()
+{
+	SteeringOutput steering;
+	directionChangeTimer += 0.0f;
+	steering.linear = MathUtils::normalize(currentDirection) * m_speed;
+	steering.angular = 0.0f;
+	return steering;
+}
+

@@ -2,25 +2,34 @@
 
 #include <SFML/Graphics.hpp>
 
+struct SteeringOutput
+{
+	sf::Vector2f linear;
+	float angular;       
+};
 class Entity
 {
 public:
-
+	Entity();
 	virtual ~Entity() = default;
 	virtual void update(float dt) = 0;
 	 
-	virtual void draw(sf::RenderWindow t_window);
+	virtual void draw(sf::RenderWindow& t_window);
 	virtual void wrapAroundScreen(float windowWidth, float windowHeight);
 
-private:
+	void setPosition(const sf::Vector2f& position);
+	sf::Vector2f getPosition() const;
+	virtual void updateAnimation(float dt);
+	void setRotation(float angle);
+	float getRotation() const;
+
+protected:
 
 	sf::Texture m_texture;
-	sf::Sprite m_sprite;
+	sf::Sprite m_sprite{m_texture};
 
-	float m_speed;
-	float m_maxSpeed;
-	float m_minSpeed;
-
+	int frameWidth;
+	int frameHeight;
 	int m_currentFrame = 0;
 	int m_firstFrame = 0;
 	int m_lastFrame = 3;

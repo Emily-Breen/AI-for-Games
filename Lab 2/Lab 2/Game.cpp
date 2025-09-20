@@ -91,16 +91,17 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A))
 	{
-		player.rotatePlayerShip(-rotationSpeed * t_deltaTime.asSeconds());
+		player.setRotation(-rotationSpeed * t_deltaTime.asSeconds());
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::D))
 	{
-		player.rotatePlayerShip(rotationSpeed * t_deltaTime.asSeconds());
+		player.setRotation(rotationSpeed * t_deltaTime.asSeconds());
 	}
 	if (!moving) {
 		player.applyFriction();
 	}
 	player.update(t_deltaTime.asSeconds());
+
 	npc.update(t_deltaTime.asSeconds());
 }
 
@@ -109,8 +110,8 @@ void Game::render()
 	m_window.clear(BLACK);
 
 	
-	player.drawPlayer(m_window);
-	npc.drawNPC(m_window);
+	player.draw(m_window);
+	npc.draw(m_window);
 	
 	m_window.display();
 }

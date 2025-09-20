@@ -8,6 +8,7 @@
 #include <SFML/Audio.hpp>
 #include "Player.h"
 #include "NPC.h"
+#include "Entity.h"
 
 const sf::Color BLACK; // const colour
 
