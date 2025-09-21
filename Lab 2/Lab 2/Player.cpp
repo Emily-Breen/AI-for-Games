@@ -38,16 +38,14 @@ void Player::movePlayer(float dx, float dy)
 
 void Player::moveForward(float dt)
 {
-	float rotation_deg = m_sprite.getRotation().asDegrees();
+	SteeringOutput steering = getSteering();
+	m_sprite.move(steering.linear * dt);
 
-	float rotation_rad = MathUtils::toRadians(rotation_deg);
-
-	
-	float dx = std::sin(rotation_rad) * m_speed * dt;
-	float dy = -std::cos(rotation_rad) * m_speed * dt;
-
-	
-	m_sprite.move(sf::Vector2f(dx, dy));
+	if (m_speed > 0 && MathUtils::vectorLength(steering.linear) > 0.01f)
+	{
+		float angle = std::atan2(steering.linear.y, steering.linear.x);
+		m_sprite.setRotation(sf::degrees(MathUtils::toDegrees(angle) + 90.0f));
+	}
 }
 
 
@@ -93,6 +91,22 @@ void Player::update(float dt)
 	moveForward(dt);
 	updateAnimation(dt);
 	wrapAroundScreen(800.0f, 600.0f);
+}
+
+SteeringOutput Player::getSteering()
+{
+	SteeringOutput steering;
+	float rotation_deg = m_sprite.getRotation().asDegrees();
+	float rotation_rad = MathUtils::toRadians(rotation_deg);
+
+	sf::Vector2f forward(std::sin(rotation_rad), -std::cos(rotation_rad));
+	
+	steering.linear = forward * m_speed;
+
+	steering.angular = 0.0f;
+
+	return steering;
+
 }
 
 
