@@ -5,7 +5,7 @@
 
 NPC::NPC(SteeringBehaviour* behaviour, sf::Font& font, const Entity*player)
 	: m_behaviour(behaviour), m_speed(50.f), m_maxSpeed(100.f), m_minSpeed(-100.f),
-	currentDirection(0.0f, 0.0f), m_currentRotation(0.0f), m_rotationSpeed(90.f), m_coneAngle(60.0f),
+	currentDirection(0.0f, 0.0f), m_currentRotation(0.0f), m_rotationSpeed(300.0f), m_coneAngle(60.0f),
 	m_visionRange(200.f), m_text(font), m_player(player)
 {
 	npcInit();
