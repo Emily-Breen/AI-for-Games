@@ -2,11 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-struct SteeringOutput
-{
-	sf::Vector2f linear;
-	float angular;       
-};
+
 class Entity
 {
 public:
@@ -20,6 +16,8 @@ public:
 	void setPosition(const sf::Vector2f& position);
 	sf::Vector2f getPosition() const;
 	virtual void updateAnimation(float dt);
+
+
 	void setRotation(float angle);
 	float getRotation() const;
 

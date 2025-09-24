@@ -3,11 +3,16 @@
 #include <cmath>
 #include <iostream>
 
-NPC::NPC()
-	: m_speed(50.f), m_maxSpeed(100.f), m_minSpeed(-100.f), directionChangeTimer(0.0f), directionChangeInterval(2.0f), 
-	currentDirection(0.0f, 0.0f), m_currentRotation(0.0f), m_rotationSpeed(90.f)
+NPC::NPC(SteeringBehaviour* behaviour, sf::Font& font, const Entity*player)
+	: m_behaviour(behaviour), m_speed(50.f), m_maxSpeed(100.f), m_minSpeed(-100.f),
+	currentDirection(0.0f, 0.0f), m_currentRotation(0.0f), m_rotationSpeed(90.f), m_coneAngle(60.0f),
+	m_visionRange(200.f), m_text(font), m_player(player)
 {
 	npcInit();
+	m_text.setFont(font);
+	m_text.setCharacterSize(12);
+	m_text.setFillColor(sf::Color::White);
+	m_text.setString(m_behaviour->getName());
 }
 
 void NPC::npcInit()
@@ -26,48 +31,66 @@ void NPC::npcInit()
 	m_sprite.setTextureRect(sf::IntRect({ frameIndex * frameWidth, 0 }, { frameWidth, frameHeight }));
 	m_sprite.setOrigin(sf::Vector2f(frameWidth / 2.0f, frameHeight / 2.0f));
 	m_sprite.setScale(sf::Vector2f(1.5f, 1.5f));
-	m_sprite.setPosition(sf::Vector2f(200.f, 200.f));
+	float x = static_cast<float>(rand() % 800);
+	float y = static_cast<float>(rand() % 600);
+	m_sprite.setPosition(sf::Vector2f(x,y));
+
+	m_visionCone.setPointCount(3);
+	m_visionCone.setFillColor(sf::Color(255, 255, 0, 100));
+	m_visionCone.setOrigin(sf::Vector2f(0.0f, 0.0f));
 
 }
 
 
-
-sf::Vector2f NPC::Wander()
-{
-	float randomX = (static_cast<float>(rand()) / RAND_MAX) * 2.f - 1.f; 
-	float randomY = (static_cast<float>(rand()) / RAND_MAX) * 2.f - 1.f; 
-
-	currentDirection.x += randomX;
-	currentDirection.y += randomY;
-
-	currentDirection = MathUtils::normalize(currentDirection);
-	
-
-	return currentDirection;
-}
 
 void NPC::update(float dt)
 {
-	directionChangeTimer += dt;
-	if (directionChangeTimer >= directionChangeInterval) {
-		sf::Vector2f newDirection = Wander();
-		
-		float interp = 0.1f; 
-		currentDirection = currentDirection + (newDirection - currentDirection) * interp;
-		directionChangeTimer = 0.f;
-	}
+	if (!m_isActive) return;
 
-	SteeringOutput steering = getSteering();
-
+	SteeringOutput steering = m_behaviour->getSteering(*this, *m_player, dt);
 	m_sprite.move(steering.linear * dt);
+	currentDirection = steering.linear;
+#
+	if (MathUtils::vectorLength(currentDirection) > 0.01f) {
+		float angle = std::atan2(currentDirection.y, currentDirection.x);
+		float angleDegrees = MathUtils::toDegrees(angle);
+		smoothRotate(angleDegrees + 90, m_rotationSpeed, dt);
+	}
 	
-	
-	float angleDegrees = MathUtils::toDegrees(atan2(steering.linear.y, steering.linear.x));
-
-	smoothRotate(angleDegrees +90, m_rotationSpeed, dt);
 
 	wrapAroundScreen(800.0f, 600.0f);
 	updateAnimation(dt);
+	m_text.setPosition(m_sprite.getPosition() + sf::Vector2f(0, -30));
+
+	updateVisionCone();
+
+	
+}
+
+void NPC::draw(sf::RenderWindow& t_window)
+{
+	if (!m_isActive) return;
+	t_window.draw(m_visionCone);
+	Entity::draw(t_window);
+	t_window.draw(m_text);
+}
+
+bool NPC::isPlayerInCOV(const Entity& player)
+{
+	sf::Vector2f playerPos = player.getPosition() - getPosition();
+	float distanceToPlayer = MathUtils::vectorLength(playerPos);
+	if (distanceToPlayer > m_visionRange) {
+		return false;
+	}
+
+	float rotationRad = MathUtils::toRadians(getRotation() - 90.f);
+	sf::Vector2f forward(std::cos(rotationRad), std::sin(rotationRad));
+
+	float dot = MathUtils::dotProduct(MathUtils::normalize(forward), MathUtils::normalize(playerPos));
+	dot = std::max(-1.0f, std::min(1.0f, dot));
+	float angle = MathUtils::toDegrees(std::acos(dot));
+
+	return angle < m_coneAngle * 0.5f;
 }
 
 void NPC::updateAnimation(float dt)
@@ -82,6 +105,16 @@ void NPC::updateAnimation(float dt)
 
 			m_sprite.setTextureRect(sf::IntRect({ m_currentFrame * frameWidth, 0 }, { frameWidth, frameHeight }));
 		}
+}
+
+void NPC::setActive(bool active)
+{
+	m_isActive = active;
+}
+
+bool NPC::getActive() const
+{
+	return m_isActive;
 }
 
 
@@ -107,20 +140,34 @@ void NPC::smoothRotate(float targetAngle, float rotationSpeed, float dt)
 		m_currentRotation -= maxStep;
 	else
 		m_currentRotation = targetAngle;
+	while (m_currentRotation < 0.0f) m_currentRotation += 360.f;
+	while (m_currentRotation >= 360.f) m_currentRotation -= 360.f;
 	m_sprite.setRotation(sf::degrees(m_currentRotation));
 }
 
-void NPC::setTarget(const sf::Vector2f& targetPosition)
+void NPC::updateVisionCone()
 {
-	m_targetPosition = targetPosition;
+	m_visionCone.setPosition(m_sprite.getPosition());
+
+	float rotationRad = MathUtils::toRadians(getRotation()  -90.0f);
+	sf::Vector2f forward(std::cos(rotationRad), std::sin(rotationRad));
+	float halfangleRad = MathUtils::toRadians(m_coneAngle * 0.5f);
+	float range = m_visionRange;
+
+	sf::Vector2f leftDirection(std::cos(rotationRad - halfangleRad), std::sin(rotationRad - halfangleRad));
+
+	sf::Vector2f rightDirection(std::cos(rotationRad + halfangleRad), std::sin(rotationRad + halfangleRad));
+
+	m_visionCone.setPointCount(3);
+	m_visionCone.setPoint(0, sf::Vector2f(0.0f, 0.0f));
+	m_visionCone.setPoint(1, leftDirection * range);
+	m_visionCone.setPoint(2, rightDirection * range);
+
+	if (isPlayerInCOV(*m_player))
+		m_visionCone.setFillColor(sf::Color(255, 0, 0, 100));
+	else
+		m_visionCone.setFillColor(sf::Color(255, 255, 0, 100));
 }
 
-SteeringOutput NPC::getSteering()
-{
-	SteeringOutput steering;
-	directionChangeTimer += 0.0f;
-	steering.linear = MathUtils::normalize(currentDirection) * m_speed;
-	steering.angular = 0.0f;
-	return steering;
-}
+
 

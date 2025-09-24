@@ -9,7 +9,7 @@
 #include "Player.h"
 #include "NPC.h"
 #include "Entity.h"
-
+#include "AI Behaviours.h"
 const sf::Color BLACK; // const colour
 
 
@@ -28,9 +28,14 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 
-	Player player;
-	NPC npc;
 	
+	Player player;
+	std::vector<std::unique_ptr<NPC>> npcs;
+	WanderBehaviour wanderAI;
+	SeekBehaviour seekAI;
+	ArriveBehaviour arriveAI;
+	ArriveBehaviour arriveAI2;
+	pursueBehaviour pursueAI;
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_jerseyFont;// font used by message
 	bool m_DELETEexitGame; // control exiting game

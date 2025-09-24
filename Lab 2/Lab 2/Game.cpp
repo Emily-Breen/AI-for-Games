@@ -2,11 +2,21 @@
 #include "Game.h"
 #include <iostream>
 
-Game::Game() :
+
+Game::Game() : 
 	m_window{ sf::VideoMode{ sf::Vector2u{800U, 600U}, 32U }, "SFML Game 3.0" },
-	m_DELETEexitGame{false} //when true game will exit
+	m_DELETEexitGame{false}, wanderAI(), seekAI(), arriveAI(100.0f,50.0f), arriveAI2(200.0f,100.0f), pursueAI() //when true game will exit
 { 
 	
+	if (!m_jerseyFont.openFromFile("ASSETS\\FONTS\\Jersey.ttf"))
+	{
+		std::cout << "Failed to load font" << std::endl;
+	}
+    npcs.push_back(std::make_unique<NPC>(&wanderAI, m_jerseyFont, &player));
+	npcs.push_back(std::make_unique<NPC>(&seekAI, m_jerseyFont, &player));
+	npcs.push_back(std::make_unique<NPC>(&arriveAI, m_jerseyFont, &player));
+	npcs.push_back(std::make_unique<NPC>(&arriveAI2, m_jerseyFont, &player));
+	npcs.push_back(std::make_unique<NPC>(&pursueAI, m_jerseyFont, &player));
 	
 	
 }
@@ -59,6 +69,28 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	{
 		m_DELETEexitGame = true; 
 	}
+	if (sf::Keyboard::Key::Num1 == newKeypress->code)
+	{
+		npcs[0]->setActive(!npcs[0]->getActive());
+	}	
+	if (sf::Keyboard::Key::Num2 == newKeypress->code)
+	{
+		npcs[1]->setActive(!npcs[1]->getActive());
+	}
+	if (sf::Keyboard::Key::Num3 == newKeypress->code)
+	{
+		npcs[2]->setActive(!npcs[2]->getActive());
+	}
+	if (sf::Keyboard::Key::Num4 == newKeypress->code)
+	{
+		npcs[3]->setActive(!npcs[3]->getActive());
+	}
+	if (sf::Keyboard::Key::Num5 == newKeypress->code)
+	{
+		npcs[4]->setActive(!npcs[4]->getActive());
+	}
+
+	
 	
 }
 
@@ -101,8 +133,10 @@ void Game::update(sf::Time t_deltaTime)
 		player.applyFriction();
 	}
 	player.update(t_deltaTime.asSeconds());
-
-	npc.update(t_deltaTime.asSeconds());
+	player.updateVisionCone(npcs);
+	for (auto& npc : npcs) {
+		npc->update(t_deltaTime.asSeconds());
+	}
 }
 
 void Game::render()
@@ -111,7 +145,9 @@ void Game::render()
 
 	
 	player.draw(m_window);
-	npc.draw(m_window);
+	for (auto& npc : npcs) {
+		npc->draw(m_window);
+	}
 	
 	m_window.display();
 }
