@@ -103,18 +103,14 @@ bool Player::isNPCInCOV(const Entity& npc) const
 	float distance = MathUtils::vectorLength(toNPC);
 	if (distance > m_visionRange) return false;
 
-	sf::Vector2f forward(
-		std::cos(MathUtils::toRadians(getRotation() - 90.0f)),
-		std::sin(MathUtils::toRadians(getRotation() - 90.0f))
-	);
+	float rotationRad = MathUtils::toRadians(getRotation() - 90.f);
+	sf::Vector2f forward(std::cos(rotationRad), std::sin(rotationRad));
 
-	float cosThreshold = std::cos(MathUtils::toRadians(m_coneAngle * 0.5f));
-	float dot = MathUtils::dotProduct(
-		MathUtils::normalize(forward),
-		MathUtils::normalize(toNPC)
-	);
+	float dot = MathUtils::dotProduct(MathUtils::normalize(forward), MathUtils::normalize(toNPC));
+	dot = std::max(-1.0f, std::min(1.0f, dot));
+	float angle = MathUtils::toDegrees(std::acos(dot));
 
-	return dot > cosThreshold;
+	return angle < m_coneAngle * 0.5f;
 }
 
 void Player::updateVisionCone(const std::vector<std::unique_ptr<NPC>>& npcs)
