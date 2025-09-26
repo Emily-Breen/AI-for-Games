@@ -160,7 +160,7 @@ void Player::update(float dt)
 {
 	moveForward(dt);
 	updateAnimation(dt);
-	wrapAroundScreen(800.0f, 600.0f);
+	wrapAroundScreen(1920.0f, 1080.0f);
 	
 
 }

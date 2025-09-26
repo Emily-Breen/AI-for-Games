@@ -10,7 +10,7 @@ NPC::NPC(SteeringBehaviour* behaviour, sf::Font& font, const Entity*player)
 {
 	npcInit();
 	m_text.setFont(font);
-	m_text.setCharacterSize(12);
+	m_text.setCharacterSize(20);
 	m_text.setFillColor(sf::Color::White);
 	m_text.setString(m_behaviour->getName());
 }
@@ -31,8 +31,8 @@ void NPC::npcInit()
 	m_sprite.setTextureRect(sf::IntRect({ frameIndex * frameWidth, 0 }, { frameWidth, frameHeight }));
 	m_sprite.setOrigin(sf::Vector2f(frameWidth / 2.0f, frameHeight / 2.0f));
 	m_sprite.setScale(sf::Vector2f(1.5f, 1.5f));
-	float x = static_cast<float>(rand() % 800);
-	float y = static_cast<float>(rand() % 600);
+	float x = static_cast<float>(rand() % 1920);
+	float y = static_cast<float>(rand() % 1080);
 	m_sprite.setPosition(sf::Vector2f(x,y));
 
 	m_visionCone.setPointCount(3);
@@ -58,7 +58,7 @@ void NPC::update(float dt)
 	}
 	
 
-	wrapAroundScreen(800.0f, 600.0f);
+	wrapAroundScreen(1920.0f, 1080.0f);
 	updateAnimation(dt);
 	m_text.setPosition(m_sprite.getPosition() + sf::Vector2f(0, -30));
 

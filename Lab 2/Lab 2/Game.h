@@ -33,13 +33,13 @@ private:
 	std::vector<std::unique_ptr<NPC>> npcs;
 	WanderBehaviour wanderAI;
 	SeekBehaviour seekAI;
-	ArriveBehaviour arriveAI;
-	ArriveBehaviour arriveAI2;
+	ArriveSlowBehaviour arriveAISlow;
+	ArriveFastBehaviour arriveAIFast;
 	pursueBehaviour pursueAI;
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_jerseyFont;// font used by message
+	sf::Text m_toggleText{ m_jerseyFont };
 	bool m_DELETEexitGame; // control exiting game
-
 };
 
 #pragma warning( pop ) 

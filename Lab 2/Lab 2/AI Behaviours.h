@@ -53,13 +53,13 @@ public:
 };
 
 
-class ArriveBehaviour : public SteeringBehaviour
+class ArriveFastBehaviour : public SteeringBehaviour
 {
 	float maxSpeed;
 	float slowingRadius;
 
 public:
-	ArriveBehaviour(float maxSpeed, float slowingRadius)
+	ArriveFastBehaviour(float maxSpeed, float slowingRadius)
 		: maxSpeed(maxSpeed), slowingRadius(slowingRadius) {};
 
 	SteeringOutput getSteering(const Entity& npc, const Entity& player, float dt) override {
@@ -75,7 +75,33 @@ public:
 		return steering;
 	}
 	const char* getName() const override {
-		return "Arrive";
+		return "Arrive/Fast";
+	}
+};
+class ArriveSlowBehaviour : public SteeringBehaviour
+{
+	float maxSpeed;
+	float slowingRadius;
+
+public:
+	ArriveSlowBehaviour(float maxSpeed, float slowingRadius)
+		: maxSpeed(maxSpeed), slowingRadius(slowingRadius) {
+	};
+
+	SteeringOutput getSteering(const Entity& npc, const Entity& player, float dt) override {
+		sf::Vector2f direction = player.getPosition() - npc.getPosition();
+		float distance = MathUtils::vectorLength(direction);
+		direction = MathUtils::normalize(direction);
+
+		float m_speed = (distance < slowingRadius) ? maxSpeed * (distance / slowingRadius) : maxSpeed;
+
+		SteeringOutput steering;
+		steering.linear = direction * m_speed;
+		steering.angular = 0.0f;
+		return steering;
+	}
+	const char* getName() const override {
+		return "Arrive/Slow";
 	}
 };
 class pursueBehaviour : public SteeringBehaviour
