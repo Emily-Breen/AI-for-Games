@@ -5,24 +5,41 @@
 
 Game::Game() : 
 	m_window{ sf::VideoMode{ sf::Vector2u{1920U, 1080U}, 32U }, "SFML Game 3.0" },
-	m_DELETEexitGame{false}, wanderAI(), seekAI(), arriveAISlow(100.0f,50.0f), arriveAIFast(200.0f,150.0f), pursueAI() //when true game will exit
+	m_DELETEexitGame{false}, wanderAI(), seekAI(), arriveAISlow(100.0f,50.0f), arriveAIFast(200.0f,150.0f), pursueAI()//when true game will exit
 { 
 	
 	if (!m_jerseyFont.openFromFile("ASSETS\\FONTS\\Jersey.ttf"))
 	{
 		std::cout << "Failed to load font" << std::endl;
 	}
-    npcs.push_back(std::make_unique<NPC>(&wanderAI, m_jerseyFont, &player));
-	npcs.push_back(std::make_unique<NPC>(&seekAI, m_jerseyFont, &player));
-	npcs.push_back(std::make_unique<NPC>(&arriveAISlow, m_jerseyFont, &player));
-	npcs.push_back(std::make_unique<NPC>(&arriveAIFast, m_jerseyFont, &player));
-	npcs.push_back(std::make_unique<NPC>(&pursueAI, m_jerseyFont, &player));
+   //npcs.push_back(std::make_unique<NPC>(&wanderAI, m_jerseyFont, &player));
+	//npcs.push_back(std::make_unique<NPC>(&seekAI, m_jerseyFont, &player));
+	//npcs.push_back(std::make_unique<NPC>(&arriveAISlow, m_jerseyFont, &player));
+	//npcs.push_back(std::make_unique<NPC>(&arriveAIFast, m_jerseyFont, &player));
+	//npcs.push_back(std::make_unique<NPC>(&pursueAI, m_jerseyFont, &player));
+	
+	SwarmBehaviour* swarmBehavior = new SwarmBehaviour(swarmPtrs);
+
+	for (int i = 0; i < 50; i++) {
+		auto npc = std::make_unique<NPC>(swarmBehavior, m_jerseyFont, &player);
+
+	
+		sf::Vector2f initVel(
+			(rand() % 300 - 150),  
+			(rand() % 300 - 150)
+		);
+		npc->setVelocity(initVel);
+
+		swarmPtrs.push_back(npc.get());
+		swarm.push_back(std::move(npc));
+	}
+
 	
 	m_toggleText.setFont(m_jerseyFont);
 	m_toggleText.setFillColor(sf::Color::White);
 	m_toggleText.setCharacterSize(30.0f);
 	m_toggleText.setPosition(sf::Vector2f(0, 0));
-	m_toggleText.setString("Toggle NPC's on and off: \n 1. Wander \n 2. Seek \n 3. Arrive-Slow \n 4. Arrive-Fast \n 5. Pursue");
+	m_toggleText.setString("Swarming behaviour");
 
 	
 }
@@ -75,26 +92,26 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	{
 		m_DELETEexitGame = true; 
 	}
-	if (sf::Keyboard::Key::Numpad1 == newKeypress->code)
-	{
-		npcs[0]->setActive(!npcs[0]->getActive());
-	}	
-	if (sf::Keyboard::Key::Numpad2 == newKeypress->code)
-	{
-		npcs[1]->setActive(!npcs[1]->getActive());
-	}
-	if (sf::Keyboard::Key::Numpad3 == newKeypress->code)
-	{
-		npcs[2]->setActive(!npcs[2]->getActive());
-	}
-	if (sf::Keyboard::Key::Numpad4 == newKeypress->code)
-	{
-		npcs[3]->setActive(!npcs[3]->getActive());
-	}
-	if (sf::Keyboard::Key::Numpad5 == newKeypress->code)
-	{
-		npcs[4]->setActive(!npcs[4]->getActive());
-	}
+	//if (sf::Keyboard::Key::Numpad1 == newKeypress->code)
+	//{
+	//	npcs[0]->setActive(!npcs[0]->getActive());
+	//}	
+	//if (sf::Keyboard::Key::Numpad2 == newKeypress->code)
+	//{
+	//	npcs[1]->setActive(!npcs[1]->getActive());
+	//}
+	//if (sf::Keyboard::Key::Numpad3 == newKeypress->code)
+	//{
+	//	npcs[2]->setActive(!npcs[2]->getActive());
+	//}
+	//if (sf::Keyboard::Key::Numpad4 == newKeypress->code)
+	//{
+	//	npcs[3]->setActive(!npcs[3]->getActive());
+	//}
+	//if (sf::Keyboard::Key::Numpad5 == newKeypress->code)
+	//{
+	//	npcs[4]->setActive(!npcs[4]->getActive());
+	//}
 
 	
 	
@@ -140,7 +157,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	player.update(t_deltaTime.asSeconds());
 	player.updateVisionCone(npcs);
-	for (auto& npc : npcs) {
+	for (auto& npc : swarm) {
 		npc->update(t_deltaTime.asSeconds());
 	}
 }
@@ -151,7 +168,7 @@ void Game::render()
 
 	
 	player.draw(m_window);
-	for (auto& npc : npcs) {
+	for (auto& npc : swarm) {
 		npc->draw(m_window);
 	}
 	m_window.draw(m_toggleText);

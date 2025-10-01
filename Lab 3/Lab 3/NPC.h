@@ -16,12 +16,16 @@ public:
 	bool getActive() const;
 	void smoothRotate(float targetAngle, float rotationSpeed, float dt);
 	void updateVisionCone();
+	void setVelocity(const sf::Vector2f& velocity);
+	sf::Vector2f getVelocity() const;
+	void setBehaviour(SteeringBehaviour* behaviour);
 
 private:
 
 	const Entity* m_player;
 	SteeringBehaviour* m_behaviour;
-	sf::Text m_text; 
+	sf::Text m_text;
+	sf::Vector2f m_velocity{ 0.0f, 0.0f };
 	float m_speed;
 	float m_coneAngle;
 	float m_visionRange;

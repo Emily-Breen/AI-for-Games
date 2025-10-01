@@ -3,10 +3,10 @@
 #include <cmath>
 #include <iostream>
 
-NPC::NPC(SteeringBehaviour* behaviour, sf::Font& font, const Entity*player)
-	: m_behaviour(behaviour), m_speed(50.f), m_maxSpeed(100.f), m_minSpeed(-100.f),
-	currentDirection(0.0f, 0.0f), m_currentRotation(0.0f), m_rotationSpeed(300.0f), m_coneAngle(60.0f),
-	m_visionRange(200.f), m_text(font), m_player(player)
+NPC::NPC(SteeringBehaviour* behaviour, sf::Font& font, const Entity* player)
+	: m_behaviour(behaviour), m_speed(5000.f), m_maxSpeed(10000.f), m_minSpeed(-50.f),
+	currentDirection(0.0f, 0.0f), m_currentRotation(0.0f), m_rotationSpeed(500.0f),
+	m_coneAngle(60.0f), m_visionRange(200.f), m_text(font), m_player(player)
 {
 	npcInit();
 	m_text.setFont(font);
@@ -45,24 +45,39 @@ void NPC::npcInit()
 
 void NPC::update(float dt)
 {
+	
 	if (!m_isActive) return;
 
 	SteeringOutput steering = m_behaviour->getSteering(*this, *m_player, dt);
-	m_sprite.move(steering.linear * dt);
-	currentDirection = steering.linear;
-#
-	if (MathUtils::vectorLength(currentDirection) > 0.01f) {
-		float angle = std::atan2(currentDirection.y, currentDirection.x);
-		float angleDegrees = MathUtils::toDegrees(angle);
-		smoothRotate(angleDegrees + 90, m_rotationSpeed, dt);
-	}
+
+	m_velocity += steering.linear * dt;
+
+	float speed = MathUtils::vectorLength(m_velocity);
+
 	
+	const float minSpeed = 30.f;
+	if (speed < minSpeed && speed > 0.01f) {
+		m_velocity = MathUtils::normalize(m_velocity) * minSpeed;
+	}
+
+	if (speed > m_maxSpeed) {
+		m_velocity = MathUtils::normalize(m_velocity) * m_maxSpeed;
+	}
+
+	m_sprite.move(m_velocity * dt);
+	currentDirection = m_velocity;
+
+	//if (MathUtils::vectorLength(currentDirection) > 0.01f) {
+	//	float angle = std::atan2(currentDirection.y, currentDirection.x);
+	//	float angleDegrees = MathUtils::toDegrees(angle);
+	//	//smoothRotate(angleDegrees + 90, m_rotationSpeed, dt);
+	//}
 
 	wrapAroundScreen(1920.0f, 1080.0f);
 	updateAnimation(dt);
 	m_text.setPosition(m_sprite.getPosition() + sf::Vector2f(0, -30));
-
 	updateVisionCone();
+	
 
 	
 }
@@ -70,7 +85,7 @@ void NPC::update(float dt)
 void NPC::draw(sf::RenderWindow& t_window)
 {
 	if (!m_isActive) return;
-	t_window.draw(m_visionCone);
+	//t_window.draw(m_visionCone);
 	Entity::draw(t_window);
 	t_window.draw(m_text);
 }
@@ -167,6 +182,21 @@ void NPC::updateVisionCone()
 		m_visionCone.setFillColor(sf::Color(255, 0, 0, 100));
 	else
 		m_visionCone.setFillColor(sf::Color(255, 255, 0, 100));
+}
+
+void NPC::setVelocity(const sf::Vector2f& velocity)
+{
+	m_velocity = velocity;
+}
+
+sf::Vector2f NPC::getVelocity() const
+{
+	return m_velocity;
+}
+
+void NPC::setBehaviour(SteeringBehaviour* behaviour)
+{
+	m_behaviour = behaviour;
 }
 
 

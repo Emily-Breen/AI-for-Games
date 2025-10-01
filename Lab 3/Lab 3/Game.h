@@ -31,6 +31,9 @@ private:
 	
 	Player player;
 	std::vector<std::unique_ptr<NPC>> npcs;
+
+	std::vector<std::unique_ptr<NPC>> swarm;
+	std::vector<NPC*> swarmPtrs;
 	WanderBehaviour wanderAI;
 	SeekBehaviour seekAI;
 	ArriveSlowBehaviour arriveAISlow;
