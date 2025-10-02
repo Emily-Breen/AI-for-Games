@@ -18,9 +18,9 @@ Game::Game() :
 	//npcs.push_back(std::make_unique<NPC>(&arriveAIFast, m_jerseyFont, &player));
 	//npcs.push_back(std::make_unique<NPC>(&pursueAI, m_jerseyFont, &player));
 	
-	SwarmBehaviour* swarmBehavior = new SwarmBehaviour(swarmPtrs);
+	SwarmBehaviour* swarmBehavior = new SwarmBehaviour(200.f, 6000.0f, 0.9, 1.0f, swarmPtrs);
 
-	for (int i = 0; i < 50; i++) {
+	for (int i = 0; i < 200; i++) {
 		auto npc = std::make_unique<NPC>(swarmBehavior, m_jerseyFont, &player);
 
 	
