@@ -141,7 +141,7 @@ public:
 			totalForce += dir * U;
 		}
 		SteeringOutput steering;
-		steering.linear = totalForce *dt;   // Multiplied by dt outside or in main loop
+		steering.linear = totalForce *dt;  
 		steering.angular = 0.0f;
 		return steering;
 	}

@@ -18,9 +18,12 @@ Game::Game() :
 	//npcs.push_back(std::make_unique<NPC>(&arriveAIFast, m_jerseyFont, &player));
 	//npcs.push_back(std::make_unique<NPC>(&pursueAI, m_jerseyFont, &player));
 	
-	SwarmBehaviour* swarmBehavior = new SwarmBehaviour(200.f, 6000.0f, 0.9, 1.0f, swarmPtrs);
-
-	for (int i = 0; i < 200; i++) {
+	SwarmBehaviour* swarmBehavior = new SwarmBehaviour(700.0f, 800.0f, 0, 1, swarmPtrs);
+	//@50 shows chaotic behaviour but not really swarming - small start in clustering
+	//@100 shows a closer view to the swarming "bee" behaviour it takes a bit for them to settle into it
+	// @200 the swarm shows a more realistic swarm behaviour where you have a grouping and then surrounding npcs that come in and go
+	// if I bring it to 300 the frame drops to nothing the highest I can push the swarm count is 210
+	for (int i = 0; i < 50; i++) {
 		auto npc = std::make_unique<NPC>(swarmBehavior, m_jerseyFont, &player);
 
 	
