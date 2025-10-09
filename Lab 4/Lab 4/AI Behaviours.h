@@ -158,7 +158,7 @@ private:
 class StaticEntity : public Entity
 {
 public:
-	explicit StaticEntity(const sf::Vector2f& pos)
+	 StaticEntity(const sf::Vector2f& pos)
 	{
 		m_sprite.setPosition(pos);
 	}
