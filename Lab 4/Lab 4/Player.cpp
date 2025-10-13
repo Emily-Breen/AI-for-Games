@@ -26,7 +26,7 @@ void Player::playerInit()
 
 	m_sprite.setTextureRect(sf::IntRect({ frameIndex * frameWidth, 0 }, { frameWidth, frameHeight }));
 	m_sprite.setOrigin(sf::Vector2f(frameWidth / 2.f, frameHeight / 2.f));
-	m_sprite.setScale(sf::Vector2f(0.7f, 0.7f));
+	m_sprite.setScale(sf::Vector2f(0.6f, 0.6f));
 	m_sprite.setPosition(sf::Vector2f(400.f, 300.f));
 
 	m_visionCone.setPointCount(3);

@@ -154,6 +154,7 @@ private:
 	int N, M;
 	const std::vector<NPC*>& m_swarm;
 };
+//lab04 
 // just a placeholder as entity is abstract and cannot be instantiated - to use existing arrive behaviour
 class StaticEntity : public Entity
 {
@@ -171,7 +172,7 @@ public:
 
 	
 };
-
+//lab 04
 class FormationFollowBehaviour : public SteeringBehaviour {
 	sf::Vector2f m_offset;
 	ArriveFastBehaviour m_arrive;

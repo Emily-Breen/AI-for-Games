@@ -13,13 +13,17 @@ Game::Game() :
 		std::cout << "Failed to load font" << std::endl;
 	}
 
-
 	formationOffsets = {
-	   {-120.f, 0.f},
-	   {-60.f, 60.f},
-	   {-60.f, -60.f},
-	   {0.f, 120.f}
+	{-120.f, 0.f},
+	{-60.f, 60.f},
+	{-60.f, -60.f},
+	{0.f, 120.f}
 	};
+
+	//formationOffsets = { // figure four formation just uncommented because I like the other one better :D
+	//{-120.f,  60.f},  
+	//{-60.f, 120.f},    
+	//{ 60.f,  60.f}, };
 
 	for (size_t i = 0; i < formationOffsets.size(); ++i) {
 		auto behaviour = std::make_unique<FormationFollowBehaviour>(formationOffsets[i]);
@@ -37,7 +41,8 @@ Game::Game() :
 	m_toggleText.setFont(m_jerseyFont);
 	m_toggleText.setFillColor(sf::Color::White);
 	m_toggleText.setCharacterSize(30.0f);
-	
+	m_toggleText.setPosition(sf::Vector2f(50.f, 10.f));
+	m_toggleText.setString("Formation Mode OFF- PRESS F TO TOGGLE ON");
 
 	
 }
@@ -95,10 +100,10 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	if (sf::Keyboard::Key::F == newKeypress->code) {
 		m_formationActive = !m_formationActive;
 		if (m_formationActive) {
-			m_toggleText.setString("Formation Mode ON");
+			m_toggleText.setString("Formation Mode ON- PRESS F TO TOGGLE OFF");
 		}
 		else {
-			m_toggleText.setString("Formation Mode OFF");
+			m_toggleText.setString("Formation Mode OFF - PRESS F TO TOGGLE ON");
 		}
 	}
 	
@@ -147,7 +152,8 @@ void Game::update(sf::Time t_deltaTime)
 		player.applyFriction();
 	}
 	player.update(t_deltaTime.asSeconds());
-	player.updateVisionCone(npcs);
+	player.updateVisionCone(formationNPCs);
+
 	if (m_formationActive) {
 		for (auto& npc : formationNPCs) {
 			npc->update(t_deltaTime.asSeconds());
