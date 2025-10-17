@@ -9,7 +9,7 @@ Player::Player()
 
 void Player::playerInit()
 {
-	if (!m_texture.loadFromFile("ASSETS/IMAGES/player.png"))
+	if (!m_texture.loadFromFile("ASSETS/IMAGES/Player2.png"))
 	{
 		std::cout << "problem loading player texture" << std::endl;
 	}
@@ -19,14 +19,14 @@ void Player::playerInit()
 		m_sprite = sf::Sprite(m_texture);
 	}
 
-	int frameCount = 24;
-	int frameWidth = 2400 / frameCount; 
-	int frameHeight = 100;
-	int frameIndex = 6; 
+	int frameCount = 4;
+	int frameWidth = 256/4; 
+	int frameHeight = 384;
+	int frameIndex =0; 
 
 	m_sprite.setTextureRect(sf::IntRect({ frameIndex * frameWidth, 0 }, { frameWidth, frameHeight }));
 	m_sprite.setOrigin(sf::Vector2f(frameWidth / 2.f, frameHeight / 2.f));
-	m_sprite.setScale(sf::Vector2f(0.7f, 0.7f));
+	m_sprite.setScale(sf::Vector2f(0.5f, 0.5f));
 	m_sprite.setPosition(sf::Vector2f(400.f, 300.f));
 
 	m_visionCone.setPointCount(3);
