@@ -30,7 +30,7 @@ void NPC::npcInit()
 	int frameIndex = 0;
 	m_sprite.setTextureRect(sf::IntRect({ frameIndex * frameWidth, 0 }, { frameWidth, frameHeight }));
 	m_sprite.setOrigin(sf::Vector2f(frameWidth / 2.0f, frameHeight / 2.0f));
-	m_sprite.setScale(sf::Vector2f(1.5f, 1.5f));
+	m_sprite.setScale(sf::Vector2f(1.0f, 1.0f));
 	float x = static_cast<float>(rand() % 1920);
 	float y = static_cast<float>(rand() % 1080);
 	m_sprite.setPosition(sf::Vector2f(x,y));
@@ -92,7 +92,9 @@ void NPC::draw(sf::RenderWindow& t_window)
 	if (!m_isActive) return;
 	//t_window.draw(m_visionCone);
 	Entity::draw(t_window);
-	t_window.draw(m_text);
+
+    t_window.draw(m_text);
+	
 }
 
 bool NPC::isPlayerInCOV(const Entity& player)
@@ -136,36 +138,6 @@ bool NPC::getActive() const
 {
 	return m_isActive;
 }
-
-
-
-
-void NPC::smoothRotate(float targetAngle, float rotationSpeed, float dt)
-{
-	while (targetAngle < 0) targetAngle += 360;
-	while (targetAngle >= 360) targetAngle -= 360;
-
-	while (m_currentRotation < 0.0f) m_currentRotation += 360.f;
-	while (m_currentRotation >= 360.f) m_currentRotation -= 360.f;
-
-	float angleDiff = targetAngle - m_currentRotation;
-	while (angleDiff > 180) angleDiff -= 360.f;
-	while (angleDiff < -180) angleDiff += 360.f;
-
-	float step = rotationSpeed * dt;
-	if (angleDiff > step)
-		m_currentRotation += step;
-	else if (angleDiff < -step)
-		m_currentRotation -= step;
-	else
-		m_currentRotation = targetAngle;
-
-	while (m_currentRotation < 0.0f) m_currentRotation += 360.f;
-	while (m_currentRotation >= 360.f) m_currentRotation -= 360.f;
-
-	m_sprite.setRotation(sf::degrees(m_currentRotation));
-}
-
 
 void NPC::updateVisionCone()
 {

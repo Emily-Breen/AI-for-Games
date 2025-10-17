@@ -37,6 +37,7 @@ private:
 	std::vector<std::unique_ptr<NPC>> npcs;
 	std::vector<std::unique_ptr<NPC>> formationNPCs;
 	std::vector<std::unique_ptr<FormationFollowBehaviour>> formationBehaviours;
+	std::vector<sf::Vector2f> formationOffsets;
 	bool m_formationActive = false;
 	std::vector<std::unique_ptr<NPC>> swarm;
 	std::vector<NPC*> swarmPtrs;
@@ -51,7 +52,7 @@ private:
 	bool m_DELETEexitGame; // control exiting game
 	bool playerMoved = false;
 
-	std::vector<sf::Vector2f> formationOffsets;
+	
 
 };
 

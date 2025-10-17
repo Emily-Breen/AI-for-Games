@@ -23,7 +23,7 @@ Game::Game() :
 	//@100 shows a closer view to the swarming "bee" behaviour it takes a bit for them to settle into it
 	// @200 the swarm shows a more realistic swarm behaviour where you have a grouping and then surrounding npcs that come in and go
 	// if I bring it to 300 the frame drops to nothing the highest I can push the swarm count is 210
-	for (int i = 0; i < 50; i++) {
+	for (int i = 0; i < 210; i++) {
 		auto npc = std::make_unique<NPC>(swarmBehavior, m_jerseyFont, &player);
 
 	
