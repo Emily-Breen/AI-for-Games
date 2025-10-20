@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "FlowField.h"
 
 
 const sf::Color ULTRAMARINE{ 5, 55,242,255 }; // const colour
@@ -30,7 +31,7 @@ private:
 	void setupSprites();
 	void setupAudio();
 	
-	
+	FlowField m_flowField; // flow field object
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_jerseyFont;// font used by message
 	

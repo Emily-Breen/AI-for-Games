@@ -7,7 +7,7 @@
 
 
 Game::Game() :
-	m_window{ sf::VideoMode{ sf::Vector2u{800U, 600U}, 32U }, "SFML Game 3.0" },
+	m_window{ sf::VideoMode{ sf::Vector2u{1920U, 1920U}, 32U }, "SFML Game 3.0" },
 	m_DELETEexitGame{false} //when true game will exit
 { 
 	setupTexts(); // load font 
@@ -95,6 +95,7 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(ULTRAMARINE);
+	m_window.draw(m_flowField);
 	m_window.display();
 }
 
