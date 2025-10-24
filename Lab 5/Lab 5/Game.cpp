@@ -10,9 +10,7 @@ Game::Game() :
 	m_window{ sf::VideoMode{ sf::Vector2u{1080U, 1080U}, 32U }, "SFML Game 3.0" },
 	m_DELETEexitGame{false} //when true game will exit
 { 
-	setupTexts(); // load font 
-	setupSprites(); // load texture
-	setupAudio(); // load sounds
+	
 	
 	
 }
@@ -69,6 +67,10 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	{
 		m_DELETEexitGame = true; 
 	}
+	if (sf::Keyboard::Key::Space == newKeypress->code)
+	{
+		// set to start when set up
+	}
 	
 }
 
@@ -89,6 +91,7 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+	//m_flowField.update(t_deltaTime.asSeconds());
 }
 
 
@@ -99,26 +102,4 @@ void Game::render()
 	m_window.display();
 }
 
-
-void Game::setupTexts()
-{
-	if (!m_jerseyFont.openFromFile("ASSETS\\FONTS\\Jersey20-Regular.ttf"))
-	{
-		std::cout << "problem loading arial black font" << std::endl;
-	}
-	
-
-}
-
-
-void Game::setupSprites()
-{
-
-}
-
-
-void Game::setupAudio()
-{
-
-}
 

@@ -27,10 +27,7 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 	
-	void setupTexts();
-	void setupSprites();
-	void setupAudio();
-	
+
 	FlowField m_flowField; // flow field object
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_jerseyFont;// font used by message
