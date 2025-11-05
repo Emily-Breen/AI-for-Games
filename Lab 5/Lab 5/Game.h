@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "FlowField.h"
+#include "UI.h"
 
 
 const sf::Color ULTRAMARINE{ 5, 55,242,255 }; // const colour
@@ -23,12 +24,14 @@ private:
 
 	void processEvents();
 	void processKeys(const std::optional<sf::Event> t_event);
+	void processMouse(const std::optional<sf::Event> t_event);
 	void checkKeyboardState();
 	void update(sf::Time t_deltaTime);
 	void render();
 	
 
 	FlowField m_flowField; // flow field object
+	UI m_UI; 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_jerseyFont;// font used by message
 	
