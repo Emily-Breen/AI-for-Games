@@ -107,12 +107,12 @@ void Game::processMouse(const std::optional<sf::Event> t_event)
 	sf::Vector2f mousePos = (sf::Vector2f)sf::Mouse::getPosition(m_window);
 
 	if (sf::Mouse::Button::Left == click->button) {
-		std::cout << "Left mouse button clicked at: " << mousePos.x << ", " << mousePos.y << std::endl;
+		
 		m_flowField.setStartPosition(mousePos);
 	}
 
 	if (sf::Mouse::Button::Right == click->button) {
-		std::cout << "Right mouse button clicked at: " << mousePos.x << ", " << mousePos.y << std::endl;
+		
 		m_flowField.setGoalPosition(mousePos);
 	}
 	if (sf::Mouse::Button::Middle == click->button) {

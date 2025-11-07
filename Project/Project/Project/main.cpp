@@ -1,4 +1,9 @@
-
+/// <summary>
+/// simple game loop for SFML[3.0]
+/// 
+/// author Pete Lowe May 2025
+/// you need to change the above line or lose marks
+/// </summary>
 
 
 
@@ -19,7 +24,10 @@
 #include <iostream>
 #include "Game.h"
 
-
+/// <summary>
+/// main enrtry point
+/// </summary>
+/// <returns>success or failure</returns>
 int main()
 {
 	Game game;
