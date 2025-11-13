@@ -1,9 +1,3 @@
-/// <summary>
-/// simple game loop for SFML[3.0]
-/// 
-/// author Pete Lowe May 2025
-/// you need to change the above line or lose marks
-/// </summary>
 
 
 

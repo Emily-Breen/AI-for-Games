@@ -6,9 +6,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Board.h"
+#include "Animal.h"
 
 
-const sf::Color ULTRAMARINE{ 5, 55,242,255 }; // const colour
+const sf::Color BLACK { 0, 0, 0, 0 }; // const colour
 
 class Game
 {
@@ -24,12 +26,13 @@ private:
 	void checkKeyboardState();
 	void update(sf::Time t_deltaTime);
 	void render();
+	void updateAnimals();
 	
-
-	
+	Board m_board{ 5,150.f };
+	std::vector<Animal> m_player1Pieces;
+	std::vector<Animal> m_player2Pieces;
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_jerseyFont;// font used by message
-	
 	sf::Text m_DELETEwelcomeMessage{ m_jerseyFont }; // text used for message on screen
 	sf::Texture m_DELETElogoTexture;//  texture used for sfml logo
 	sf::Sprite m_DELETElogoSprite{ m_DELETElogoTexture }; // sprite used for sfml logo
