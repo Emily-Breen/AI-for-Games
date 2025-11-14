@@ -29,6 +29,11 @@ bool Animal::isEmpty() const
 	return m_owner == Player::NoPlayer;
 }
 
+Player Animal::getOwner()
+{
+    return m_owner;
+}
+
 void Animal::setPosition(const sf::Vector2f& position)
 {
     m_sprite.setPosition(position);
@@ -102,6 +107,11 @@ void Animal::rescale(float cellSize)
     // Recalculate scale based on new cell size
     float scale = (cellSize * 0.8f) / std::max(frameSize.x, frameSize.y);
     m_sprite.setScale(sf::Vector2f(scale, scale));
+}
+
+sf::FloatRect Animal::getBounds() const
+{
+	return m_sprite.getGlobalBounds();
 }
 
 

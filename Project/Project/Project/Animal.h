@@ -22,10 +22,12 @@ class Animal
 	  Animal(Player owner, AnimalType type); //param constructor
 	  std::string getName() const;
 	  bool isEmpty() const;
+	  Player getOwner();
 	  void setPosition(const sf::Vector2f& position);
 	  void initAnimalTexture(float cellSize);
 	  void draw(sf::RenderWindow& m_window);
 	  void rescale(float cellSize);
+	  sf::FloatRect getBounds() const;
 
 private:
 	Player m_owner;
