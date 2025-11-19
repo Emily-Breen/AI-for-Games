@@ -368,7 +368,7 @@ sf::Vector2f FlowField::getDirectionsAtPosition(sf::Vector2f position)
 //movement cost field for each cell in the grid
 void FlowField::makeCostsField()
 {
-	//sets to 1.f cost
+	//sets to 1.f cost for all cells initially
 	m_costs.resize(cols * rows, 1.f);
 
 }
@@ -490,6 +490,7 @@ void FlowField::makeFlowField()
 	//for each cell find lowest cost neighbour and set direction to it
 	for (int y = 0; y < rows; ++y)
 		for (int x = 0; x < cols; ++x) {
+			//get index of current cell
 			int index = y * cols + x;
 			//set the lowest cost to current cell
 			float lowestCost = m_integration[index];

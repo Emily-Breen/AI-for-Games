@@ -3,7 +3,7 @@
 #include "Animal.h"
 #include <vector>
 
-constexpr int BOARD_SIZE = 5;
+const int BOARD_SIZE = 5;
 class Board
 {
 public:
