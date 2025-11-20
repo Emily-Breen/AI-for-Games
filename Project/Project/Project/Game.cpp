@@ -266,9 +266,9 @@ void Game::update(sf::Time t_deltaTime)
 
 	if (m_currentGameState == GameState::Placement)
 	{
-		if (!m_isDragging)
+		if (m_currentGameState == GameState::Placement)
 		{
-			updateAnimals();
+			updateAnimals();  
 		}
 	}
 
@@ -320,24 +320,46 @@ void Game::updateAnimals()
 	float boardTop = (m_window.getSize().y - m_board.getSize() * cellSize) / 2.f;
 	float boardRight = boardLeft + m_board.getSize() * cellSize;
 
-	for (int i = 0; i < m_player1Pieces.size(); ++i)
+	
+	for (int i = 0; i < m_player1Pieces.size(); i++)
 	{
+		if (m_isDragging && m_draggedPiece == &m_player1Pieces[i])
+			continue; 
+
 		m_player1Pieces[i].rescale(cellSize);
 		m_player1Pieces[i].setPosition({
 			boardLeft - cellSize * 1.2f,
 			boardTop + (i + 0.5f) * cellSize
 			});
 	}
-	for (int i = 0; i < m_player2Pieces.size(); ++i)
+
+	
+	for (int i = 0; i < m_player2Pieces.size(); i++)
 	{
+		if (m_isDragging && m_draggedPiece == &m_player2Pieces[i])
+			continue; 
 
 		m_player2Pieces[i].rescale(cellSize);
-		m_player2Pieces[i].setPosition({ 
+		m_player2Pieces[i].setPosition({
 			boardRight + cellSize * 1.2f,
-			boardTop + (i + 0.5f) * cellSize 
+			boardTop + (i + 0.5f) * cellSize
 			});
-		
 	}
+
+	
+	for (int row = 0; row < BOARD_SIZE; row++)
+	{
+		for (int col = 0; col < BOARD_SIZE; col++)
+		{
+			if (!m_grid[row][col].isEmpty())
+			{
+				m_grid[row][col].rescale(cellSize);
+				m_grid[row][col].setPosition(m_board.getCellCenter(row, col));
+			}
+		}
+	}
+
+
 	
 }
 
