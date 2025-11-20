@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <SFML/Graphics.hpp>
 #include "Animal.h"
 #include "Board.h"
@@ -19,22 +19,29 @@ struct Move {
 		return row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0;
 	}
 };
-
+struct PieceState {
+	Player owner;
+	AnimalType type;
+};
 // Represents the current state of the board
 struct Boardstate {
-	Animal grid[BOARD_SIZE][BOARD_SIZE];
+	PieceState grid[BOARD_SIZE][BOARD_SIZE];
 	Player currentPlayer;
 
 	// Constructor
 	Boardstate() : currentPlayer(Player::NoPlayer) {}
 
 	// Copy constructor to duplicate board state
-	Boardstate(const Animal sourceGrid[BOARD_SIZE][BOARD_SIZE], Player player) {
-		for (int row = 0; row < BOARD_SIZE; ++row) {
-			for (int col = 0; col < BOARD_SIZE; ++col) {
-				grid[row][col] = sourceGrid[row][col];
+	Boardstate(const PieceState sourceGrid[BOARD_SIZE][BOARD_SIZE], Player player)
+	{
+		for (int row = 0; row < BOARD_SIZE; ++row)
+		{
+			for (int col = 0; col < BOARD_SIZE; ++col)
+			{
+				grid[row][col] = sourceGrid[row][col];  // now same type → OK
 			}
 		}
+
 		currentPlayer = player;
 	}
 };
@@ -52,7 +59,10 @@ public:
 
 	// function to check for win condition
 	bool checkWimCondition(const Boardstate& state, Player& winner);
+	std::vector<Move> getValidMovesForPiece(int row, int col, const Boardstate& state);
+	static PieceState toPieceState(const Animal& a);
 
+	static Animal toAnimal(const PieceState& ps);
 private:
 	// minimax algorithm with alpha-beta pruning
 	int miniMax(const Boardstate& state, int depth, bool isMaximizing, int alpha, int beta);
@@ -75,6 +85,8 @@ private:
 
 	// The player that the AI is trying to maximize
 	Player m_maximizingPlayer;
+
+	
 
 	// Counter for debugging - tracks how many board states were evaluated
 	int m_nodesEvaluated;

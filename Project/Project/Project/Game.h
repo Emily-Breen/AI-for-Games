@@ -83,6 +83,7 @@ private:
 
 	// Variables for AI opponent
 	Gameplay m_aiPlayer;
+	Gameplay m_gameplay;
 	bool m_player2IsAI{ true };
 	void handleAITurn();
 	Boardstate getCurrentBoardState() const;
