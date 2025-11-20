@@ -7,6 +7,29 @@ Animal::Animal() :m_owner(Player::NoPlayer), m_type(AnimalType::NoType)
 Animal::Animal(Player owner, AnimalType type) : m_owner(owner), m_type(type)
 {
 }
+//copy constructor and assignment operator to help with bug of sprites not displaying correctly
+Animal::Animal(const Animal& other)
+{
+    m_owner = other.m_owner;
+    m_type = other.m_type;
+
+    initAnimalTexture(50); 
+    m_sprite.setPosition(other.m_sprite.getPosition());
+}
+//assignment operator so when they move into the board grid the ones on the side dont overwrite to the sprite originally there 
+Animal& Animal::operator=(const Animal& other)
+{
+    if (this != &other)
+    {
+        m_owner = other.m_owner;
+        m_type = other.m_type;
+
+        // Reconstruct sprite from scratch
+        initAnimalTexture(50);
+        m_sprite.setPosition(other.m_sprite.getPosition());
+    }
+    return *this;
+}
 //migh be handy when we want to have a combat log on screen or somthing?
 std::string Animal::getName() const
 {
@@ -32,6 +55,11 @@ bool Animal::isEmpty() const
 Player Animal::getOwner()
 {
     return m_owner;
+}
+
+AnimalType Animal::getType()
+{
+	return m_type;
 }
 
 void Animal::setPosition(const sf::Vector2f& position)
