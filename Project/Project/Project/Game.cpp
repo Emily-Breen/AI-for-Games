@@ -100,7 +100,7 @@ void Game::processEvents()
 		if (newEvent->is<sf::Event::MouseButtonPressed>())
 		{
 			const sf::Event::MouseButtonPressed *mouseEvent = newEvent->getIf<sf::Event::MouseButtonPressed>();
-			if (mouseEvent->button == sf::Mouse::Button::Left && m_currentGameState == GameState::Placement)
+			if (mouseEvent->button == sf::Mouse::Button::Left)
 			{
 				handleMousePress(sf::Vector2i(mouseEvent->position));
 			}
@@ -108,7 +108,7 @@ void Game::processEvents()
 		if (newEvent->is<sf::Event::MouseButtonReleased>())
 		{
 			const sf::Event::MouseButtonReleased *mouseEvent = newEvent->getIf<sf::Event::MouseButtonReleased>();
-			if (mouseEvent->button == sf::Mouse::Button::Left && m_currentGameState == GameState::Placement)
+			if (mouseEvent->button == sf::Mouse::Button::Left)
 			{
 				handleMouseRelease(sf::Vector2i(mouseEvent->position));
 			}
@@ -116,79 +116,136 @@ void Game::processEvents()
 		if (newEvent->is<sf::Event::MouseMoved>())
 		{
 			const sf::Event::MouseMoved *mouseEvent = newEvent->getIf<sf::Event::MouseMoved>();
-			if (m_currentGameState == GameState::Placement)
-			{
 				handleMouseMoved(sf::Vector2i(mouseEvent->position));
-			}
 		}
 	}
 }
 
+// Convert screen position to grid coordinates
+sf::Vector2i Game::screenToGrid(sf::Vector2i screenPos) const
+{
+	float cellSize = m_board.getCellSize();
+	float boardLeft = (m_window.getSize().x - m_board.getSize() * cellSize) / 2.f;
+	float boardTop = (m_window.getSize().y - m_board.getSize() * cellSize) / 2.f;
+
+	int col = static_cast<int>((screenPos.x - boardLeft) / cellSize);
+	int row = static_cast<int>((screenPos.y - boardTop) / cellSize);
+
+	return { row, col };
+}
+
 void Game::handleMousePress(sf::Vector2i mousePos)
 {
-	int piecesPlaced;
-	std::vector<Animal>* pieces = nullptr;
+	// PLACEMENT PHASE: Check if clicking on unplaced piece
+	if (m_currentGameState == GameState::Placement)
+	{
+		int piecesPlaced;
+		std::vector<Animal>* pieces = nullptr;
 
-	// Determine which player's pieces to check
-	if (m_currentPlayer == Player::Player1)
-	{
-		pieces = &m_player1Pieces;
-		piecesPlaced = m_player1PiecesPlaced;
-	}
-	else
-	{
-		pieces = &m_player2Pieces;
-		piecesPlaced = m_player2PiecesPlaced;
-	}
-
-	// Check if clicking on an unplaced piece
-	for (int i = 0; i < pieces->size(); ++i)
-	{
-		sf::FloatRect bounds = (*pieces)[i].getBounds();
-		if (bounds.contains({ (float)mousePos.x, (float)mousePos.y }))
+		// Determine which player's pieces to check
+		if (m_currentPlayer == Player::Player1)
 		{
+			pieces = &m_player1Pieces;
+			piecesPlaced = m_player1PiecesPlaced;
+		}
+		else
+		{
+			pieces = &m_player2Pieces;
+			piecesPlaced = m_player2PiecesPlaced;
+		}
+
+		// Check if clicking on an unplaced piece
+		for (int i = 0; i < pieces->size(); ++i)
+		{
+			sf::FloatRect bounds = (*pieces)[i].getBounds();
+			if (bounds.contains({  (float)mousePos.x, (float)mousePos.y  }))
+			{
+				m_isDragging = true;
+				m_draggedPieceIndex = i;
+				m_draggedPiece = &(*pieces)[i];
+				break;
+			}
+		}
+	}
+	// MOVEMENT PHASE: Check if clicking on current player's piece on the board
+	else if (m_currentGameState == GameState::Movement)
+	{
+		sf::Vector2i gridPos = screenToGrid(mousePos);
+		int row = gridPos.x;
+		int col = gridPos.y;
+
+		// Check if click is within board bounds
+		if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE)
+			return;
+
+		// Check if clicking on current player's piece
+		if (!m_grid[row][col].isEmpty() && m_grid[row][col].getOwner() == m_currentPlayer)
+		{
+			// Select this piece
+			m_isPieceSelected = true;
 			m_isDragging = true;
-			m_draggedPieceIndex = i;
-			m_draggedPiece = &(*pieces)[i];
-			break;
+			m_selectedCell = { row, col };
+			m_originalCell = { row, col };
+			m_selectedPiece = &m_grid[row][col];
+
+			// Calculate valid moves for this piece
+			m_validMoves = m_selectedPiece->getValidMoves(row, col, &m_grid[0][0], BOARD_SIZE);
+
+			std::cout << "Selected " << m_selectedPiece->getName()
+				<< " at (" << row << ", " << col << ") with "
+				<< m_validMoves.size() << " valid moves\n";
 		}
 	}
 }
 
 void Game::handleMouseMoved(sf::Vector2i mousePos)
 {
-	if (m_isDragging && m_draggedPiece != nullptr)
+	if (m_currentGameState == GameState::Placement)
 	{
-		// Update dragged piece position to follow mouse
-		m_draggedPiece->setPosition({ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) });
+		// PLACEMENT PHASE: Update dragged piece position
+		if (m_isDragging && m_draggedPiece != nullptr)
+		{
+			m_draggedPiece->setPosition({ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) });
+		}
+	}
+	else if (m_currentGameState == GameState::Movement)
+	{
+		// MOVEMENT PHASE: Update selected piece position
+		if (m_isDragging && m_selectedPiece != nullptr)
+		{
+			m_selectedPiece->setPosition({ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) });
+		}
 	}
 }
 
 void Game::handleMouseRelease(sf::Vector2i mousePos)
 {
-	// Need to make sure we were dragging a piece
-	if (!m_isDragging || m_draggedPiece == nullptr)
-		return;
-
-	// Calculate board position and cell size
-	float cellSize = m_board.getCellSize();
-	float boardLeft = (m_window.getSize().x - m_board.getSize() * cellSize) / 2.f;
-	float boardTop = (m_window.getSize().y - m_board.getSize() * cellSize) / 2.f;
-
-	// Convert mouse position to grid coordinates
-	int col = static_cast<int>((mousePos.x - boardLeft) / cellSize);
-	int row = static_cast<int>((mousePos.y - boardTop) / cellSize);
-
-	// Check if dropped on valid empty cell
-	if (row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE && m_grid[row][col].isEmpty())
+	if (m_currentGameState == GameState::Placement)
 	{
-		// Place the piece
-		Player owner = m_draggedPiece->getOwner();
+		// PLACEMENT PHASE: Try to place piece on board
+		// Need to make sure we were dragging a piece
+		if (!m_isDragging || m_draggedPiece == nullptr)
+			return;
+
+		// Calculate board position and cell size
+		float cellSize = m_board.getCellSize();
+		float boardLeft = (m_window.getSize().x - m_board.getSize() * cellSize) / 2.f;
+		float boardTop = (m_window.getSize().y - m_board.getSize() * cellSize) / 2.f;
+
+		// Convert mouse position to grid coordinates
+		int col = static_cast<int>((mousePos.x - boardLeft) / cellSize);
+		int row = static_cast<int>((mousePos.y - boardTop) / cellSize);
+
+		// Check if dropped on valid empty cell
+		if (row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE && m_grid[row][col].isEmpty())
+		{
+			// Place the piece
+			Player owner = m_draggedPiece->getOwner();
 		AnimalType type = m_draggedPiece->getType();
 
 		m_grid[row][col] = Animal(owner, type);
 		m_grid[row][col].initAnimalTexture(m_board.getCellSize());
-		m_grid[row][col].setPosition(m_board.getCellCenter(row, col));
+			m_grid[row][col].setPosition(m_board.getCellCenter(row, col));
 
 		// Remove from side list
 		if (m_currentPlayer == Player::Player1)
@@ -204,43 +261,110 @@ void Game::handleMouseRelease(sf::Vector2i mousePos)
 		m_draggedPiece = nullptr;
 		m_draggedPieceIndex = -1;
 
-		// Check for win condition
-		if (checkWinCondition())
-		{
-			m_winner = m_currentPlayer;
-			switchGameState(GameState::GameOver);
-			m_isDragging = false;
-			m_draggedPiece = nullptr;
-			m_draggedPieceIndex = -1;
-			return;
-		}
+			// Check for win condition
+			if (checkWinCondition())
+			{
+				m_winner = m_currentPlayer;
+				switchGameState(GameState::GameOver);
+				m_isDragging = false;
+				m_draggedPiece = nullptr;
+				m_draggedPieceIndex = -1;
+				return;
+			}
 
-		// Check if all pieces are placed
-		if (m_player1PiecesPlaced == 5 && m_player2PiecesPlaced == 5)
-		{
-			switchGameState(GameState::Movement);
-			m_isDragging = false;
-			m_draggedPiece = nullptr;
-			m_draggedPieceIndex = -1;
-			return;
-		}
+			// Check if all pieces are placed
+			if (m_player1PiecesPlaced == 5 && m_player2PiecesPlaced == 5)
+			{
+				switchGameState(GameState::Movement);
+				std::cout << "All pieces placed! Entering Movement phase.\n";
+				m_isDragging = false;
+				m_draggedPiece = nullptr;
+				m_draggedPieceIndex = -1;
+				return;
+			}
 
-		// Switch player
-		if (m_currentPlayer == Player::Player1)
-			m_currentPlayer = Player::Player2;
+			// Switch player
+			if (m_currentPlayer == Player::Player1)
+				m_currentPlayer = Player::Player2;
+			else
+				m_currentPlayer = Player::Player1;
+		}
 		else
-			m_currentPlayer = Player::Player1;
-	}
-	else
-	{
-		// Return piece to original position if dropped in invalid location
-		updateAnimals(); // This will reset all unplaced pieces to their original positions
-	}
+		{
+			// Return piece to original position if dropped in invalid location
+			updateAnimals(); // This will reset all unplaced pieces to their original positions
+		}
 
-	// Reset draging state variables back to default
-	m_isDragging = false;
-	m_draggedPiece = nullptr;
-	m_draggedPieceIndex = -1;
+		// Reset dragging state variables back to default
+		m_isDragging = false;
+		m_draggedPiece = nullptr;
+		m_draggedPieceIndex = -1;
+	}
+	else if (m_currentGameState == GameState::Movement)
+	{
+		// MOVEMENT PHASE: Try to move piece to valid location
+		if (!m_isDragging || m_selectedPiece == nullptr)
+			return;
+
+		sf::Vector2i gridPos = screenToGrid(mousePos);
+		int targetRow = gridPos.x;
+		int targetCol = gridPos.y;
+
+		bool validMove = false;
+
+		// Check if the target position is in the list of valid moves
+		for (const auto& move : m_validMoves)
+		{
+			if (move.x == targetRow && move.y == targetCol)
+			{
+				validMove = true;
+				break;
+			}
+		}
+
+		if (validMove)
+		{
+			std::cout << "Moving piece from (" << m_originalCell.x << ", " << m_originalCell.y
+				<< ") to (" << targetRow << ", " << targetCol << ")\n";
+
+			// Move the piece
+			m_grid[targetRow][targetCol] = m_grid[m_originalCell.x][m_originalCell.y];
+			m_grid[targetRow][targetCol].setPosition(m_board.getCellCenter(targetRow, targetCol));
+
+			// Clear the original cell
+			m_grid[m_originalCell.x][m_originalCell.y] = Animal();
+
+			// Check for win condition
+			if (checkWinCondition())
+			{
+				m_winner = m_currentPlayer;
+				switchGameState(GameState::GameOver);
+
+				// Reset selection state
+				m_isPieceSelected = false;
+				m_isDragging = false;
+				m_selectedPiece = nullptr;
+				m_validMoves.clear();
+				return;
+			}
+
+			// Switch player
+			m_currentPlayer = (m_currentPlayer == Player::Player1) ? Player::Player2 : Player::Player1;
+			std::cout << "Turn switched to Player " << (m_currentPlayer == Player::Player1 ? "1" : "2") << "\n";
+		}
+		else
+		{
+			std::cout << "Invalid move - returning piece to original position\n";
+			// Return piece to original position
+			m_selectedPiece->setPosition(m_board.getCellCenter(m_originalCell.x, m_originalCell.y));
+		}
+
+		// Reset selection state
+		m_isPieceSelected = false;
+		m_isDragging = false;
+		m_selectedPiece = nullptr;
+		m_validMoves.clear();
+	}
 }
 
 void Game::processKeys(const std::optional<sf::Event> t_event)
@@ -278,17 +402,60 @@ void Game::update(sf::Time t_deltaTime)
 	}
 }
 
+void Game::drawValidMoveHighlights(sf::RenderWindow& window)
+{
+	if (!m_isPieceSelected || m_validMoves.empty())
+		return;
+
+	float cellSize = m_board.getCellSize();
+
+	// Draw a highlight on the selected cell
+	sf::RectangleShape selectedHighlight(sf::Vector2f(cellSize - 4, cellSize - 4));
+	selectedHighlight.setFillColor(sf::Color(255, 255, 0, 80)); // Semi-transparent yellow
+	selectedHighlight.setOutlineColor(sf::Color::Yellow);
+	selectedHighlight.setOutlineThickness(2.0f);
+
+	sf::Vector2f selectedPos = m_board.getCellCenter(m_originalCell.x, m_originalCell.y);
+	selectedHighlight.setPosition({ selectedPos.x - cellSize / 2 + 2, selectedPos.y - cellSize / 2 + 2 });
+	window.draw(selectedHighlight);
+
+	// Draw highlights for all valid moves
+	for (const auto& move : m_validMoves)
+	{
+		sf::CircleShape highlight(cellSize * 0.15f);
+		highlight.setFillColor(sf::Color(0, 255, 0, 150)); // Semi-transparent green
+		highlight.setOutlineColor(sf::Color::Green);
+		highlight.setOutlineThickness(2.0f);
+
+		sf::Vector2f cellCenter = m_board.getCellCenter(move.x, move.y);
+		highlight.setOrigin({ cellSize * 0.15f, cellSize * 0.15f });
+		highlight.setPosition(cellCenter);
+
+		window.draw(highlight);
+	}
+}
+
 void Game::render()
 {
 	m_window.clear(BLACK);
 
 	m_board.draw(m_window);
 
+	// Draw valid move highlights during movement phase
+	if (m_currentGameState == GameState::Movement)
+	{
+		drawValidMoveHighlights(m_window);
+	}
+
 	// Draw pieces on the board
 	for (int row = 0; row < BOARD_SIZE; ++row)
 	{
 		for (int col = 0; col < BOARD_SIZE; ++col)
 		{
+			// Don't draw the piece we're currently dragging from its original position
+			if (m_isDragging && m_selectedCell.x == row && m_selectedCell.y == col)
+				continue;
+
 			m_grid[row][col].draw(m_window);
 		}
 	}
@@ -301,6 +468,12 @@ void Game::render()
 
 		for (int i = 0; i < m_player2Pieces.size(); ++i)
 			m_player2Pieces[i].draw(m_window);
+	}
+
+	// Draw the dragged piece on top of everything else
+	if (m_isDragging && m_selectedPiece != nullptr)
+	{
+		m_selectedPiece->draw(m_window);
 	}
 
 	if (m_currentGameState == GameState::GameOver)

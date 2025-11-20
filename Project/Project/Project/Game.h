@@ -38,6 +38,10 @@ private:
 	bool checkWinCondition();
 	void switchGameState(GameState newState);
 
+	void drawValidMoveHighlights(sf::RenderWindow& window);
+	sf::Vector2i screenToGrid(sf::Vector2i screenPos) const;
+	void updateInstructionsText();
+
 	Board m_board{5, 150.f};
 	std::vector<Animal> m_player1Pieces;
 	std::vector<Animal> m_player2Pieces;
@@ -45,6 +49,7 @@ private:
 	sf::RenderWindow m_window;			 // main SFML window
 	sf::Font m_jerseyFont;				 // font used by message
 	sf::Text m_winMessage{m_jerseyFont}; // text used for win message
+	sf::Text m_instructionText{ m_jerseyFont }; // text for turn/phase instructions
 
 	// (to Emily) : keeping these here in case you want to reuse them at some point,
 	// but I only use the text above these for the win message right now.
@@ -65,6 +70,13 @@ private:
 	bool m_isDragging{false};
 	int m_draggedPieceIndex{-1};
 	Animal *m_draggedPiece{nullptr};
+
+	// Variables for movement phase
+	bool m_isPieceSelected{ false };
+	sf::Vector2i m_selectedCell{ -1, -1 };  // Grid position of selected piece
+	sf::Vector2i m_originalCell{ -1, -1 };  // Original position before dragging
+	std::vector<sf::Vector2i> m_validMoves;  // Valid move positions for selected piece
+	Animal* m_selectedPiece{ nullptr };  // Pointer to the selected piece being moved
 
 	bool m_DELETEexitGame; // control exiting game
 };

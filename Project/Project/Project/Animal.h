@@ -33,12 +33,24 @@ class Animal
 	  Animal(const Animal& other);
 	  Animal& operator=(const Animal& other);
 
+	  // New method to get valid moves for the current animal from a given position
+	  std::vector<sf::Vector2i> getValidMoves(int currentRow, int currentCol,
+		  const Animal* grid, int boardSize) const;
+
 private:
 	Player m_owner;
 	AnimalType m_type;
 	sf::Texture m_texture;
 	sf::Sprite m_sprite{ m_texture };
 
+	// Helper methods for movement validation
+	bool isValidPosition(int row, int col, int boardSize) const;
+
+	// Adds cardinal movements (up, down, left, right) to the moves vector
+	void addAdjacentMoves(int row, int col, const Animal* grid, int boardSize,
+		std::vector<sf::Vector2i>& moves, bool includeDiagonal) const;
+	void addFrogJumpMoves(int row, int col, const Animal* grid, int boardSize,
+		std::vector<sf::Vector2i>& moves) const;
 
 };
 
