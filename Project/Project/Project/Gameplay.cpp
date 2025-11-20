@@ -395,8 +395,7 @@ std::vector<Move> Gameplay::getValidMovesForPiece(int row, int col, const Boards
 		{
 			int r = row + d[0];
 			int c = col + d[1];
-			if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
-				state.grid[r][c].owner != owner)
+			if (isValidPosition(r, c) && state.grid[r][c].owner == Player::NoPlayer)
 			{
 				moves.push_back({ row, col, r, c });
 			}
@@ -410,8 +409,7 @@ std::vector<Move> Gameplay::getValidMovesForPiece(int row, int col, const Boards
 		{
 			int r = row + d[0];
 			int c = col + d[1];
-			if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
-				state.grid[r][c].owner != owner)
+			if (isValidPosition(r, c) && state.grid[r][c].owner == Player::NoPlayer)
 			{
 				moves.push_back({ row, col, r, c });
 			}
@@ -426,8 +424,7 @@ std::vector<Move> Gameplay::getValidMovesForPiece(int row, int col, const Boards
 		{
 			int r = row + d[0];
 			int c = col + d[1];
-			if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
-				state.grid[r][c].owner != owner)
+			if (isValidPosition(r, c) && state.grid[r][c].owner == Player::NoPlayer)
 			{
 				moves.push_back({ row, col, r, c });
 			}
