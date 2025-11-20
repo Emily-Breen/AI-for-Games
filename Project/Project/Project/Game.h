@@ -8,6 +8,7 @@
 #include <SFML/Audio.hpp>
 #include "Board.h"
 #include "Animal.h"
+#include "Gameplay.h"
 
 const sf::Color BLACK{0, 0, 0, 0}; // const colour
 
@@ -79,6 +80,13 @@ private:
 	Animal* m_selectedPiece{ nullptr };  // Pointer to the selected piece being moved
 
 	bool m_DELETEexitGame; // control exiting game
+
+	// Variables for AI opponent
+	Gameplay m_aiPlayer;
+	bool m_player2IsAI{ true };
+	void handleAITurn();
+	Boardstate getCurrentBoardState() const;
+
 };
 
 #pragma warning(pop)

@@ -52,12 +52,12 @@ bool Animal::isEmpty() const
 	return m_owner == Player::NoPlayer;
 }
 
-Player Animal::getOwner()
+Player Animal::getOwner() const
 {
     return m_owner;
 }
 
-AnimalType Animal::getType()
+AnimalType Animal::getType() const
 {
 	return m_type;
 }
@@ -79,6 +79,8 @@ void Animal::initAnimalTexture(float cellSize)
         break;
     case AnimalType::Donkey: filename = "ASSETS/IMAGES/donkey.png"; 
         break;
+    case AnimalType::NoType:
+        return;
     default:
         std::cout << "Name is wrong\n";
         return;

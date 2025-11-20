@@ -23,8 +23,8 @@ class Animal
 	  
 	  std::string getName() const;
 	  bool isEmpty() const;
-	  Player getOwner();
-	  AnimalType getType();
+	  Player getOwner() const;
+	  AnimalType getType() const;
 	  void setPosition(const sf::Vector2f& position);
 	  void initAnimalTexture(float cellSize);
 	  void draw(sf::RenderWindow& m_window);
