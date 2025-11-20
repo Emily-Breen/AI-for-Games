@@ -142,10 +142,10 @@ void Game::handleMousePress(sf::Vector2i mousePos)
 	}
 
 	// Check if clicking on an unplaced piece
-	for (int i = piecesPlaced; i < 5; ++i)
+	for (int i = 0; i < pieces->size(); ++i)
 	{
 		sf::FloatRect bounds = (*pieces)[i].getBounds();
-		if (bounds.contains({static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)}))
+		if (bounds.contains({ (float)mousePos.x, (float)mousePos.y }))
 		{
 			m_isDragging = true;
 			m_draggedPieceIndex = i;
@@ -183,13 +183,26 @@ void Game::handleMouseRelease(sf::Vector2i mousePos)
 	if (row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE && m_grid[row][col].isEmpty())
 	{
 		// Place the piece
-		m_grid[row][col] = *m_draggedPiece;
+		Player owner = m_draggedPiece->getOwner();
+		AnimalType type = m_draggedPiece->getType();
+
+		m_grid[row][col] = Animal(owner, type);
+		m_grid[row][col].initAnimalTexture(m_board.getCellSize());
 		m_grid[row][col].setPosition(m_board.getCellCenter(row, col));
 
+		// Remove from side list
 		if (m_currentPlayer == Player::Player1)
-			m_player1PiecesPlaced++;
+		{
+			m_player1Pieces.erase(m_player1Pieces.begin() + m_draggedPieceIndex);
+		}
 		else
-			m_player2PiecesPlaced++;
+		{
+			m_player2Pieces.erase(m_player2Pieces.begin() + m_draggedPieceIndex);
+		}
+
+		// Immediately reset drag state BEFORE anything else can use the old index
+		m_draggedPiece = nullptr;
+		m_draggedPieceIndex = -1;
 
 		// Check for win condition
 		if (checkWinCondition())
@@ -251,10 +264,14 @@ void Game::update(sf::Time t_deltaTime)
 {
 	checkKeyboardState();
 
-	if (!m_isDragging)
+	if (m_currentGameState == GameState::Placement)
 	{
-		updateAnimals();
+		if (!m_isDragging)
+		{
+			updateAnimals();
+		}
 	}
+
 	if (m_DELETEexitGame)
 	{
 		m_window.close();
@@ -279,10 +296,10 @@ void Game::render()
 	// Draw unplaced pieces during placement phase
 	if (m_currentGameState == GameState::Placement)
 	{
-		for (int i = m_player1PiecesPlaced; i < 5; ++i)
+		for (int i = 0; i < m_player1Pieces.size(); ++i)
 			m_player1Pieces[i].draw(m_window);
 
-		for (int i = m_player2PiecesPlaced; i < 5; ++i)
+		for (int i = 0; i < m_player2Pieces.size(); ++i)
 			m_player2Pieces[i].draw(m_window);
 	}
 
@@ -303,20 +320,25 @@ void Game::updateAnimals()
 	float boardTop = (m_window.getSize().y - m_board.getSize() * cellSize) / 2.f;
 	float boardRight = boardLeft + m_board.getSize() * cellSize;
 
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < m_player1Pieces.size(); ++i)
 	{
-		float yPos = boardTop + (i + 0.5f) * cellSize;
-
-		// Rescale and reposition Player 1 pieces
 		m_player1Pieces[i].rescale(cellSize);
-		sf::Vector2f pos1(boardLeft - cellSize * 1.2f, yPos);
-		m_player1Pieces[i].setPosition(pos1);
-
-		// Rescale and reposition Player 2 pieces
-		m_player2Pieces[i].rescale(cellSize);
-		sf::Vector2f pos2(boardRight + cellSize * 1.2f, yPos);
-		m_player2Pieces[i].setPosition(pos2);
+		m_player1Pieces[i].setPosition({
+			boardLeft - cellSize * 1.2f,
+			boardTop + (i + 0.5f) * cellSize
+			});
 	}
+	for (int i = 0; i < m_player2Pieces.size(); ++i)
+	{
+
+		m_player2Pieces[i].rescale(cellSize);
+		m_player2Pieces[i].setPosition({ 
+			boardRight + cellSize * 1.2f,
+			boardTop + (i + 0.5f) * cellSize 
+			});
+		
+	}
+	
 }
 
 bool Game::checkWinCondition()
