@@ -716,7 +716,7 @@ Boardstate Game::getCurrentBoardState() const
 	// Copy the grid
 	for (int row = 0; row < BOARD_SIZE; ++row) {
 		for (int col = 0; col < BOARD_SIZE; ++col) {
-			state.grid[row][col] = m_grid[row][col];
+			state.grid[row][col] = m_gameplay.toPieceState(m_grid[row][col]);
 		}
 	}
 

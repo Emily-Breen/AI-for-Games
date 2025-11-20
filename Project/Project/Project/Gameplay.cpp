@@ -1,4 +1,4 @@
-#include "Gameplay.h"
+﻿#include "Gameplay.h"
 #include <algorithm>
 #include <iostream>
 
@@ -143,9 +143,9 @@ int Gameplay::evaluateBoard(const Boardstate& state, Player maximizingPlayer)
 	// Valid tiles closer to the center should be more valuable than edge tiles
 	for (int row = 0; row < BOARD_SIZE; ++row) {
 		for (int col = 0; col < BOARD_SIZE; ++col) {
-			if (state.grid[row][col].isEmpty()) continue;
+			if (state.grid[row][col].owner ==Player::NoPlayer) continue;
 
-			if (state.grid[row][col].getOwner() == maximizingPlayer) {
+			if (state.grid[row][col].owner == maximizingPlayer) {
 				score += 10;
 				// Bonus for center
 				if (row >= 1 && row <= 3 && col >= 1 && col <= 3) score += 5;
@@ -172,14 +172,27 @@ int Gameplay::countConsecutivePieces(const Boardstate& state, Player player,
 
 	// Count consecutive pieces in the specified direction
 	while (isValidPosition(checkRow, checkCol) &&
-		!state.grid[checkRow][checkCol].isEmpty() &&
-		state.grid[checkRow][checkCol].getOwner() == player) {
+		state.grid[checkRow][checkCol].owner == player)  // ✔ owner check replaces both old checks
+	{
 		count++;
 		checkRow += deltaRow;
 		checkCol += deltaCol;
 	}
 
 	return count;
+}
+
+PieceState Gameplay::toPieceState(const Animal& a)
+{
+	PieceState ps;
+	ps.owner = a.getOwner();
+	ps.type = a.getType();
+	return ps;
+}
+
+Animal Gameplay::toAnimal(const PieceState& ps)
+{
+	return Animal(ps.owner, ps.type);
 }
 
 // =============================================================================
@@ -189,23 +202,26 @@ std::vector<Move> Gameplay::generateMoves(const Boardstate& state)
 {
 	std::vector<Move> moves;
 
-	// Find all pieces belonging to the current player
-	for (int row = 0; row < BOARD_SIZE; ++row) {
-		for (int col = 0; col < BOARD_SIZE; ++col) {
-			// Skip empty cells and opponent's pieces
-			if (state.grid[row][col].isEmpty() ||
-				state.grid[row][col].getOwner() != state.currentPlayer) {
+	// Look at all board positions
+	for (int row = 0; row < BOARD_SIZE; ++row)
+	{
+		for (int col = 0; col < BOARD_SIZE; ++col)
+		{
+			const PieceState& piece = state.grid[row][col];
+
+			// Skip empty cells
+			if (piece.owner == Player::NoPlayer)
 				continue;
-			}
 
-			// Get all valid moves for this piece
-			std::vector<sf::Vector2i> validMoves =
-				state.grid[row][col].getValidMoves(row, col, &state.grid[0][0], BOARD_SIZE);
+			// Skip opponent's pieces
+			if (piece.owner != state.currentPlayer)
+				continue;
 
-			// Convert each valid destination into a Move
-			for (const sf::Vector2i& dest : validMoves) {
-				moves.push_back(Move(row, col, dest.x, dest.y));
-			}
+			// Get moves for this piece (Frog, Snake, Donkey)
+			std::vector<Move> pieceMoves = getValidMovesForPiece(row, col, state);
+
+			// Append them
+			moves.insert(moves.end(), pieceMoves.begin(), pieceMoves.end());
 		}
 	}
 
@@ -229,7 +245,7 @@ Boardstate Gameplay::makeMove(const Boardstate& state, const Move& move)
 	newState.grid[move.row2][move.col2] = state.grid[move.row1][move.col1];
 
 	// Clear the original position
-	newState.grid[move.row1][move.col1] = Animal(); // Empty animal
+	newState.grid[move.row1][move.col1] = { Player::NoPlayer, AnimalType::NoType };  // Empty animal
 
 	// Switch to the other player
 	newState.currentPlayer = (state.currentPlayer == Player::Player1) ?
@@ -244,80 +260,99 @@ Boardstate Gameplay::makeMove(const Boardstate& state, const Move& move)
 bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 {
 	// Check horizontal wins
-	for (int row = 0; row < BOARD_SIZE; ++row) {
-		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
-			Player firstPlayer = state.grid[row][col].getOwner();
-			if (firstPlayer == Player::NoPlayer) continue;
+	for (int row = 0; row < BOARD_SIZE; ++row)
+	{
+		for (int col = 0; col <= BOARD_SIZE - 4; ++col)
+		{
+			Player first = state.grid[row][col].owner;
+			if (first == Player::NoPlayer) continue;
 
-			bool isWin = true;
-			for (int i = 1; i < 4; ++i) {
-				if (state.grid[row][col + i].getOwner() != firstPlayer) {
-					isWin = false;
+			bool ok = true;
+			for (int i = 1; i < 4; ++i)
+			{
+				if (state.grid[row][col + i].owner != first)
+				{
+					ok = false;
 					break;
 				}
 			}
-			if (isWin) {
-				winner = firstPlayer;
+			if (ok)
+			{
+				winner = first;
 				return true;
 			}
 		}
 	}
 
 	// Check vertical wins
-	for (int col = 0; col < BOARD_SIZE; ++col) {
-		for (int row = 0; row <= BOARD_SIZE - 4; ++row) {
-			Player firstPlayer = state.grid[row][col].getOwner();
-			if (firstPlayer == Player::NoPlayer) continue;
+	for (int col = 0; col < BOARD_SIZE; ++col)
+	{
+		for (int row = 0; row <= BOARD_SIZE - 4; ++row)
+		{
+			Player first = state.grid[row][col].owner;
+			if (first == Player::NoPlayer) continue;
 
-			bool isWin = true;
-			for (int i = 1; i < 4; ++i) {
-				if (state.grid[row + i][col].getOwner() != firstPlayer) {
-					isWin = false;
+			bool ok = true;
+			for (int i = 1; i < 4; ++i)
+			{
+				if (state.grid[row + i][col].owner != first)
+				{
+					ok = false;
 					break;
 				}
 			}
-			if (isWin) {
-				winner = firstPlayer;
+			if (ok)
+			{
+				winner = first;
 				return true;
 			}
 		}
 	}
 
 	// Check diagonal wins (top-left to bottom-right)
-	for (int row = 0; row <= BOARD_SIZE - 4; ++row) {
-		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
-			Player firstPlayer = state.grid[row][col].getOwner();
-			if (firstPlayer == Player::NoPlayer) continue;
+	for (int row = 0; row <= BOARD_SIZE - 4; ++row)
+	{
+		for (int col = 0; col <= BOARD_SIZE - 4; ++col)
+		{
+			Player first = state.grid[row][col].owner;
+			if (first == Player::NoPlayer) continue;
 
-			bool isWin = true;
-			for (int i = 1; i < 4; ++i) {
-				if (state.grid[row + i][col + i].getOwner() != firstPlayer) {
-					isWin = false;
+			bool ok = true;
+			for (int i = 1; i < 4; ++i)
+			{
+				if (state.grid[row + i][col + i].owner != first)
+				{
+					ok = false;
 					break;
 				}
 			}
-			if (isWin) {
-				winner = firstPlayer;
+			if (ok)
+			{
+				winner = first;
 				return true;
 			}
 		}
 	}
-
 	// Check diagonal wins (bottom-left to top-right)
-	for (int row = 3; row < BOARD_SIZE; ++row) {
-		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
-			Player firstPlayer = state.grid[row][col].getOwner();
-			if (firstPlayer == Player::NoPlayer) continue;
+	for (int row = 3; row < BOARD_SIZE; ++row)
+	{
+		for (int col = 0; col <= BOARD_SIZE - 4; ++col)
+		{
+			Player first = state.grid[row][col].owner;
+			if (first == Player::NoPlayer) continue;
 
-			bool isWin = true;
-			for (int i = 1; i < 4; ++i) {
-				if (state.grid[row - i][col + i].getOwner() != firstPlayer) {
-					isWin = false;
+			bool ok = true;
+			for (int i = 1; i < 4; ++i)
+			{
+				if (state.grid[row - i][col + i].owner != first)
+				{
+					ok = false;
 					break;
 				}
 			}
-			if (isWin) {
-				winner = firstPlayer;
+			if (ok)
+			{
+				winner = first;
 				return true;
 			}
 		}
@@ -332,4 +367,93 @@ bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 bool Gameplay::isValidPosition(int row, int col) const
 {
 	return row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE;
+}
+
+std::vector<Move> Gameplay::getValidMovesForPiece(int row, int col, const Boardstate& state)
+{
+	std::vector<Move> moves;
+
+	Player owner = state.grid[row][col].owner;
+	AnimalType type = state.grid[row][col].type;
+
+	if (owner == Player::NoPlayer)
+		return moves;
+
+	static const int DIR4[4][2] = {
+		{1,0}, {-1,0}, {0,1}, {0,-1}
+	};
+
+	static const int DIR8[8][2] = {
+		{1,0}, {-1,0}, {0,1}, {0,-1},
+		{1,1}, {1,-1}, {-1,1}, {-1,-1}
+	};
+
+	// Donkey moves (4 directions, 1 step)
+	if (type == AnimalType::Donkey)
+	{
+		for (auto& d : DIR4)
+		{
+			int r = row + d[0];
+			int c = col + d[1];
+			if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
+				state.grid[r][c].owner != owner)
+			{
+				moves.push_back({ row, col, r, c });
+			}
+		}
+	}
+
+	// Snake moves (8 directions, 1 step)
+	else if (type == AnimalType::Snake)
+	{
+		for (auto& d : DIR8)
+		{
+			int r = row + d[0];
+			int c = col + d[1];
+			if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
+				state.grid[r][c].owner != owner)
+			{
+				moves.push_back({ row, col, r, c });
+			}
+		}
+	}
+
+	// Frog moves
+	else if (type == AnimalType::Frog)
+	{
+		// Normal 1-step moves
+		for (auto& d : DIR8)
+		{
+			int r = row + d[0];
+			int c = col + d[1];
+			if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
+				state.grid[r][c].owner != owner)
+			{
+				moves.push_back({ row, col, r, c });
+			}
+		}
+
+		// Long jumps
+		for (auto& d : DIR8)
+		{
+			int r = row + d[0];
+			int c = col + d[1];
+
+			// Jump over occupied pieces
+			while (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
+				state.grid[r][c].owner != Player::NoPlayer)
+			{
+				r += d[0];
+				c += d[1];
+			}
+
+			if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
+				state.grid[r][c].owner == Player::NoPlayer)
+			{
+				moves.push_back({ row, col, r, c });
+			}
+		}
+	}
+
+	return moves;
 }

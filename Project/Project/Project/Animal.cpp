@@ -13,7 +13,7 @@ Animal::Animal(const Animal& other)
     m_owner = other.m_owner;
     m_type = other.m_type;
 
-    initAnimalTexture(50); 
+    
     m_sprite.setPosition(other.m_sprite.getPosition());
 }
 //assignment operator so when they move into the board grid the ones on the side dont overwrite to the sprite originally there 
@@ -24,7 +24,7 @@ Animal& Animal::operator=(const Animal& other)
         m_owner = other.m_owner;
         m_type = other.m_type;
 
-        // Reconstruct sprite from scratch
+      
         initAnimalTexture(50);
         m_sprite.setPosition(other.m_sprite.getPosition());
     }
