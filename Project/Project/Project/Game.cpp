@@ -176,7 +176,7 @@ void Game::handleMousePress(sf::Vector2i mousePos)
 		int row = gridPos.x;
 		int col = gridPos.y;
 
-		std::cout << "Click at grid (" << row << "," << col << "), Current player: "
+		std::cout << "Click at grid (" << col << "," << row << "), Current player: "
 			<< (m_currentPlayer == Player::Player1 ? "Player1" : "Player2") << "\n";
 
 		// Check if click is within board bounds
@@ -200,7 +200,7 @@ void Game::handleMousePress(sf::Vector2i mousePos)
 			m_validMoves = m_selectedPiece->getValidMoves(row, col, &m_grid[0][0], BOARD_SIZE);
 
 			std::cout << "Selected " << m_selectedPiece->getName()
-					  << " at (" << row << ", " << col << ") with "
+					  << " at (" << col << ", " << row << ") with "
 					  << m_validMoves.size() << " valid moves\n";
 		}
 	}
@@ -683,8 +683,8 @@ void Game::handleAITurn()
 		return;
 	}
 
-	std::cout << "AI moves from (" << aiMove.row1 << "," << aiMove.col1
-		<< ") to (" << aiMove.row2 << "," << aiMove.col2 << ")\n";
+	std::cout << "AI moves from (" << aiMove.col1 << "," << aiMove.row1
+		<< ") to (" << aiMove.col2 << "," << aiMove.row2 << ")\n";
 
 	// Apply the move to the actual game board
 	m_grid[aiMove.row2][aiMove.col2] = m_grid[aiMove.row1][aiMove.col1];

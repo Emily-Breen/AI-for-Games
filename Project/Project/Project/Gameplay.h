@@ -10,7 +10,7 @@ struct Move {
 	int row1, col1;
 	int row2, col2;
 
-	// Constructor for easy Move creation
+	// Constructor for easy Move creation; we can use this to represent invalid moves or no-move
 	Move() : row1(-1), col1(-1), row2(-1), col2(-1) {}
 	Move(int r1, int c1, int r2, int c2) : row1(r1), col1(c1), row2(r2), col2(c2) {}
 
@@ -19,10 +19,14 @@ struct Move {
 		return row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0;
 	}
 };
+
+// Struct for AI evaluation of each piece on the board
+// No rendering information, otherwise performance will be TERRIBLE
 struct PieceState {
 	Player owner;
 	AnimalType type;
 };
+
 // Represents the current state of the board
 struct Boardstate {
 	PieceState grid[BOARD_SIZE][BOARD_SIZE];
@@ -38,7 +42,7 @@ struct Boardstate {
 		{
 			for (int col = 0; col < BOARD_SIZE; ++col)
 			{
-				grid[row][col] = sourceGrid[row][col];  // now same type → OK
+				grid[row][col] = sourceGrid[row][col];
 			}
 		}
 
@@ -46,12 +50,11 @@ struct Boardstate {
 	}
 };
 
-static const int UNLIMITED_POWER = 999999; // i really hope you get the reference :D
+static const int UNLIMITED_POWER = 999999; // I really hope you get the reference :D
 
 class Gameplay
 {
 public:
-	// default constructor
 	Gameplay();
 
 	// function to choose the best move for the current player
@@ -60,9 +63,9 @@ public:
 	// function to check for win condition
 	bool checkWimCondition(const Boardstate& state, Player& winner);
 	std::vector<Move> getValidMovesForPiece(int row, int col, const Boardstate& state);
-	static PieceState toPieceState(const Animal& a);
+	static PieceState toPieceState(const Animal& animal);
+	static Animal toAnimal(const PieceState& pieceState);
 
-	static Animal toAnimal(const PieceState& ps);
 private:
 	// minimax algorithm with alpha-beta pruning
 	int miniMax(const Boardstate& state, int depth, bool isMaximizing, int alpha, int beta);
@@ -79,16 +82,10 @@ private:
 	// Helper function to check if a position is within board bounds
 	bool isValidPosition(int row, int col) const;
 
-	// Helper function to count consecutive pieces in a line
-	int countConsecutivePieces(const Boardstate& state, Player player, int row, int col,
-		int deltaRow, int deltaCol) const;
-
 	// The player that the AI is trying to maximize
 	Player m_maximizingPlayer;
 
-	
-
-	// Counter for debugging - tracks how many board states were evaluated
+	// Counter for debugging - tracks how many board states the AI evaluated before choosing a move
 	int m_nodesEvaluated;
 };
 

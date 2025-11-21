@@ -6,9 +6,7 @@ Gameplay::Gameplay() : m_maximizingPlayer(Player::Player2), m_nodesEvaluated(0)
 {
 }
 
-// =============================================================================
-// MAIN AI FUNCTION - Call this to get the AI's move
-// =============================================================================
+// Primary function to choose the best move using minimax with alpha-beta pruning
 Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 {
 	m_nodesEvaluated = 0;
@@ -16,15 +14,17 @@ Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 
 	std::vector<Move> possibleMoves = generateMoves(state);
 
+	// Limit number of moves to evaluate for performance
 	if (possibleMoves.size() > 10) {
 		possibleMoves.resize(10);
 	}
 
 	if (possibleMoves.empty()) {
 		std::cout << "No valid moves available!\n";
-		return Move(); // Return invalid move
+		return Move();
 	}
 
+	// Reset variables here to reassess best move each time this function is called
 	Move bestMove;
 	int bestScore = -UNLIMITED_POWER;
 	int alpha = -UNLIMITED_POWER;
@@ -34,14 +34,14 @@ Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 
 	// Try each possible move and evaluate it
 	for (const Move& move : possibleMoves) {
-		// Create new board state with this move applied
+
+		// Apply the move to get a new board state
 		Boardstate newState = makeMove(state, move);
 
 		// Evaluate this move using minimax (opponent's turn, so minimizing)
 		int score = miniMax(newState, depth, false, alpha, beta);
 
-		std::cout << "Move (" << move.row1 << "," << move.col1 << ") -> ("
-			<< move.row2 << "," << move.col2 << ") scored: " << score << "\n";
+		std::cout << "Move (" << move.col1 << "," << move.row1 << ") -> (" << move.col2 << "," << move.row2 << ") scored: " << score << "\n";
 
 		// Keep track of best move
 		if (score > bestScore) {
@@ -52,31 +52,27 @@ Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 		alpha = std::max(alpha, score);
 	}
 
-	std::cout << "AI chose move with score " << bestScore
-		<< " (evaluated " << m_nodesEvaluated << " nodes)\n";
+	std::cout << "AI chose move with score " << bestScore << " (evaluated " << m_nodesEvaluated << " nodes)\n";
 
 	return bestMove;
 }
 
-// =============================================================================
-// MINIMAX ALGORITHM WITH ALPHA-BETA PRUNING
-// =============================================================================
 int Gameplay::miniMax(const Boardstate& state, int depth, bool isMaximizing, int alpha, int beta)
 {
 	m_nodesEvaluated++;
 
-	// BASE CASE 1: Check if game is over (someone won)
+	// Case 1: Check if game is over
 	Player winner;
 	if (checkWimCondition(state, winner)) {
 		if (winner == m_maximizingPlayer) {
-			return UNLIMITED_POWER - (10 - depth); // Prefer faster wins
+			return UNLIMITED_POWER;		 // AI wins
 		}
 		else {
-			return -UNLIMITED_POWER + (10 - depth); // Prefer slower losses
+			return -UNLIMITED_POWER;	 // AI loses
 		}
 	}
 
-	// BASE CASE 2: Maximum depth reached
+	// Case 2: Maximum depth reached, stop recursion
 	if (depth == 0) {
 		return evaluateBoard(state, m_maximizingPlayer);
 	}
@@ -84,12 +80,7 @@ int Gameplay::miniMax(const Boardstate& state, int depth, bool isMaximizing, int
 	// Generate all possible moves for current player
 	std::vector<Move> possibleMoves = generateMoves(state);
 
-	// BASE CASE 3: No moves available (stalemate)
-	if (possibleMoves.empty()) {
-		return 0; // Draw
-	}
-
-	// RECURSIVE CASE: Evaluate all possible moves
+	// Evaluate all possible moves
 	if (isMaximizing) {
 		// MAX NODE: AI is trying to maximize score
 		int maxEval = -UNLIMITED_POWER;
@@ -104,7 +95,7 @@ int Gameplay::miniMax(const Boardstate& state, int depth, bool isMaximizing, int
 			// Alpha-beta pruning
 			alpha = std::max(alpha, eval);
 			if (beta <= alpha) {
-				break; // Beta cutoff - prune remaining branches
+				break; // Beta cutoff - prune the rest of the branches
 			}
 		}
 
@@ -124,7 +115,7 @@ int Gameplay::miniMax(const Boardstate& state, int depth, bool isMaximizing, int
 			// Alpha-beta pruning
 			beta = std::min(beta, eval);
 			if (beta <= alpha) {
-				break; // Alpha cutoff - prune remaining branches
+				break; // Alpha cutoff - prune the rest of the branches
 			}
 		}
 
@@ -132,18 +123,14 @@ int Gameplay::miniMax(const Boardstate& state, int depth, bool isMaximizing, int
 	}
 }
 
-// =============================================================================
-// BOARD EVALUATION FUNCTION
-// =============================================================================
 int Gameplay::evaluateBoard(const Boardstate& state, Player maximizingPlayer)
 {
 	int score = 0;
 
-	// Simple piece counting + center control
 	// Valid tiles closer to the center should be more valuable than edge tiles
 	for (int row = 0; row < BOARD_SIZE; ++row) {
 		for (int col = 0; col < BOARD_SIZE; ++col) {
-			if (state.grid[row][col].owner ==Player::NoPlayer) continue;
+			if (state.grid[row][col].owner == Player::NoPlayer) continue;
 
 			if (state.grid[row][col].owner == maximizingPlayer) {
 				score += 10;
@@ -160,44 +147,21 @@ int Gameplay::evaluateBoard(const Boardstate& state, Player maximizingPlayer)
 	return score;
 }
 
-// =============================================================================
-// HELPER FUNCTION: Count consecutive pieces in a direction
-// =============================================================================
-int Gameplay::countConsecutivePieces(const Boardstate& state, Player player,
-	int row, int col, int deltaRow, int deltaCol) const
+// Convert Animal to PieceState for board representation
+PieceState Gameplay::toPieceState(const Animal& animal)
 {
-	int count = 0;
-	int checkRow = row;
-	int checkCol = col;
-
-	// Count consecutive pieces in the specified direction
-	while (isValidPosition(checkRow, checkCol) &&
-		state.grid[checkRow][checkCol].owner == player)  // ✔ owner check replaces both old checks
-	{
-		count++;
-		checkRow += deltaRow;
-		checkCol += deltaCol;
-	}
-
-	return count;
+	PieceState pieceState;
+	pieceState.owner = animal.getOwner();
+	pieceState.type = animal.getType();
+	return pieceState;
 }
 
-PieceState Gameplay::toPieceState(const Animal& a)
+Animal Gameplay::toAnimal(const PieceState& pieceState)
 {
-	PieceState ps;
-	ps.owner = a.getOwner();
-	ps.type = a.getType();
-	return ps;
+	return Animal(pieceState.owner, pieceState.type);
 }
 
-Animal Gameplay::toAnimal(const PieceState& ps)
-{
-	return Animal(ps.owner, ps.type);
-}
 
-// =============================================================================
-// GENERATE ALL POSSIBLE MOVES
-// =============================================================================
 std::vector<Move> Gameplay::generateMoves(const Boardstate& state)
 {
 	std::vector<Move> moves;
@@ -228,9 +192,6 @@ std::vector<Move> Gameplay::generateMoves(const Boardstate& state)
 	return moves;
 }
 
-// =============================================================================
-// APPLY A MOVE TO CREATE NEW BOARD STATE
-// =============================================================================
 Boardstate Gameplay::makeMove(const Boardstate& state, const Move& move)
 {
 	// Create a copy of the current state
@@ -254,9 +215,6 @@ Boardstate Gameplay::makeMove(const Boardstate& state, const Move& move)
 	return newState;
 }
 
-// =============================================================================
-// CHECK WIN CONDITION
-// =============================================================================
 bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 {
 	// Check horizontal wins
@@ -361,14 +319,13 @@ bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 	return false;
 }
 
-// =============================================================================
-// HELPER FUNCTION: Check if position is valid
-// =============================================================================
+// function to check if a position is within board bounds
 bool Gameplay::isValidPosition(int row, int col) const
 {
 	return row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE;
 }
 
+// check all valid moves for a piece at (row, col)
 std::vector<Move> Gameplay::getValidMovesForPiece(int row, int col, const Boardstate& state)
 {
 	std::vector<Move> moves;
@@ -391,13 +348,13 @@ std::vector<Move> Gameplay::getValidMovesForPiece(int row, int col, const Boards
 	// Donkey moves (4 directions, 1 step)
 	if (type == AnimalType::Donkey)
 	{
-		for (auto& d : DIR4)
+		for (auto& direction : DIR4)
 		{
-			int r = row + d[0];
-			int c = col + d[1];
-			if (isValidPosition(r, c) && state.grid[r][c].owner == Player::NoPlayer)
+			int neighbourRow = row + direction[0];
+			int neighbourCol = col + direction[1];
+			if (isValidPosition(neighbourRow, neighbourCol) && state.grid[neighbourRow][neighbourCol].owner == Player::NoPlayer)
 			{
-				moves.push_back({ row, col, r, c });
+				moves.push_back({ row, col, neighbourRow, neighbourCol });
 			}
 		}
 	}
@@ -405,13 +362,13 @@ std::vector<Move> Gameplay::getValidMovesForPiece(int row, int col, const Boards
 	// Snake moves (8 directions, 1 step)
 	else if (type == AnimalType::Snake)
 	{
-		for (auto& d : DIR8)
+		for (auto& direction : DIR8)
 		{
-			int r = row + d[0];
-			int c = col + d[1];
-			if (isValidPosition(r, c) && state.grid[r][c].owner == Player::NoPlayer)
+			int neighbourRow = row + direction[0];
+			int neighbourCol = col + direction[1];
+			if (isValidPosition(neighbourRow, neighbourCol) && state.grid[neighbourRow][neighbourCol].owner == Player::NoPlayer)
 			{
-				moves.push_back({ row, col, r, c });
+				moves.push_back({ row, col, neighbourRow, neighbourCol });
 			}
 		}
 	}
@@ -420,34 +377,35 @@ std::vector<Move> Gameplay::getValidMovesForPiece(int row, int col, const Boards
 	else if (type == AnimalType::Frog)
 	{
 		// Normal 1-step moves
-		for (auto& d : DIR8)
+		for (auto& direction : DIR8)
 		{
-			int r = row + d[0];
-			int c = col + d[1];
-			if (isValidPosition(r, c) && state.grid[r][c].owner == Player::NoPlayer)
+			int neighbourRow = row + direction[0];
+			int neighbourCol = col + direction[1];
+			if (isValidPosition(neighbourRow, neighbourCol) && state.grid[neighbourRow][neighbourCol].owner == Player::NoPlayer)
 			{
-				moves.push_back({ row, col, r, c });
+				moves.push_back({ row, col, neighbourRow, neighbourCol });
 			}
 		}
 
 		// Long jumps
-		for (auto& d : DIR8)
+		for (auto& direction : DIR8)
 		{
-			int r = row + d[0];
-			int c = col + d[1];
+			int neighbourRow = row + direction[0];
+			int neighbourCol = col + direction[1];
 
-			// Jump over occupied pieces
-			while (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
-				state.grid[r][c].owner != Player::NoPlayer)
+			// Jump over occupied pieces; while within bounds and next cell is occupied
+			while (neighbourRow >= 0 && neighbourRow < BOARD_SIZE && neighbourCol >= 0 && neighbourCol < BOARD_SIZE &&
+				state.grid[neighbourRow][neighbourCol].owner != Player::NoPlayer)
 			{
-				r += d[0];
-				c += d[1];
+				neighbourRow += direction[0];
+				neighbourCol += direction[1];
 			}
 
-			if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE &&
-				state.grid[r][c].owner == Player::NoPlayer)
+			// if we land on an empty cell, it's a valid move
+			if (neighbourRow >= 0 && neighbourRow < BOARD_SIZE && neighbourCol >= 0 && neighbourCol < BOARD_SIZE &&
+				state.grid[neighbourRow][neighbourCol].owner == Player::NoPlayer)
 			{
-				moves.push_back({ row, col, r, c });
+				moves.push_back({ row, col, neighbourRow, neighbourCol });
 			}
 		}
 	}
