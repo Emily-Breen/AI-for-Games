@@ -41,7 +41,7 @@ private:
 
 	void drawValidMoveHighlights(sf::RenderWindow& window);
 	sf::Vector2i screenToGrid(sf::Vector2i screenPos) const;
-	void updateInstructionsText();
+	//void updateInstructionsText();
 
 	Board m_board{5, 150.f};
 	std::vector<Animal> m_player1Pieces;

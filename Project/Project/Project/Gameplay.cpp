@@ -44,7 +44,7 @@ Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 		std::cout << "Move (" << move.col1 << "," << move.row1 << ") -> (" << move.col2 << "," << move.row2 << ") scored: " << score << "\n";
 
 		// Keep track of best move
-		if (score > bestScore) {
+		if (score >= bestScore) {
 			bestScore = score;
 			bestMove = move;
 		}
@@ -61,7 +61,7 @@ int Gameplay::miniMax(const Boardstate& state, int depth, bool isMaximizing, int
 {
 	m_nodesEvaluated++;
 
-	// Case 1: Check if game is over
+	// Check if game is over before recursing
 	Player winner;
 	if (checkWimCondition(state, winner)) {
 		if (winner == m_maximizingPlayer) {
@@ -72,7 +72,7 @@ int Gameplay::miniMax(const Boardstate& state, int depth, bool isMaximizing, int
 		}
 	}
 
-	// Case 2: Maximum depth reached, stop recursion
+	// Maximum depth reached, stop recursion
 	if (depth == 0) {
 		return evaluateBoard(state, m_maximizingPlayer);
 	}
@@ -225,16 +225,16 @@ bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 			Player first = state.grid[row][col].owner;
 			if (first == Player::NoPlayer) continue;
 
-			bool ok = true;
+			bool aboutToWin = true;
 			for (int i = 1; i < 4; ++i)
 			{
 				if (state.grid[row][col + i].owner != first)
 				{
-					ok = false;
+					aboutToWin = false;
 					break;
 				}
 			}
-			if (ok)
+			if (aboutToWin)
 			{
 				winner = first;
 				return true;
@@ -250,16 +250,16 @@ bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 			Player first = state.grid[row][col].owner;
 			if (first == Player::NoPlayer) continue;
 
-			bool ok = true;
+			bool aboutToWin = true;
 			for (int i = 1; i < 4; ++i)
 			{
 				if (state.grid[row + i][col].owner != first)
 				{
-					ok = false;
+					aboutToWin = false;
 					break;
 				}
 			}
-			if (ok)
+			if (aboutToWin)
 			{
 				winner = first;
 				return true;
@@ -275,16 +275,16 @@ bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 			Player first = state.grid[row][col].owner;
 			if (first == Player::NoPlayer) continue;
 
-			bool ok = true;
+			bool aboutToWin = true;
 			for (int i = 1; i < 4; ++i)
 			{
 				if (state.grid[row + i][col + i].owner != first)
 				{
-					ok = false;
+					aboutToWin = false;
 					break;
 				}
 			}
-			if (ok)
+			if (aboutToWin)
 			{
 				winner = first;
 				return true;
@@ -299,16 +299,16 @@ bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 			Player first = state.grid[row][col].owner;
 			if (first == Player::NoPlayer) continue;
 
-			bool ok = true;
+			bool aboutToWin = true;
 			for (int i = 1; i < 4; ++i)
 			{
 				if (state.grid[row - i][col + i].owner != first)
 				{
-					ok = false;
+					aboutToWin = false;
 					break;
 				}
 			}
-			if (ok)
+			if (aboutToWin)
 			{
 				winner = first;
 				return true;

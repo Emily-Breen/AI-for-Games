@@ -404,15 +404,12 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		updateAnimals();
 
-		// NEW: Check if it's time for AI to place a piece
 		if (m_player2IsAI && m_currentPlayer == Player::Player2) {
-			// For placement phase, you'll need to implement AI placement
-			// For now, we'll focus on the movement phase
-			// You can manually place AI pieces or implement auto-placement
+			// TODO: replace with a new function for handling AI placement
 		}
 	}
 
-	// NEW: Handle AI turn during movement phase
+	// Handle AI turn during movement phase
 	if (m_currentGameState == GameState::Movement) {
 		if (m_player2IsAI && m_currentPlayer == Player::Player2 && !m_isDragging) {
 			static sf::Clock aiThinkTimer;
@@ -674,8 +671,8 @@ void Game::handleAITurn()
 	// Convert current game state to Boardstate format
 	Boardstate currentState = getCurrentBoardState();
 
-	// Get AI's chosen move (depth 3 = looks 3 moves ahead)
-	Move aiMove = m_aiPlayer.chooseBestMove(currentState, 1);
+	// Get AI's chosen move (depth 2 = looks 2 moves ahead)
+	Move aiMove = m_aiPlayer.chooseBestMove(currentState, 2);
 
 	// Validate the move
 	if (!aiMove.isValid()) {
