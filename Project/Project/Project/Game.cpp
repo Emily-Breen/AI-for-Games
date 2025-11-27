@@ -2,8 +2,8 @@
 #include "Game.h"
 #include <iostream>
 
-Game::Game() : m_window{sf::VideoMode{sf::Vector2u{1920U, 1080U}, 32U}, "SFML Game 3.0"},
-			   m_DELETEexitGame{false} // when true game will exit
+Game::Game() : m_window{ sf::VideoMode{sf::Vector2u{1920U, 1080U}, 32U}, "SFML Game 3.0" },
+m_DELETEexitGame{ false } // when true game will exit
 {
 	if (!m_jerseyFont.openFromFile("ASSETS/FONTS/Jersey20-Regular.ttf"))
 	{
@@ -17,6 +17,13 @@ Game::Game() : m_window{sf::VideoMode{sf::Vector2u{1920U, 1080U}, 32U}, "SFML Ga
 	m_winMessage.setOutlineThickness(3.f);
 	m_winMessage.setString("");
 
+	m_winMessage2.setFont(m_jerseyFont);
+	m_winMessage2.setCharacterSize(30);
+	m_winMessage2.setFillColor(sf::Color::Yellow);
+	m_winMessage2.setOutlineColor(sf::Color::Black);
+	m_winMessage2.setOutlineThickness(3.f);
+	m_winMessage2.setString("Press any key to return to the Main Menu");
+
 	m_board.updateCellSize(m_window.getSize());
 
 	float cellSize = m_board.getCellSize();
@@ -26,7 +33,7 @@ Game::Game() : m_window{sf::VideoMode{sf::Vector2u{1920U, 1080U}, 32U}, "SFML Ga
 		{Player::Player1, AnimalType::Snake},
 		{Player::Player1, AnimalType::Donkey},
 		{Player::Player1, AnimalType::Donkey},
-		{Player::Player1, AnimalType::Donkey}};
+		{Player::Player1, AnimalType::Donkey} };
 
 	// player 2 pieces
 	m_player2Pieces = {
@@ -34,7 +41,7 @@ Game::Game() : m_window{sf::VideoMode{sf::Vector2u{1920U, 1080U}, 32U}, "SFML Ga
 		{Player::Player2, AnimalType::Snake},
 		{Player::Player2, AnimalType::Donkey},
 		{Player::Player2, AnimalType::Donkey},
-		{Player::Player2, AnimalType::Donkey}};
+		{Player::Player2, AnimalType::Donkey} };
 
 	for (int i = 0; i < 5; ++i)
 	{
@@ -44,6 +51,19 @@ Game::Game() : m_window{sf::VideoMode{sf::Vector2u{1920U, 1080U}, 32U}, "SFML Ga
 	}
 
 	std::cout << "Game initialized. Player 1 starts in Placement phase.\n";
+	m_currentGameState = GameState::MainMenu;
+
+	// menu buttons
+	m_btnHvH = new MenuButton(m_jerseyFont);
+	m_btnHvAI = new MenuButton(m_jerseyFont);
+	m_btnAIvAI = new MenuButton(m_jerseyFont);
+	m_btnQuit = new MenuButton(m_jerseyFont);
+
+	setupButtons(m_btnHvH, m_jerseyFont, "Human vs Human", 300.f);
+	setupButtons(m_btnHvAI, m_jerseyFont, "Human vs AI", 420.f);
+	setupButtons(m_btnAIvAI, m_jerseyFont, "AI vs AI", 540.f);
+	setupButtons(m_btnQuit, m_jerseyFont, "Quit", 660.f);
+
 }
 
 Game::~Game()
@@ -138,6 +158,43 @@ sf::Vector2i Game::screenToGrid(sf::Vector2i screenPos) const
 
 void Game::handleMousePress(sf::Vector2i mousePos)
 {
+	if (m_currentGameState == GameState::MainMenu)
+	{
+		sf::Vector2f mouse(mousePos);
+
+		// Fixed lambda to accept pointer and use -> operator
+		auto hit = [&](MenuButton* b)
+			{
+				return b->box.getGlobalBounds().contains(mouse);
+			};
+
+		if (hit(m_btnHvH))
+		{
+			m_player1IsAI = false;
+			m_player2IsAI = false;
+			m_currentGameState = GameState::Placement;
+			return;
+		}
+		if (hit(m_btnHvAI))
+		{
+			m_player1IsAI = false;
+			m_player2IsAI = true;
+			m_currentGameState = GameState::Placement;
+			return;
+		}
+		if (hit(m_btnAIvAI))
+		{
+			m_player1IsAI = true;
+			m_player2IsAI = true;
+			m_currentGameState = GameState::Placement;
+			return;
+		}
+		if (hit(m_btnQuit))
+		{
+			m_window.close();
+			return;
+		}
+	}
 	// PLACEMENT PHASE: Check if clicking on unplaced piece
 	if (m_currentGameState == GameState::Placement)
 	{
@@ -386,6 +443,11 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	{
 		m_DELETEexitGame = true;
 	}
+	//press any key to reset after game over
+	if (m_currentGameState == GameState::GameOver)
+	{
+		resetGame();
+	}
 }
 
 void Game::checkKeyboardState()
@@ -399,19 +461,72 @@ void Game::checkKeyboardState()
 void Game::update(sf::Time t_deltaTime)
 {
 	checkKeyboardState();
+	//STEPHEN:: Updated both placement and movement phases to handle AI turns, checks which player's turn it is 
 
 	if (m_currentGameState == GameState::Placement)
 	{
 		updateAnimals();
 
-		if (m_player2IsAI && m_currentPlayer == Player::Player2) {
-			// TODO: replace with a new function for handling AI placement
+		//check is the current player is AI
+		if ((m_player1IsAI && m_currentPlayer == Player::Player1) ||
+			(m_player2IsAI && m_currentPlayer == Player::Player2))
+		{
+			// this will auto place the pieces for the AI
+			for (int row = 0; row < BOARD_SIZE; row++)
+			{
+				for (int col = 0; col < BOARD_SIZE; col++)
+				{
+					if (m_grid[row][col].isEmpty())
+					{
+						auto& pieces = (m_currentPlayer == Player::Player1)
+							? m_player1Pieces : m_player2Pieces;
+
+						if (!pieces.empty())
+						{
+							// Get the piece info before removing it
+							Player owner = pieces.back().getOwner();
+							AnimalType type = pieces.back().getType();
+
+							// Create new piece in grid
+							m_grid[row][col] = Animal(owner, type);
+
+							// Initialize texture and position
+							m_grid[row][col].initAnimalTexture(m_board.getCellSize());
+							m_grid[row][col].setPosition(m_board.getCellCenter(row, col));
+
+							//removes from the list
+							pieces.pop_back();
+
+							// checks if the pieces are in place
+							if (m_player1Pieces.empty() && m_player2Pieces.empty())
+							{
+								m_currentPlayer = Player::Player1; // Reset to Player 1 for movement
+								switchGameState(GameState::Movement);
+								std::cout << "\n*** ALL PIECES PLACED! ***\n";
+								std::cout << "Entering Movement phase.\n";
+								std::cout << "Player 1's turn to move.\n\n";
+								return;
+							}
+
+							// Switch to next player
+							m_currentPlayer = (m_currentPlayer == Player::Player1)
+								? Player::Player2 : Player::Player1;
+
+							return; // one placement per frame
+						}
+					}
+				}
+			}
 		}
 	}
 
 	// Handle AI turn during movement phase
 	if (m_currentGameState == GameState::Movement) {
-		if (m_player2IsAI && m_currentPlayer == Player::Player2 && !m_isDragging) {
+		// Check if the current player is AI 
+		bool currentPlayerIsAI = (m_currentPlayer == Player::Player1 && m_player1IsAI) ||
+			(m_currentPlayer == Player::Player2 && m_player2IsAI);
+		//if the current player is AI and not dragging then handle AI turn
+		if (currentPlayerIsAI && !m_isDragging) {
 			static sf::Clock aiThinkTimer;
 			static bool aiStarted = false;
 
@@ -512,8 +627,28 @@ void Game::render()
 	if (m_currentGameState == GameState::GameOver)
 	{
 		m_window.draw(m_winMessage);
+		m_window.draw(m_winMessage2);
 	}
+	//draw the main menu
+	if (m_currentGameState == GameState::MainMenu)
+	{
+		m_window.clear(sf::Color(20, 20, 20));
 
+		m_window.draw(m_btnHvH->box);
+		m_window.draw(m_btnHvH->label);
+
+		m_window.draw(m_btnHvAI->box);
+		m_window.draw(m_btnHvAI->label);
+
+		m_window.draw(m_btnAIvAI->box);
+		m_window.draw(m_btnAIvAI->label);
+
+		m_window.draw(m_btnQuit->box);
+		m_window.draw(m_btnQuit->label);
+
+		m_window.display();
+		return;
+	}
 	m_window.display();
 }
 /// <summary>
@@ -656,54 +791,145 @@ void Game::switchGameState(GameState newState)
 		sf::FloatRect textBounds = m_winMessage.getLocalBounds();
 		m_winMessage.setOrigin({textBounds.size.x / 2.f, textBounds.size.y / 2.f});
 		m_winMessage.setPosition({m_window.getSize().x / 2.f, boardTop - 80.f});
+
+		sf::FloatRect textBounds2 = m_winMessage2.getLocalBounds();
+		m_winMessage2.setOrigin({ textBounds2.size.x / 2.f, textBounds2.size.y / 2.f });
+		m_winMessage2.setPosition({ m_window.getSize().x / 2.f, m_window.getSize().y - 150.f });
 	}
+}
+/// <summary>
+/// buttons for main menu setup STEPHEN this is for the buttons of the main menu 
+/// </summary>
+/// <param name="btn"></param>
+/// <param name="font"></param>
+/// <param name="text"></param>
+/// <param name="y"></param>
+void Game::setupButtons(MenuButton* btn, sf::Font& font, const std::string& text, float y)
+{
+	float width = 400.f;
+	float height = 80.f;
+	float x = (m_window.getSize().x - width) / 2.f; // Center horizontally
+
+	
+	btn->box.setSize(sf::Vector2f(width, height));
+	btn->box.setPosition({ x, y });
+	btn->box.setFillColor(sf::Color(sf::Color::Blue));
+	btn->box.setOutlineColor(sf::Color::White);
+	btn->box.setOutlineThickness(2.f);
+
+	btn->label.setFont(font);
+	btn->label.setString(text);
+	btn->label.setCharacterSize(24);
+	btn->label.setFillColor(sf::Color::White);
+
+	
+	sf::FloatRect textBounds = btn->label.getLocalBounds();
+	btn->label.setOrigin({ textBounds.size.x / 2.f, textBounds.size.y / 2.f });
+	btn->label.setPosition({ x + width / 2.f, y + height / 2.f - 5.f });
+}
+/// <summary>
+/// STEPHEN:: ADDED THIS FUNCTION TO RESET THE GAME AFTER A WIM CONDITION PRESS ANY KEY TO RESET
+/// </summary>
+void Game::resetGame()
+{
+	// Clear the board
+	for (int row = 0; row < BOARD_SIZE; row++)
+	{
+		for (int col = 0; col < BOARD_SIZE; col++)
+		{
+			m_grid[row][col] = Animal();
+		}
+	}
+
+	float cellSize = m_board.getCellSize();
+
+	// Reset player 1 pieces
+	m_player1Pieces = {
+		{Player::Player1, AnimalType::Frog},
+		{Player::Player1, AnimalType::Snake},
+		{Player::Player1, AnimalType::Donkey},
+		{Player::Player1, AnimalType::Donkey},
+		{Player::Player1, AnimalType::Donkey}
+	};
+
+	// Reset player 2 pieces
+	m_player2Pieces = {
+		{Player::Player2, AnimalType::Frog},
+		{Player::Player2, AnimalType::Snake},
+		{Player::Player2, AnimalType::Donkey},
+		{Player::Player2, AnimalType::Donkey},
+		{Player::Player2, AnimalType::Donkey}
+	};
+
+	// Initialize textures
+	for (int i = 0; i < 5; ++i)
+	{
+		m_player1Pieces[i].initAnimalTexture(cellSize);
+		m_player2Pieces[i].initAnimalTexture(cellSize);
+	}
+
+	// Reset game state variables
+	m_currentPlayer = Player::Player1;
+	m_winner = Player::NoPlayer;
+	m_isDragging = false;
+	m_draggedPieceIndex = -1;
+	m_draggedPiece = nullptr;
+	m_isPieceSelected = false;
+	m_selectedCell = { -1, -1 };
+	m_originalCell = { -1, -1 };
+	m_selectedPiece = nullptr;
+	m_validMoves.clear();
+
+	// Return to main menu
+	m_currentGameState = GameState::MainMenu;
+
+	std::cout << "Game reset. Returning to main menu.\n";
 }
 
 void Game::handleAITurn()
 {
-	// Only execute if it's actually the AI's turn
-	if (m_currentPlayer != Player::Player2 || !m_player2IsAI) {
+	//STEPHEN:: Fleshed out the AI turns but needs a little tweeking but it plays with itself now LOL
+	
+	// Check if current player is AI
+	if ((m_currentPlayer == Player::Player1 && !m_player1IsAI) ||
+		(m_currentPlayer == Player::Player2 && !m_player2IsAI))
+	{
 		return;
 	}
 
-	std::cout << "AI is thinking...\n";
+	std::cout << "AI ("
+		<< (m_currentPlayer == Player::Player1 ? "P1" : "P2")
+		<< ") is thinking...\n";
 
-	// Convert current game state to Boardstate format
 	Boardstate currentState = getCurrentBoardState();
-
-	// Get AI's chosen move (depth 2 = looks 2 moves ahead)
 	Move aiMove = m_aiPlayer.chooseBestMove(currentState, 2);
 
-	// Validate the move
-	if (!aiMove.isValid()) {
-		std::cout << "AI could not find a valid move!\n";
+	if (!aiMove.isValid())
+	{
+		std::cout << "AI found no valid move.\n";
 		return;
 	}
 
-	std::cout << "AI moves from (" << aiMove.col1 << "," << aiMove.row1
-		<< ") to (" << aiMove.col2 << "," << aiMove.row2 << ")\n";
-
-	// Apply the move to the actual game board
+	// Applys the move but its constantly playing the same move atm
 	m_grid[aiMove.row2][aiMove.col2] = m_grid[aiMove.row1][aiMove.col1];
-	m_grid[aiMove.row1][aiMove.col1] = Animal(); // Clear old position
+	m_grid[aiMove.row1][aiMove.col1] = Animal();
 
-	// Update the sprite position
+	// Move sprite
 	m_grid[aiMove.row2][aiMove.col2].initAnimalTexture(m_board.getCellSize());
-	m_grid[aiMove.row2][aiMove.col2].setPosition(
-		m_board.getCellCenter(aiMove.row2, aiMove.col2)
-	);
+	m_grid[aiMove.row2][aiMove.col2].setPosition(m_board.getCellCenter(aiMove.row2, aiMove.col2));
 
-	// Check for win condition
-	if (checkWinCondition()) {
-		m_winner = Player::Player2;
+	if (checkWinCondition())
+	{
+		m_winner = m_currentPlayer;
 		switchGameState(GameState::GameOver);
 		return;
 	}
 
-	// Switch to Player 1's turn
-	m_currentPlayer = Player::Player1;
-	std::cout << "AI's turn complete. Now Player 1's turn.\n";
+	// Switches between P1 and P2 
+	m_currentPlayer = (m_currentPlayer == Player::Player1)
+		? Player::Player2 : Player::Player1;
 }
+
 
 // Helper function to convert grid to Boardstate
 Boardstate Game::getCurrentBoardState() const
