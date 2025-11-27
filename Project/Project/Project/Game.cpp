@@ -162,7 +162,7 @@ void Game::handleMousePress(sf::Vector2i mousePos)
 	{
 		sf::Vector2f mouse(mousePos);
 
-		// Fixed lambda to accept pointer and use -> operator
+		// Lambda to check if mouse is over a button
 		auto hit = [&](MenuButton* b)
 			{
 				return b->box.getGlobalBounds().contains(mouse);
