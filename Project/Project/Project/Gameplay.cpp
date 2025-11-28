@@ -15,8 +15,8 @@ Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 	std::vector<Move> possibleMoves = generateMoves(state);
 
 	// Limit number of moves to evaluate for performance
-	if (possibleMoves.size() > 10) {
-		possibleMoves.resize(10);
+	if (possibleMoves.size() > 30) {
+		possibleMoves.resize(30);
 	}
 
 	if (possibleMoves.empty()) {
@@ -29,6 +29,8 @@ Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 	int bestScore = -UNLIMITED_POWER;
 	int alpha = -UNLIMITED_POWER;
 	int beta = UNLIMITED_POWER;
+
+	std::vector<Move> bestMoves; // To store moves with the best score
 
 	std::cout << "AI evaluating " << possibleMoves.size() << " possible moves...\n";
 
@@ -43,13 +45,24 @@ Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 
 		std::cout << "Move (" << move.col1 << "," << move.row1 << ") -> (" << move.col2 << "," << move.row2 << ") scored: " << score << "\n";
 
-		// Keep track of best move
-		if (score >= bestScore) {
+		// If this move is better than the best found so far, clear previous best moves and store this one
+		if (score > bestScore) {
 			bestScore = score;
-			bestMove = move;
+			bestMoves.clear();
+			bestMoves.push_back(move);
+		}
+		// If this move ties the best score, add it to the vector
+		else if (score == bestScore) {
+			bestMoves.push_back(move);
 		}
 
 		alpha = std::max(alpha, score);
+	}
+
+	// Randomly select from the best moves
+	if (!bestMoves.empty()) {
+		int randomIndex = rand() % bestMoves.size();
+		bestMove = bestMoves[randomIndex];
 	}
 
 	std::cout << "AI chose move with score " << bestScore << " (evaluated " << m_nodesEvaluated << " nodes)\n";
@@ -127,6 +140,12 @@ int Gameplay::evaluateBoard(const Boardstate& state, Player maximizingPlayer)
 {
 	int score = 0;
 
+	// assign opponent object Player 2 if maximizingPlayer is Player 1, and vice versa
+	Player opponent = (maximizingPlayer == Player::Player1) ? Player::Player2 : Player::Player1;
+
+	score += evaluateThreats(state, maximizingPlayer) * 100;  // AI can win next turn
+	score -= evaluateThreats(state, opponent) * 90;			  // Opponent can win next turn, slightly less important than AI winning
+
 	// Valid tiles closer to the center should be more valuable than edge tiles
 	for (int row = 0; row < BOARD_SIZE; ++row) {
 		for (int col = 0; col < BOARD_SIZE; ++col) {
@@ -145,6 +164,89 @@ int Gameplay::evaluateBoard(const Boardstate& state, Player maximizingPlayer)
 	}
 
 	return score;
+}
+
+int Gameplay::evaluateThreats(const Boardstate& state, Player player)
+{
+	int threats = 0;
+
+	// Horizontal threats
+	for (int row = 0; row < BOARD_SIZE; ++row) {
+		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
+			threats += checkForThreats(
+				state.grid[row][col].owner,
+				state.grid[row][col + 1].owner,
+				state.grid[row][col + 2].owner,
+				state.grid[row][col + 3].owner,
+				player
+			);
+		}
+	}
+
+	// Vertical threats
+	for (int col = 0; col < BOARD_SIZE; ++col) {
+		for (int row = 0; row <= BOARD_SIZE - 4; ++row) {
+			threats += checkForThreats(
+				state.grid[row][col].owner,
+				state.grid[row + 1][col].owner,
+				state.grid[row + 2][col].owner,
+				state.grid[row + 3][col].owner,
+				player
+			);
+		}
+	}
+
+	// Diagonal threats (top-left to bottom-right)
+	for (int row = 0; row <= BOARD_SIZE - 4; ++row) {
+		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
+			threats += checkForThreats(
+				state.grid[row][col].owner,
+				state.grid[row + 1][col + 1].owner,
+				state.grid[row + 2][col + 2].owner,
+				state.grid[row + 3][col + 3].owner,
+				player
+			);
+		}
+	}
+
+	// Diagonal threats (bottom-left to top-right)
+	for (int row = 3; row < BOARD_SIZE; ++row) {
+		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
+			threats += checkForThreats(
+				state.grid[row][col].owner,
+				state.grid[row - 1][col + 1].owner,
+				state.grid[row - 2][col + 2].owner,
+				state.grid[row - 3][col + 3].owner,
+				player
+			);
+		}
+	}
+
+
+	return threats;
+}
+
+int Gameplay::checkForThreats(Player p1, Player p2, Player p3, Player p4, Player player)
+{
+	int playerCount = 0;
+	int emptyCount = 0;
+
+	// Store player's positions in an array for easier checking
+	Player positions[4] = { p1, p2, p3, p4 };
+
+	for (int i = 0; i < 4; ++i) 
+	{
+		if (positions[i] == player)
+		{
+			playerCount++;
+		}
+		else if (positions[i] == Player::NoPlayer)  // Need to check for empty tiles in case 4th tile is actually owned by current player
+		{
+			emptyCount++;
+		}
+	}
+
+	return (playerCount == 3 && emptyCount == 1) ? 1 : 0;
 }
 
 // Convert Animal to PieceState for board representation

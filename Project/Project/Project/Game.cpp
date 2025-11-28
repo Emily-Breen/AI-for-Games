@@ -1,6 +1,7 @@
 
 #include "Game.h"
 #include <iostream>
+#include <cmath>
 
 Game::Game() : m_window{ sf::VideoMode{sf::Vector2u{1920U, 1080U}, 32U}, "SFML Game 3.0" },
 m_DELETEexitGame{ false } // when true game will exit
@@ -23,6 +24,39 @@ m_DELETEexitGame{ false } // when true game will exit
 	m_winMessage2.setOutlineColor(sf::Color::Black);
 	m_winMessage2.setOutlineThickness(3.f);
 	m_winMessage2.setString("Press any key to return to the Main Menu");
+
+	// Setup menu title
+	m_menuTitle.setFont(m_jerseyFont);
+	m_menuTitle.setCharacterSize(80);
+	m_menuTitle.setFillColor(sf::Color::Yellow);
+	m_menuTitle.setOutlineColor(sf::Color::Black);
+	m_menuTitle.setOutlineThickness(4.f);
+	m_menuTitle.setString("Fourth Protocol with Minimax");
+
+	// Center the title
+	sf::FloatRect titleBounds = m_menuTitle.getLocalBounds();
+	m_menuTitle.setOrigin({ titleBounds.size.x / 2.f, titleBounds.size.y / 2.f });
+	m_menuTitle.setPosition({ m_window.getSize().x / 2.f, 100.f });
+
+	// Setup menu subtitle
+	m_menuSubtitle.setFont(m_jerseyFont);
+	m_menuSubtitle.setCharacterSize(40);
+	m_menuSubtitle.setFillColor(sf::Color::White);
+	m_menuSubtitle.setString("Choose a game mode:");
+
+	// Center the subtitle
+	sf::FloatRect subtitleBounds = m_menuSubtitle.getLocalBounds();
+	m_menuSubtitle.setOrigin({ subtitleBounds.size.x / 2.f, subtitleBounds.size.y / 2.f });
+	m_menuSubtitle.setPosition({ m_window.getSize().x / 2.f, 220.f });
+
+	// Setup animated credits text
+	m_menuCredits.setFont(m_jerseyFont);
+	m_menuCredits.setCharacterSize(28);
+	m_menuCredits.setFillColor(sf::Color::Yellow);
+	m_menuCredits.setString("By Emily and Stephen!");
+
+	// Position to the right of the title
+	m_menuCredits.setPosition({ m_window.getSize().x / 2.f + 380.f, 180.f });
 
 	m_board.updateCellSize(m_window.getSize());
 
@@ -461,6 +495,20 @@ void Game::checkKeyboardState()
 void Game::update(sf::Time t_deltaTime)
 {
 	checkKeyboardState();
+
+	// Animate credits text on main menu
+	if (m_currentGameState == GameState::MainMenu)
+	{
+		float time = m_animationClock.getElapsedTime().asSeconds();
+
+		// Create a pulsing effect using sine wave
+		// Period of ~3 seconds for a slow pulse
+		float scale = 1.0f + 0.15f * std::sin(time * 2.0f);
+
+		// Apply the scale
+		m_menuCredits.setScale({ scale, scale });
+	}
+
 	//STEPHEN:: Updated both placement and movement phases to handle AI turns, checks which player's turn it is 
 
 	if (m_currentGameState == GameState::Placement)
@@ -471,51 +519,71 @@ void Game::update(sf::Time t_deltaTime)
 		if ((m_player1IsAI && m_currentPlayer == Player::Player1) ||
 			(m_player2IsAI && m_currentPlayer == Player::Player2))
 		{
-			// this will auto place the pieces for the AI
+			// Collect all empty positions
+			std::vector<sf::Vector2i> emptyPositions;
 			for (int row = 0; row < BOARD_SIZE; row++)
 			{
 				for (int col = 0; col < BOARD_SIZE; col++)
 				{
 					if (m_grid[row][col].isEmpty())
 					{
-						auto& pieces = (m_currentPlayer == Player::Player1)
-							? m_player1Pieces : m_player2Pieces;
-
-						if (!pieces.empty())
-						{
-							// Get the piece info before removing it
-							Player owner = pieces.back().getOwner();
-							AnimalType type = pieces.back().getType();
-
-							// Create new piece in grid
-							m_grid[row][col] = Animal(owner, type);
-
-							// Initialize texture and position
-							m_grid[row][col].initAnimalTexture(m_board.getCellSize());
-							m_grid[row][col].setPosition(m_board.getCellCenter(row, col));
-
-							//removes from the list
-							pieces.pop_back();
-
-							// checks if the pieces are in place
-							if (m_player1Pieces.empty() && m_player2Pieces.empty())
-							{
-								m_currentPlayer = Player::Player1; // Reset to Player 1 for movement
-								switchGameState(GameState::Movement);
-								std::cout << "\n*** ALL PIECES PLACED! ***\n";
-								std::cout << "Entering Movement phase.\n";
-								std::cout << "Player 1's turn to move.\n\n";
-								return;
-							}
-
-							// Switch to next player
-							m_currentPlayer = (m_currentPlayer == Player::Player1)
-								? Player::Player2 : Player::Player1;
-
-							return; // one placement per frame
-						}
+						emptyPositions.push_back({ row, col });
 					}
 				}
+			}
+
+			// If there are empty positions and pieces to place
+			auto& pieces = (m_currentPlayer == Player::Player1)
+				? m_player1Pieces : m_player2Pieces;
+
+			if (!emptyPositions.empty() && !pieces.empty())
+			{
+				// Randomly select an empty position
+				int randomIndex = rand() % emptyPositions.size();
+				sf::Vector2i chosenPos = emptyPositions[randomIndex];
+				int row = chosenPos.x;
+				int col = chosenPos.y;
+
+				// Get the piece info before removing it
+				Player owner = pieces.back().getOwner();
+				AnimalType type = pieces.back().getType();
+
+				// Create new piece in grid at randomly chosen position
+				m_grid[row][col] = Animal(owner, type);
+
+				// Initialize texture and position
+				m_grid[row][col].initAnimalTexture(m_board.getCellSize());
+				m_grid[row][col].setPosition(m_board.getCellCenter(row, col));
+
+				//removes from the list
+				pieces.pop_back();
+
+				// Check for win condition after placing piece
+				if (checkWinCondition())
+				{
+					m_winner = m_currentPlayer;
+					switchGameState(GameState::GameOver);
+					std::cout << "Player " << (m_currentPlayer == Player::Player1 ? "1" : "2")
+						<< " wins during placement phase!\n";
+					return;
+				}
+
+				// checks if the pieces are in place
+				if (m_player1Pieces.empty() && m_player2Pieces.empty())
+				{
+					m_currentPlayer = Player::Player1; // Reset to Player 1 for movement
+					switchGameState(GameState::Movement);
+					std::cout << "\n*** ALL PIECES PLACED! ***\n";
+					std::cout << "Entering Movement phase.\n";
+					std::cout << "Player 1's turn to move.\n\n";
+					return;
+				}
+
+				// Switch to next player
+				m_currentPlayer = (m_currentPlayer == Player::Player1)
+					? Player::Player2 : Player::Player1;
+
+				return; // one placement per frame
 			}
 		}
 	}
@@ -633,6 +701,10 @@ void Game::render()
 	if (m_currentGameState == GameState::MainMenu)
 	{
 		m_window.clear(sf::Color(20, 20, 20));
+
+		m_window.draw(m_menuTitle);
+		m_window.draw(m_menuSubtitle);
+		m_window.draw(m_menuCredits);
 
 		m_window.draw(m_btnHvH->box);
 		m_window.draw(m_btnHvH->label);
@@ -902,7 +974,7 @@ void Game::handleAITurn()
 		<< ") is thinking...\n";
 
 	Boardstate currentState = getCurrentBoardState();
-	Move aiMove = m_aiPlayer.chooseBestMove(currentState, 2);
+	Move aiMove = m_aiPlayer.chooseBestMove(currentState, 3);
 
 	if (!aiMove.isValid())
 	{

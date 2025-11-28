@@ -73,6 +73,9 @@ private:
 	// heuristic evaluation function
 	int evaluateBoard(const Boardstate& state, Player maximizingPlayer);
 
+	int evaluateThreats(const Boardstate& state, Player player);
+	int checkForThreats(Player p1, Player p2, Player p3, Player p4, Player player);
+
 	// function to generate all possible moves for the current player
 	std::vector<Move> generateMoves(const Boardstate& state);
 

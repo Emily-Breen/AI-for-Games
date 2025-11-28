@@ -66,6 +66,10 @@ private:
 	sf::Text m_winMessage{ m_jerseyFont }; 
 	sf::Text m_winMessage2{ m_jerseyFont };// text used for win message
 	sf::Text m_instructionText{ m_jerseyFont }; // text for turn/phase instructions
+	sf::Text m_menuTitle{ m_jerseyFont }; // Main menu title
+	sf::Text m_menuSubtitle{ m_jerseyFont }; // Main menu subtitle
+	sf::Text m_menuCredits{ m_jerseyFont }; // Animated credits text
+	sf::Clock m_animationClock; // Clock for credits animation
 
 	// (to Emily) : keeping these here in case you want to reuse them at some point,
 	// but I only use the text above these for the win message right now.
