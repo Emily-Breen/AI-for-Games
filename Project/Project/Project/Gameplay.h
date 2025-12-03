@@ -135,11 +135,14 @@ private:
 	/**
 	 * @brief Calculates threat patterns (3 in a row with one empty).
 	 */
-	int evaluateThreats(const Boardstate& state, Player player);
+	int evaluateThreeInARow(const Boardstate& state, Player player);
 	/**
 	 * @brief Checks four tiles for a potential threat.
 	 */
-	int checkForThreats(Player p1, Player p2, Player p3, Player p4, Player player);
+	int checkForThreeInARow(Player p1, Player p2, Player p3, Player p4, Player player);
+
+	int evaluateTwoInARow(const Boardstate& state, Player player);
+	int checkForTwoInARow(Player p1, Player p2, Player p3, Player p4, Player player);
 
 	/**
 	 * @brief Generates all legal moves for the current player.

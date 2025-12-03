@@ -163,8 +163,11 @@ int Gameplay::evaluateBoard(const Boardstate& state, Player maximizingPlayer)
 	// assign opponent object Player 2 if maximizingPlayer is Player 1, and vice versa
 	Player opponent = (maximizingPlayer == Player::Player1) ? Player::Player2 : Player::Player1;
 
-	score += evaluateThreats(state, maximizingPlayer) * 100;  // AI can win next turn
-	score -= evaluateThreats(state, opponent) * 90;			  // Opponent can win next turn, slightly less important than AI winning
+	score += evaluateThreeInARow(state, maximizingPlayer) * 100;  // AI can win next turn
+	score -= evaluateThreeInARow(state, opponent) * 90;			  // Opponent can win next turn, slightly less important than AI winning
+
+	score += evaluateTwoInARow(state, maximizingPlayer) * 30; // AI should build towards a win
+	score -= evaluateTwoInARow(state, opponent) * 25;		  // Opponent has potential to build towards a win, should block
 
 	// Valid tiles closer to the center should be more valuable than edge tiles
 	for (int row = 0; row < BOARD_SIZE; ++row) {
@@ -189,14 +192,14 @@ int Gameplay::evaluateBoard(const Boardstate& state, Player maximizingPlayer)
  * @brief Calculates threats for a given player (3 in a row with an empty).
  * @return Number of threats.
  */
-int Gameplay::evaluateThreats(const Boardstate& state, Player player)
+int Gameplay::evaluateThreeInARow(const Boardstate& state, Player player)
 {
-	int threats = 0;
+	int threeInARows = 0;
 
 	// Horizontal threats
 	for (int row = 0; row < BOARD_SIZE; ++row) {
 		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
-			threats += checkForThreats(
+			threeInARows += checkForThreeInARow(
 				state.grid[row][col].owner,
 				state.grid[row][col + 1].owner,
 				state.grid[row][col + 2].owner,
@@ -209,7 +212,7 @@ int Gameplay::evaluateThreats(const Boardstate& state, Player player)
 	// Vertical threats
 	for (int col = 0; col < BOARD_SIZE; ++col) {
 		for (int row = 0; row <= BOARD_SIZE - 4; ++row) {
-			threats += checkForThreats(
+			threeInARows += checkForThreeInARow(
 				state.grid[row][col].owner,
 				state.grid[row + 1][col].owner,
 				state.grid[row + 2][col].owner,
@@ -222,7 +225,7 @@ int Gameplay::evaluateThreats(const Boardstate& state, Player player)
 	// Diagonal threats (top-left to bottom-right)
 	for (int row = 0; row <= BOARD_SIZE - 4; ++row) {
 		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
-			threats += checkForThreats(
+			threeInARows += checkForThreeInARow(
 				state.grid[row][col].owner,
 				state.grid[row + 1][col + 1].owner,
 				state.grid[row + 2][col + 2].owner,
@@ -235,7 +238,7 @@ int Gameplay::evaluateThreats(const Boardstate& state, Player player)
 	// Diagonal threats (bottom-left to top-right)
 	for (int row = 3; row < BOARD_SIZE; ++row) {
 		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
-			threats += checkForThreats(
+			threeInARows += checkForThreeInARow(
 				state.grid[row][col].owner,
 				state.grid[row - 1][col + 1].owner,
 				state.grid[row - 2][col + 2].owner,
@@ -245,13 +248,12 @@ int Gameplay::evaluateThreats(const Boardstate& state, Player player)
 		}
 	}
 
-
-	return threats;
+	return threeInARows;
 }
 /**
  * @brief Checks whether 4 tiles form a threat condition.
  */
-int Gameplay::checkForThreats(Player p1, Player p2, Player p3, Player p4, Player player)
+int Gameplay::checkForThreeInARow(Player p1, Player p2, Player p3, Player p4, Player player)
 {
 	int playerCount = 0;
 	int emptyCount = 0;
@@ -272,6 +274,90 @@ int Gameplay::checkForThreats(Player p1, Player p2, Player p3, Player p4, Player
 	}
 
 	return (playerCount == 3 && emptyCount == 1) ? 1 : 0;
+}
+
+
+int Gameplay::evaluateTwoInARow(const Boardstate& state, Player player)
+{
+	int twoInARows = 0;
+
+	// Horizontal 2-in-a-rows
+	for (int row = 0; row < BOARD_SIZE; ++row) {
+		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
+			twoInARows += checkForTwoInARow(
+				state.grid[row][col].owner,
+				state.grid[row][col + 1].owner,
+				state.grid[row][col + 2].owner,
+				state.grid[row][col + 3].owner,
+				player
+			);
+		}
+	}
+
+	// Vertical 2-in-a-rows
+	for (int col = 0; col < BOARD_SIZE; ++col) {
+		for (int row = 0; row <= BOARD_SIZE - 4; ++row) {
+			twoInARows += checkForTwoInARow(
+				state.grid[row][col].owner,
+				state.grid[row + 1][col].owner,
+				state.grid[row + 2][col].owner,
+				state.grid[row + 3][col].owner,
+				player
+			);
+		}
+	}
+
+	// Diagonal 2-in-a-rows (top-left to bottom-right)
+	for (int row = 0; row <= BOARD_SIZE - 4; ++row) {
+		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
+			twoInARows += checkForTwoInARow(
+				state.grid[row][col].owner,
+				state.grid[row + 1][col + 1].owner,
+				state.grid[row + 2][col + 2].owner,
+				state.grid[row + 3][col + 3].owner,
+				player
+			);
+		}
+	}
+
+	// Diagonal 2-in-a-rows (bottom-left to top-right)
+	for (int row = 3; row < BOARD_SIZE; ++row) {
+		for (int col = 0; col <= BOARD_SIZE - 4; ++col) {
+			twoInARows += checkForTwoInARow(
+				state.grid[row][col].owner,
+				state.grid[row - 1][col + 1].owner,
+				state.grid[row - 2][col + 2].owner,
+				state.grid[row - 3][col + 3].owner,
+				player
+			);
+		}
+	}
+
+	return twoInARows;
+}
+
+int Gameplay::checkForTwoInARow(Player p1, Player p2, Player p3, Player p4, Player player)
+{
+	int playerCount = 0;
+	int emptyCount = 0;
+
+	// Store player's positions in an array for easier checking
+	Player positions[4] = { p1, p2, p3, p4 };
+
+	for (int i = 0; i < 4; ++i)
+	{
+		if (positions[i] == player)
+		{
+			playerCount++;
+		}
+		else if (positions[i] == Player::NoPlayer)
+		{
+			emptyCount++;
+		}
+	}
+
+	// Return 1 if we have exactly 2 of our pieces and 2 empty spaces (potential to build towards 4-in-a-row)
+	return (playerCount == 2 && emptyCount == 2) ? 1 : 0;
 }
 
 /**
