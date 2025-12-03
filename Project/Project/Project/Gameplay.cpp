@@ -1,12 +1,19 @@
 ﻿#include "Gameplay.h"
 #include <algorithm>
 #include <iostream>
-
+/**
+ * @brief Gameplay constructor. Initializes AI settings.
+ */
 Gameplay::Gameplay() : m_maximizingPlayer(Player::Player2), m_nodesEvaluated(0)
 {
 }
 
-// Primary function to choose the best move using minimax with alpha-beta pruning
+/**
+ * @brief Selects the best possible move for the AI using minimax.
+ * @param state Current board state.
+ * @param depth Search depth.
+ * @return Selected best Move.
+ */
 Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 {
 	m_nodesEvaluated = 0;
@@ -69,7 +76,15 @@ Move Gameplay::chooseBestMove(const Boardstate& state, int depth)
 
 	return bestMove;
 }
-
+/**
+ * @brief Minimax algorithm with alpha-beta pruning.
+ * @param state Board state.
+ * @param depth Remaining depth.
+ * @param isMaximizing Whether evaluating maximizing player.
+ * @param alpha Alpha bound.
+ * @param beta Beta bound.
+ * @return Evaluation score.
+ */
 int Gameplay::miniMax(const Boardstate& state, int depth, bool isMaximizing, int alpha, int beta)
 {
 	m_nodesEvaluated++;
@@ -135,7 +150,12 @@ int Gameplay::miniMax(const Boardstate& state, int depth, bool isMaximizing, int
 		return minEval;
 	}
 }
-
+/**
+ * @brief Heuristic evaluation of the board state.
+ * @param state Current board.
+ * @param maximizingPlayer Player being evaluated.
+ * @return Numeric score for the board.
+ */
 int Gameplay::evaluateBoard(const Boardstate& state, Player maximizingPlayer)
 {
 	int score = 0;
@@ -165,7 +185,10 @@ int Gameplay::evaluateBoard(const Boardstate& state, Player maximizingPlayer)
 
 	return score;
 }
-
+/**
+ * @brief Calculates threats for a given player (3 in a row with an empty).
+ * @return Number of threats.
+ */
 int Gameplay::evaluateThreats(const Boardstate& state, Player player)
 {
 	int threats = 0;
@@ -225,7 +248,9 @@ int Gameplay::evaluateThreats(const Boardstate& state, Player player)
 
 	return threats;
 }
-
+/**
+ * @brief Checks whether 4 tiles form a threat condition.
+ */
 int Gameplay::checkForThreats(Player p1, Player p2, Player p3, Player p4, Player player)
 {
 	int playerCount = 0;
@@ -249,7 +274,9 @@ int Gameplay::checkForThreats(Player p1, Player p2, Player p3, Player p4, Player
 	return (playerCount == 3 && emptyCount == 1) ? 1 : 0;
 }
 
-// Convert Animal to PieceState for board representation
+/**
+ * @brief Converts an Animal object to a PieceState representation.
+ */
 PieceState Gameplay::toPieceState(const Animal& animal)
 {
 	PieceState pieceState;
@@ -257,13 +284,17 @@ PieceState Gameplay::toPieceState(const Animal& animal)
 	pieceState.type = animal.getType();
 	return pieceState;
 }
-
+/**
+ * @brief Converts a PieceState back into a full Animal.
+ */
 Animal Gameplay::toAnimal(const PieceState& pieceState)
 {
 	return Animal(pieceState.owner, pieceState.type);
 }
 
-
+/**
+ * @brief Generates all possible moves for current player in state.
+ */
 std::vector<Move> Gameplay::generateMoves(const Boardstate& state)
 {
 	std::vector<Move> moves;
@@ -293,7 +324,9 @@ std::vector<Move> Gameplay::generateMoves(const Boardstate& state)
 
 	return moves;
 }
-
+/**
+ * @brief Applies a move to a board and returns updated state.
+ */
 Boardstate Gameplay::makeMove(const Boardstate& state, const Move& move)
 {
 	// Create a copy of the current state
@@ -316,7 +349,12 @@ Boardstate Gameplay::makeMove(const Boardstate& state, const Move& move)
 
 	return newState;
 }
-
+/**
+ * @brief Checks whether any player has four in a row.
+ * @param state Current board state.
+ * @param winner Output winner.
+ * @return true if win detected.
+ */
 bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 {
 	// Check horizontal wins
@@ -421,13 +459,17 @@ bool Gameplay::checkWimCondition(const Boardstate& state, Player& winner)
 	return false;
 }
 
-// function to check if a position is within board bounds
+/**
+ * @brief Checks if board coordinate is within bounds.
+ */
 bool Gameplay::isValidPosition(int row, int col) const
 {
 	return row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE;
 }
 
-// check all valid moves for a piece at (row, col)
+/**
+ * @brief Returns all valid moves for the piece at (row, col).
+ */
 std::vector<Move> Gameplay::getValidMovesForPiece(int row, int col, const Boardstate& state)
 {
 	std::vector<Move> moves;

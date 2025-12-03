@@ -1,0 +1,168 @@
+\doxysection{Gameplay Class Reference}
+\hypertarget{class_gameplay}{}\label{class_gameplay}\index{Gameplay@{Gameplay}}
+
+
+Handles all AI logic\+: minimax, evaluation, move generation, win checks.  
+
+
+
+
+{\ttfamily \#include $<$Gameplay.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_gameplay_a04898da34fb7c6a290a193f9e7ec1219}{Gameplay}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_gameplay}{Gameplay} object with default AI parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_move}{Move}} \mbox{\hyperlink{class_gameplay_a8b72181a6097357f75705b53d2f80ee0}{choose\+Best\+Move}} (const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&state, int depth)
+\begin{DoxyCompactList}\small\item\em Computes the best move for the current player using minimax. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_gameplay_a5b0cc99aaa3448fb8c300b5f5435e2f3}{check\+Wim\+Condition}} (const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&state, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \&winner)
+\begin{DoxyCompactList}\small\item\em Checks if the board contains a win condition. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_move}{Move}} $>$ \mbox{\hyperlink{class_gameplay_abec49da7249d41f91f22d17a25f32d9e}{get\+Valid\+Moves\+For\+Piece}} (int row, int col, const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&state)
+\begin{DoxyCompactList}\small\item\em Gets all valid moves for a piece located at (row, col). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_piece_state}{Piece\+State}} \mbox{\hyperlink{class_gameplay_a867eb847894615ead59ed8131ccfacb6}{to\+Piece\+State}} (const \mbox{\hyperlink{class_animal}{Animal}} \&animal)
+\begin{DoxyCompactList}\small\item\em Converts an \doxylink{class_animal}{Animal} instance into a \doxylink{struct_piece_state}{Piece\+State}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_animal}{Animal}} \mbox{\hyperlink{class_gameplay_a8d18d410c57e827962146a0d44bcff44}{to\+Animal}} (const \mbox{\hyperlink{struct_piece_state}{Piece\+State}} \&piece\+State)
+\begin{DoxyCompactList}\small\item\em Converts a \doxylink{struct_piece_state}{Piece\+State} into an \doxylink{class_animal}{Animal} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles all AI logic\+: minimax, evaluation, move generation, win checks. 
+
+\label{doc-constructors}
+\Hypertarget{class_gameplay_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_gameplay_a04898da34fb7c6a290a193f9e7ec1219}\index{Gameplay@{Gameplay}!Gameplay@{Gameplay}}
+\index{Gameplay@{Gameplay}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{Gameplay()}{Gameplay()}}
+{\footnotesize\ttfamily \label{class_gameplay_a04898da34fb7c6a290a193f9e7ec1219} 
+Gameplay\+::\+Gameplay (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_gameplay}{Gameplay} object with default AI parameters. 
+
+\doxylink{class_gameplay}{Gameplay} constructor. Initializes AI settings. 
+
+\label{doc-func-members}
+\Hypertarget{class_gameplay_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_gameplay_a5b0cc99aaa3448fb8c300b5f5435e2f3}\index{Gameplay@{Gameplay}!checkWimCondition@{checkWimCondition}}
+\index{checkWimCondition@{checkWimCondition}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{checkWimCondition()}{checkWimCondition()}}
+{\footnotesize\ttfamily \label{class_gameplay_a5b0cc99aaa3448fb8c300b5f5435e2f3} 
+bool Gameplay\+::check\+Wim\+Condition (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&}]{state}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \&}]{winner}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the board contains a win condition. 
+
+Checks whether any player has four in a row.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The current board state. \\
+\hline
+{\em winner} & Output parameter storing the winning player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a player has achieved four in a row.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Current board state. \\
+\hline
+{\em winner} & Output winner. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if win detected. 
+\end{DoxyReturn}
+\Hypertarget{class_gameplay_a8b72181a6097357f75705b53d2f80ee0}\index{Gameplay@{Gameplay}!chooseBestMove@{chooseBestMove}}
+\index{chooseBestMove@{chooseBestMove}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{chooseBestMove()}{chooseBestMove()}}
+{\footnotesize\ttfamily \label{class_gameplay_a8b72181a6097357f75705b53d2f80ee0} 
+\mbox{\hyperlink{struct_move}{Move}} Gameplay\+::choose\+Best\+Move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&}]{state}{, }\item[{int}]{depth}{}\end{DoxyParamCaption})}
+
+
+
+Computes the best move for the current player using minimax. 
+
+Selects the best possible move for the AI using minimax.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Current board state. \\
+\hline
+{\em depth} & Search depth for minimax. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The best move found.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Current board state. \\
+\hline
+{\em depth} & Search depth. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Selected best \doxylink{struct_move}{Move}. 
+\end{DoxyReturn}
+\Hypertarget{class_gameplay_abec49da7249d41f91f22d17a25f32d9e}\index{Gameplay@{Gameplay}!getValidMovesForPiece@{getValidMovesForPiece}}
+\index{getValidMovesForPiece@{getValidMovesForPiece}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{getValidMovesForPiece()}{getValidMovesForPiece()}}
+{\footnotesize\ttfamily \label{class_gameplay_abec49da7249d41f91f22d17a25f32d9e} 
+std\+::vector$<$ \mbox{\hyperlink{struct_move}{Move}} $>$ Gameplay\+::get\+Valid\+Moves\+For\+Piece (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{, }\item[{const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Gets all valid moves for a piece located at (row, col). 
+
+Returns all valid moves for the piece at (row, col).
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Piece row. \\
+\hline
+{\em col} & Piece column. \\
+\hline
+{\em state} & Current board state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of valid moves. 
+\end{DoxyReturn}
+\Hypertarget{class_gameplay_a8d18d410c57e827962146a0d44bcff44}\index{Gameplay@{Gameplay}!toAnimal@{toAnimal}}
+\index{toAnimal@{toAnimal}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{toAnimal()}{toAnimal()}}
+{\footnotesize\ttfamily \label{class_gameplay_a8d18d410c57e827962146a0d44bcff44} 
+\mbox{\hyperlink{class_animal}{Animal}} Gameplay\+::to\+Animal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_piece_state}{Piece\+State}} \&}]{piece\+State}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts a \doxylink{struct_piece_state}{Piece\+State} into an \doxylink{class_animal}{Animal} instance. 
+
+Converts a \doxylink{struct_piece_state}{Piece\+State} back into a full \doxylink{class_animal}{Animal}. \Hypertarget{class_gameplay_a867eb847894615ead59ed8131ccfacb6}\index{Gameplay@{Gameplay}!toPieceState@{toPieceState}}
+\index{toPieceState@{toPieceState}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{toPieceState()}{toPieceState()}}
+{\footnotesize\ttfamily \label{class_gameplay_a867eb847894615ead59ed8131ccfacb6} 
+\mbox{\hyperlink{struct_piece_state}{Piece\+State}} Gameplay\+::to\+Piece\+State (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_animal}{Animal}} \&}]{animal}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts an \doxylink{class_animal}{Animal} instance into a \doxylink{struct_piece_state}{Piece\+State}. 
+
+Converts an \doxylink{class_animal}{Animal} object to a \doxylink{struct_piece_state}{Piece\+State} representation. Here is the call graph for this function\+:
+% FIG 0
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_gameplay_8h}{Gameplay.\+h}}\item 
+C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_gameplay_8cpp}{Gameplay.\+cpp}}\end{DoxyCompactItemize}

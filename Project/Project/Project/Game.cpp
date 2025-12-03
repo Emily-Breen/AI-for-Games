@@ -2,7 +2,17 @@
 #include "Game.h"
 #include <iostream>
 #include <cmath>
-
+/**
+ * @brief Constructs the Game object, loads fonts, initializes UI text,
+ *        sets up menu buttons, creates starting pieces, and prepares the game window.
+ *
+ * This constructor:
+ * - Loads the game font
+ * - Sets up title, subtitle, credits text
+ * - Initializes player pieces and textures
+ * - Creates all main menu buttons
+ * - Sets initial game state to MainMenu
+ */
 Game::Game() : m_window{ sf::VideoMode{sf::Vector2u{1920U, 1080U}, 32U}, "SFML Game 3.0" },
 m_DELETEexitGame{ false } // when true game will exit
 {
@@ -99,11 +109,17 @@ m_DELETEexitGame{ false } // when true game will exit
 	setupButtons(m_btnQuit, m_jerseyFont, "Quit", 660.f);
 
 }
-
+/**
+ * @brief Default destructor for the Game class.
+ */
 Game::~Game()
 {
 }
-
+/**
+ * @brief Main game loop running at 60 FPS.
+ *
+ * Handles event processing, updates, and rendering.
+ */
 void Game::run()
 {
 	sf::Clock clock;
@@ -123,7 +139,15 @@ void Game::run()
 		render(); // as many as possible
 	}
 }
-
+/**
+ * @brief Polls and handles all events (mouse, keyboard, close, resize).
+ *
+ * Handles:
+ * - Closing the window
+ * - Key presses
+ * - Resizing and view adjustment
+ * - Mouse dragging, movement, releasing
+ */
 void Game::processEvents()
 {
 
@@ -177,7 +201,11 @@ void Game::processEvents()
 	}
 }
 
-// Convert screen position to grid coordinates
+/**
+ * @brief Converts a pixel coordinate to a grid coordinate based on board position.
+ * @param screenPos Mouse coordinate in screen pixels.
+ * @return Grid coordinate (row, col).
+ */
 sf::Vector2i Game::screenToGrid(sf::Vector2i screenPos) const
 {
 	float cellSize = m_board.getCellSize();
@@ -189,7 +217,16 @@ sf::Vector2i Game::screenToGrid(sf::Vector2i screenPos) const
 
 	return {row, col};
 }
-
+/**
+ * @brief Handles mouse input when pressing the left mouse button.
+ *
+ * Behavior depends on the current game state:
+ * - MainMenu: click buttons
+ * - Placement: pick up unplaced pieces
+ * - Movement: select a piece already on the board
+ *
+ * @param mousePos Pixel position of the mouse.
+ */
 void Game::handleMousePress(sf::Vector2i mousePos)
 {
 	if (m_currentGameState == GameState::MainMenu)
@@ -296,7 +333,15 @@ void Game::handleMousePress(sf::Vector2i mousePos)
 		}
 	}
 }
-
+/**
+ * @brief Updates the position of dragged pieces while holding the mouse.
+ *
+ * Works for both:
+ * - Placement phase (dragging unplaced pieces)
+ * - Movement phase (dragging selected board pieces)
+ *
+ * @param mousePos Pixel position.
+ */
 void Game::handleMouseMoved(sf::Vector2i mousePos)
 {
 	if (m_currentGameState == GameState::Placement)
@@ -316,7 +361,15 @@ void Game::handleMouseMoved(sf::Vector2i mousePos)
 		}
 	}
 }
-
+/**
+ * @brief Handles releasing a dragged piece.
+ *
+ * Behavior:
+ * - Placement phase: drop piece into grid cell if valid
+ * - Movement phase: move piece to a valid move location
+ *
+ * @param mousePos Pixel position where mouse was released.
+ */
 void Game::handleMouseRelease(sf::Vector2i mousePos)
 {
 	if (m_currentGameState == GameState::Placement)
@@ -469,7 +522,14 @@ void Game::handleMouseRelease(sf::Vector2i mousePos)
 		m_validMoves.clear();
 	}
 }
-
+/**
+ * @brief Handles keyboard key-press events.
+ *
+ * ESC closes the game.
+ * Any key during GameOver returns to main menu via resetGame().
+ *
+ * @param t_event: KeyPressed event.
+ */
 void Game::processKeys(const std::optional<sf::Event> t_event)
 {
 	const sf::Event::KeyPressed *newKeypress = t_event->getIf<sf::Event::KeyPressed>();
@@ -483,7 +543,9 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 		resetGame();
 	}
 }
-
+/**
+ * @brief Continuous keyboard state checking (ESC).
+ */
 void Game::checkKeyboardState()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
@@ -491,7 +553,18 @@ void Game::checkKeyboardState()
 		m_DELETEexitGame = true;
 	}
 }
-
+/**
+ * @brief Updates game logic every frame.
+ *
+ * Handles:
+ * - Main menu animation
+ * - Placement logic
+ * - Movement logic
+ * - AI turns for both placement and movement phases
+ * - Closing window
+ *
+ * @param t_deltaTime Time since last update tick.
+ */
 void Game::update(sf::Time t_deltaTime)
 {
 	checkKeyboardState();
@@ -617,7 +690,15 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 }
-
+/**
+ * @brief Draws visual highlights for the selected piece and its valid moves.
+ *
+ * Highlights:
+ * - Yellow square for selected piece
+ * - Green circles for all valid move locations
+ *
+ * @param window Render window to draw to.
+ */
 void Game::drawValidMoveHighlights(sf::RenderWindow &window)
 {
 	if (!m_isPieceSelected || m_validMoves.empty())
@@ -650,7 +731,17 @@ void Game::drawValidMoveHighlights(sf::RenderWindow &window)
 		window.draw(highlight);
 	}
 }
-
+/**
+ * @brief Renders the entire game depending on the current game state.
+ *
+ * Draws:
+ * - Board
+ * - Pieces
+ * - Dragged piece
+ * - Valid move highlights
+ * - Main menu UI
+ * - Game over messages
+ */
 void Game::render()
 {
 	m_window.clear(BLACK);
@@ -723,9 +814,9 @@ void Game::render()
 	}
 	m_window.display();
 }
-/// <summary>
-/// just a function to update the animal pieces positions and scales based on board size (resizing screen)
-/// </summary>
+/**
+ * @brief Rescales and repositions all pieces when the board or window is resized.
+ */
 void Game::updateAnimals()
 {
 	float cellSize = m_board.getCellSize();
@@ -765,7 +856,10 @@ void Game::updateAnimals()
 		}
 	}
 }
-
+/**
+ * @brief Checks all win conditions (horizontal, vertical, diagonal).
+ * @return true if the current player has 4 in a row.
+ */
 bool Game::checkWinCondition()
 {
 	// Loop through the whole board
@@ -846,7 +940,10 @@ bool Game::checkWinCondition()
 	}
 	return false;
 }
-
+/**
+ * @brief Switches the active game state and updates UI text for GameOver.
+ * @param newState New state to switch to.
+ */
 void Game::switchGameState(GameState newState)
 {
 	m_currentGameState = newState;
@@ -869,13 +966,13 @@ void Game::switchGameState(GameState newState)
 		m_winMessage2.setPosition({ m_window.getSize().x / 2.f, m_window.getSize().y - 150.f });
 	}
 }
-/// <summary>
-/// buttons for main menu setup STEPHEN this is for the buttons of the main menu 
-/// </summary>
-/// <param name="btn"></param>
-/// <param name="font"></param>
-/// <param name="text"></param>
-/// <param name="y"></param>
+/**
+ * @brief Configures the appearance and position of a main menu button.
+ * @param btn Button to configure.
+ * @param font Font used for the label text.
+ * @param text Text appearing on the button.
+ * @param y Vertical position on screen.
+ */
 void Game::setupButtons(MenuButton* btn, sf::Font& font, const std::string& text, float y)
 {
 	float width = 400.f;
@@ -899,9 +996,9 @@ void Game::setupButtons(MenuButton* btn, sf::Font& font, const std::string& text
 	btn->label.setOrigin({ textBounds.size.x / 2.f, textBounds.size.y / 2.f });
 	btn->label.setPosition({ x + width / 2.f, y + height / 2.f - 5.f });
 }
-/// <summary>
-/// STEPHEN:: ADDED THIS FUNCTION TO RESET THE GAME AFTER A WIM CONDITION PRESS ANY KEY TO RESET
-/// </summary>
+/**
+ * @brief Fully resets the game after Game Over and sends the player back to MainMenu.
+ */
 void Game::resetGame()
 {
 	// Clear the board
@@ -957,7 +1054,12 @@ void Game::resetGame()
 
 	std::cout << "Game reset. Returning to main menu.\n";
 }
-
+/**
+ * @brief Executes the AI's turn during the movement phase.
+ *
+ * Uses minimax to compute best move, applies it, checks win,
+ * and switches the current player.
+ */
 void Game::handleAITurn()
 {
 	//STEPHEN:: Fleshed out the AI turns but needs a little tweeking but it plays with itself now LOL
@@ -1003,7 +1105,10 @@ void Game::handleAITurn()
 }
 
 
-// Helper function to convert grid to Boardstate
+/**
+ * @brief Converts the current game grid into a Boardstate used by the AI.
+ * @return Boardstate version of m_grid.
+ */
 Boardstate Game::getCurrentBoardState() const
 {
 	Boardstate state;

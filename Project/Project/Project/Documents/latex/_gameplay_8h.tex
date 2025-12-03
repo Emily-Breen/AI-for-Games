@@ -1,0 +1,32 @@
+\doxysection{C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\+Gameplay.h File Reference}
+\hypertarget{_gameplay_8h}{}\label{_gameplay_8h}\index{C:/Users/emily/source/repos/AI-\/for-\/Games/Project/Project/Project/Gameplay.h@{C:/Users/emily/source/repos/AI-\/for-\/Games/Project/Project/Project/Gameplay.h}}
+
+
+Contains AI logic, board evaluation, move generation and minimax.  
+
+
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include "{}Animal.\+h"{}}\newline
+{\ttfamily \#include "{}Board.\+h"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+Include dependency graph for Gameplay.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_move}{Move}}
+\begin{DoxyCompactList}\small\item\em Represents a move from one board coordinate to another. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_piece_state}{Piece\+State}}
+\begin{DoxyCompactList}\small\item\em Representation of a board piece used for AI calculations. Contains only owner and type. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_boardstate}{Boardstate}}
+\begin{DoxyCompactList}\small\item\em Represents the full internal board state used by AI. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_gameplay}{Gameplay}}
+\begin{DoxyCompactList}\small\item\em Handles all AI logic\+: minimax, evaluation, move generation, win checks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains AI logic, board evaluation, move generation and minimax. 
+

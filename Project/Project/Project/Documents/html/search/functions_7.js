@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['operator_3d_0',['operator=',['../class_animal.html#aa877ca8e4c0747f5794614e7b35c2fa5',1,'Animal']]]
+];

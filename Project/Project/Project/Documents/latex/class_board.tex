@@ -1,0 +1,193 @@
+\doxysection{Board Class Reference}
+\hypertarget{class_board}{}\label{class_board}\index{Board@{Board}}
+
+
+Handles drawing, sizing, and positioning of the game board grid.  
+
+
+
+
+{\ttfamily \#include $<$Board.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_board_a4dbd10f130961c7da6044412a6678c49}{Board}} (int size, float cell\+Size)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_board}{Board} with a given number of cells and base cell size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_a1fa67ca04a50dc4a17428848413b1549}{draw}} (sf\+::\+Render\+Window \&window)
+\begin{DoxyCompactList}\small\item\em Draws the full board (recalculates layout then draws the grid). \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_board_a2896834d7ccd0f4796161cfed23e4983}{get\+Cell\+Center}} (int row, int col) const
+\begin{DoxyCompactList}\small\item\em Computes the pixel center of a specific cell. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_a103ba19faa0f8748739c730cabcd2144}{recalculate\+Grid}} (const sf\+::\+Render\+Window \&m\+\_\+window)
+\begin{DoxyCompactList}\small\item\em Recalculates the board\textquotesingle{}s screen offset so it stays centered. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_a2188a44aa20b853c8f90639954fa6e92}{update\+Cell\+Size}} (sf\+::\+Vector2u window\+Size)
+\begin{DoxyCompactList}\small\item\em Updates internal cell size based on the window\textquotesingle{}s dimensions. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_board_a72fbd999c7411d051ff3bf4d568f8244}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of cells per side (board size). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_board_a980a8d446778ef702c1c00f414cf0904}{get\+Cell\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current pixel size of each cell. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles drawing, sizing, and positioning of the game board grid. 
+
+The \doxylink{class_board}{Board} manages cell size, window-\/based scaling, and utility functions for determining cell positions on screen. 
+
+\label{doc-constructors}
+\Hypertarget{class_board_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_board_a4dbd10f130961c7da6044412a6678c49}\index{Board@{Board}!Board@{Board}}
+\index{Board@{Board}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{Board()}{Board()}}
+{\footnotesize\ttfamily \label{class_board_a4dbd10f130961c7da6044412a6678c49} 
+Board\+::\+Board (\begin{DoxyParamCaption}\item[{int}]{size}{, }\item[{float}]{cell\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_board}{Board} with a given number of cells and base cell size. 
+
+Constructs a \doxylink{class_board}{Board} with the given size and cell dimensions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The width/height of the board in cells. \\
+\hline
+{\em cell\+Size} & Initial size of each cell in pixels.\\
+\hline
+{\em size} & The number of cells per side. \\
+\hline
+{\em cell\+Size} & Initial pixel size of each cell. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_board_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_board_a1fa67ca04a50dc4a17428848413b1549}\index{Board@{Board}!draw@{draw}}
+\index{draw@{draw}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_board_a1fa67ca04a50dc4a17428848413b1549} 
+void Board\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{}\end{DoxyParamCaption})}
+
+
+
+Draws the full board (recalculates layout then draws the grid). 
+
+Draws the board by recalculating offsets then rendering the grid.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The render window to draw on.\\
+\hline
+{\em window} & The window to draw on. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 0
+\Hypertarget{class_board_a2896834d7ccd0f4796161cfed23e4983}\index{Board@{Board}!getCellCenter@{getCellCenter}}
+\index{getCellCenter@{getCellCenter}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getCellCenter()}{getCellCenter()}}
+{\footnotesize\ttfamily \label{class_board_a2896834d7ccd0f4796161cfed23e4983} 
+sf\+::\+Vector2f Board\+::get\+Cell\+Center (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes the pixel center of a specific cell. 
+
+Computes the center position of a given cell.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The cell\textquotesingle{}s row index. \\
+\hline
+{\em col} & The cell\textquotesingle{}s column index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The on screen center position.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The row index. \\
+\hline
+{\em col} & The column index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+On-\/screen center position of the cell. 
+\end{DoxyReturn}
+\Hypertarget{class_board_a980a8d446778ef702c1c00f414cf0904}\index{Board@{Board}!getCellSize@{getCellSize}}
+\index{getCellSize@{getCellSize}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getCellSize()}{getCellSize()}}
+{\footnotesize\ttfamily \label{class_board_a980a8d446778ef702c1c00f414cf0904} 
+float Board\+::get\+Cell\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the current pixel size of each cell. 
+
+Gets the current pixel size of a cell.
+
+\begin{DoxyReturn}{Returns}
+Cell size in pixels. 
+\end{DoxyReturn}
+\Hypertarget{class_board_a72fbd999c7411d051ff3bf4d568f8244}\index{Board@{Board}!getSize@{getSize}}
+\index{getSize@{getSize}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily \label{class_board_a72fbd999c7411d051ff3bf4d568f8244} 
+int Board\+::get\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of cells per side (board size). 
+
+Gets the number of cells per side.
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_board}{Board} side length. 
+\end{DoxyReturn}
+\Hypertarget{class_board_a103ba19faa0f8748739c730cabcd2144}\index{Board@{Board}!recalculateGrid@{recalculateGrid}}
+\index{recalculateGrid@{recalculateGrid}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{recalculateGrid()}{recalculateGrid()}}
+{\footnotesize\ttfamily \label{class_board_a103ba19faa0f8748739c730cabcd2144} 
+void Board\+::recalculate\+Grid (\begin{DoxyParamCaption}\item[{const sf\+::\+Render\+Window \&}]{m\+\_\+window}{}\end{DoxyParamCaption})}
+
+
+
+Recalculates the board\textquotesingle{}s screen offset so it stays centered. 
+
+Updates board offsets based on window size so the board stays centered.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+window} & The window used to determine available space.\\
+\hline
+{\em m\+\_\+window} & The window used to compute offsets. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_board_a2188a44aa20b853c8f90639954fa6e92}\index{Board@{Board}!updateCellSize@{updateCellSize}}
+\index{updateCellSize@{updateCellSize}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{updateCellSize()}{updateCellSize()}}
+{\footnotesize\ttfamily \label{class_board_a2188a44aa20b853c8f90639954fa6e92} 
+void Board\+::update\+Cell\+Size (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2u}]{window\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Updates internal cell size based on the window\textquotesingle{}s dimensions. 
+
+Adjusts the cell size proportionally when the window resizes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window\+Size} & The new size of the window.\\
+\hline
+{\em window\+Size} & The current window dimensions. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_board_8h}{Board.\+h}}\item 
+C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_board_8cpp}{Board.\+cpp}}\end{DoxyCompactItemize}

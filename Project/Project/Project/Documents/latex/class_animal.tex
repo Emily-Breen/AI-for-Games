@@ -1,0 +1,345 @@
+\doxysection{Animal Class Reference}
+\hypertarget{class_animal}{}\label{class_animal}\index{Animal@{Animal}}
+
+
+Represents a single game piece placed on the board.  
+
+
+
+
+{\ttfamily \#include $<$Animal.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_animal_a1e726a49ec952443190ac62dad22353c}{Animal}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Creates an empty/unoccupied piece. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_animal_ada2ed5b6a323ffd867b4211c0dfcb5b0}{Animal}} (\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} owner, \mbox{\hyperlink{_animal_8h_a6f4aee1c6d261958dbe9554417a936db}{Animal\+Type}} type)
+\begin{DoxyCompactList}\small\item\em Parameter constructor. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_animal_a1b18a05b8aaecfccf98e96ba3f6b4fd3}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Gets the name of the animal. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_animal_aef86c4a26a318399a9de683fd0e1b713}{is\+Empty}} () const
+\begin{DoxyCompactList}\small\item\em Checks if this is an empty piece (no owner, no type). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \mbox{\hyperlink{class_animal_a36e7f70668605ebf27946415e315e2bc}{get\+Owner}} () const
+\begin{DoxyCompactList}\small\item\em Gets the owning player. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_animal_8h_a6f4aee1c6d261958dbe9554417a936db}{Animal\+Type}} \mbox{\hyperlink{class_animal_a34d4028e12055ebde6047aa81e3b9f30}{get\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Gets the type of animal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animal_abc6b4ca5d836809cf58c2ee3c9c308d7}{set\+Position}} (const sf\+::\+Vector2f \&position)
+\begin{DoxyCompactList}\small\item\em Sets the on screen sprite position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animal_a67bcb3b65f047d38f98cc74399ba8fea}{init\+Animal\+Texture}} (float cell\+Size)
+\begin{DoxyCompactList}\small\item\em Loads the correct sprite texture and scales it to cell\+Size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animal_a94768be1c3820699d74a3f6a2621448c}{draw}} (sf\+::\+Render\+Window \&m\+\_\+window)
+\begin{DoxyCompactList}\small\item\em Draws the animal sprite to the window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animal_ab82e8398cd9e7769dfda4741b13a8e0b}{rescale}} (float cell\+Size)
+\begin{DoxyCompactList}\small\item\em Rescales the sprite when the board/cell size changes. \end{DoxyCompactList}\item 
+sf\+::\+Float\+Rect \mbox{\hyperlink{class_animal_a47c598d084494af38838976f2ad8dd19}{get\+Bounds}} () const
+\begin{DoxyCompactList}\small\item\em Gets the bounding rectangle of the sprite. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_animal_ac9cb0456a22b938ef4a6adf4a371f778}{Animal}} (const \mbox{\hyperlink{class_animal}{Animal}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_animal}{Animal}} \& \mbox{\hyperlink{class_animal_aa877ca8e4c0747f5794614e7b35c2fa5}{operator=}} (const \mbox{\hyperlink{class_animal}{Animal}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator. \end{DoxyCompactList}\item 
+std\+::vector$<$ sf\+::\+Vector2i $>$ \mbox{\hyperlink{class_animal_a6d95f368dafb0071915618c41cd487fd}{get\+Valid\+Moves}} (int current\+Row, int current\+Col, const \mbox{\hyperlink{class_animal}{Animal}} \texorpdfstring{$\ast$}{*}grid, int board\+Size) const
+\begin{DoxyCompactList}\small\item\em Computes valid movement locations for this animal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a single game piece placed on the board. 
+
+Stores ownership, type, sprite, texture, and movement logic. 
+
+\label{doc-constructors}
+\Hypertarget{class_animal_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_animal_a1e726a49ec952443190ac62dad22353c}\index{Animal@{Animal}!Animal@{Animal}}
+\index{Animal@{Animal}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{Animal()}{Animal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_animal_a1e726a49ec952443190ac62dad22353c} 
+Animal\+::\+Animal (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor. Creates an empty/unoccupied piece. 
+
+Default constructor. Creates an empty (No\+Player, No\+Type) \doxylink{class_animal}{Animal}. \Hypertarget{class_animal_ada2ed5b6a323ffd867b4211c0dfcb5b0}\index{Animal@{Animal}!Animal@{Animal}}
+\index{Animal@{Animal}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{Animal()}{Animal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_animal_ada2ed5b6a323ffd867b4211c0dfcb5b0} 
+Animal\+::\+Animal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{owner}{, }\item[{\mbox{\hyperlink{_animal_8h_a6f4aee1c6d261958dbe9554417a936db}{Animal\+Type}}}]{type}{}\end{DoxyParamCaption})}
+
+
+
+Parameter constructor. 
+
+Constructs an \doxylink{class_animal}{Animal} with the given owner and type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em owner} & The player that owns this piece. \\
+\hline
+{\em type} & The animal type (Frog, Snake, Donkey, etc.).\\
+\hline
+{\em owner} & \doxylink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player} who owns the piece. \\
+\hline
+{\em type} & Type of animal. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_animal_ac9cb0456a22b938ef4a6adf4a371f778}\index{Animal@{Animal}!Animal@{Animal}}
+\index{Animal@{Animal}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{Animal()}{Animal()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_animal_ac9cb0456a22b938ef4a6adf4a371f778} 
+Animal\+::\+Animal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_animal}{Animal}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Copy constructor. 
+
+Copy constructor. Ensures sprite position and ownership are copied.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_animal}{Animal} to copy. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 0
+
+
+\label{doc-func-members}
+\Hypertarget{class_animal_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_animal_a94768be1c3820699d74a3f6a2621448c}\index{Animal@{Animal}!draw@{draw}}
+\index{draw@{draw}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_animal_a94768be1c3820699d74a3f6a2621448c} 
+void Animal\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{m\+\_\+window}{}\end{DoxyParamCaption})}
+
+
+
+Draws the animal sprite to the window. 
+
+Draws the animal sprite to the game window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+window} & The SFML render window.\\
+\hline
+{\em m\+\_\+window} & The render window. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 1
+\Hypertarget{class_animal_a47c598d084494af38838976f2ad8dd19}\index{Animal@{Animal}!getBounds@{getBounds}}
+\index{getBounds@{getBounds}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{getBounds()}{getBounds()}}
+{\footnotesize\ttfamily \label{class_animal_a47c598d084494af38838976f2ad8dd19} 
+sf\+::\+Float\+Rect Animal\+::get\+Bounds (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the bounding rectangle of the sprite. 
+
+Returns global bounds of the sprite, useful for click detection.
+
+\begin{DoxyReturn}{Returns}
+Float\+Rect in world coordinates.
+
+Float\+Rect of sprite. 
+\end{DoxyReturn}
+\Hypertarget{class_animal_a1b18a05b8aaecfccf98e96ba3f6b4fd3}\index{Animal@{Animal}!getName@{getName}}
+\index{getName@{getName}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_animal_a1b18a05b8aaecfccf98e96ba3f6b4fd3} 
+std\+::string Animal\+::get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the name of the animal. 
+
+Returns the type of this \doxylink{class_animal}{Animal} as a string.
+
+\begin{DoxyReturn}{Returns}
+Name of the piece as a string.
+
+"{}\+Frog"{}, "{}\+Snake"{}, "{}\+Donkey"{}, or "{}\+Empty"{}. 
+\end{DoxyReturn}
+\Hypertarget{class_animal_a36e7f70668605ebf27946415e315e2bc}\index{Animal@{Animal}!getOwner@{getOwner}}
+\index{getOwner@{getOwner}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{getOwner()}{getOwner()}}
+{\footnotesize\ttfamily \label{class_animal_a36e7f70668605ebf27946415e315e2bc} 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} Animal\+::get\+Owner (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the owning player. 
+
+Gets the owning player of this piece.
+
+\begin{DoxyReturn}{Returns}
+Player1, Player2, or No\+Player. 
+\end{DoxyReturn}
+\Hypertarget{class_animal_a34d4028e12055ebde6047aa81e3b9f30}\index{Animal@{Animal}!getType@{getType}}
+\index{getType@{getType}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_animal_a34d4028e12055ebde6047aa81e3b9f30} 
+\mbox{\hyperlink{_animal_8h_a6f4aee1c6d261958dbe9554417a936db}{Animal\+Type}} Animal\+::get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets the type of animal. 
+
+Gets the type of this animal.
+
+\begin{DoxyReturn}{Returns}
+One of the \doxylink{_animal_8h_a6f4aee1c6d261958dbe9554417a936db}{Animal\+Type} values.
+
+Frog, Snake, Donkey, or No\+Type. 
+\end{DoxyReturn}
+\Hypertarget{class_animal_a6d95f368dafb0071915618c41cd487fd}\index{Animal@{Animal}!getValidMoves@{getValidMoves}}
+\index{getValidMoves@{getValidMoves}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{getValidMoves()}{getValidMoves()}}
+{\footnotesize\ttfamily \label{class_animal_a6d95f368dafb0071915618c41cd487fd} 
+std\+::vector$<$ sf\+::\+Vector2i $>$ Animal\+::get\+Valid\+Moves (\begin{DoxyParamCaption}\item[{int}]{current\+Row}{, }\item[{int}]{current\+Col}{, }\item[{const \mbox{\hyperlink{class_animal}{Animal}} \texorpdfstring{$\ast$}{*}}]{grid}{, }\item[{int}]{board\+Size}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes valid movement locations for this animal. 
+
+Returns a list of valid moves for the animal based on its type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Row} & Row of the piece. \\
+\hline
+{\em current\+Col} & Column of the piece. \\
+\hline
+{\em grid} & Pointer to full board grid array. \\
+\hline
+{\em board\+Size} & Size of board. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of valid movement destination positions.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Row} & Current grid row. \\
+\hline
+{\em current\+Col} & Current grid column. \\
+\hline
+{\em grid} & Pointer to full board of Animals. \\
+\hline
+{\em board\+Size} & Dimension of square board. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of valid move coordinates. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+% FIG 2
+\Hypertarget{class_animal_a67bcb3b65f047d38f98cc74399ba8fea}\index{Animal@{Animal}!initAnimalTexture@{initAnimalTexture}}
+\index{initAnimalTexture@{initAnimalTexture}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{initAnimalTexture()}{initAnimalTexture()}}
+{\footnotesize\ttfamily \label{class_animal_a67bcb3b65f047d38f98cc74399ba8fea} 
+void Animal\+::init\+Animal\+Texture (\begin{DoxyParamCaption}\item[{float}]{cell\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Loads the correct sprite texture and scales it to cell\+Size. 
+
+Loads texture, sets texture rect, origin, and scale based on cell size.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cell\+Size} & The board cell size for scaling.\\
+\hline
+{\em cell\+Size} & Size of a board cell, used for scaling. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_animal_aef86c4a26a318399a9de683fd0e1b713}\index{Animal@{Animal}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily \label{class_animal_aef86c4a26a318399a9de683fd0e1b713} 
+bool Animal\+::is\+Empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if this is an empty piece (no owner, no type). 
+
+Checks if this tile contains no \doxylink{class_animal}{Animal}.
+
+\begin{DoxyReturn}{Returns}
+True if this represents an empty cell.
+
+true if owner is No\+Player. 
+\end{DoxyReturn}
+\Hypertarget{class_animal_aa877ca8e4c0747f5794614e7b35c2fa5}\index{Animal@{Animal}!operator=@{operator=}}
+\index{operator=@{operator=}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_animal_aa877ca8e4c0747f5794614e7b35c2fa5} 
+\mbox{\hyperlink{class_animal}{Animal}} \& Animal\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_animal}{Animal}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Copy assignment operator. 
+
+Assignment operator. Prevents texture issues when copying pieces.
+
+\begin{DoxyReturn}{Returns}
+Reference to this object.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{class_animal}{Animal} to assign from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to \texorpdfstring{$\ast$}{*}this. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+% FIG 3
+\Hypertarget{class_animal_ab82e8398cd9e7769dfda4741b13a8e0b}\index{Animal@{Animal}!rescale@{rescale}}
+\index{rescale@{rescale}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{rescale()}{rescale()}}
+{\footnotesize\ttfamily \label{class_animal_ab82e8398cd9e7769dfda4741b13a8e0b} 
+void Animal\+::rescale (\begin{DoxyParamCaption}\item[{float}]{cell\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Rescales the sprite when the board/cell size changes. 
+
+Adjusts sprite scale when the board is resized.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cell\+Size} & New size of board cells.\\
+\hline
+{\em cell\+Size} & New board cell size. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 4
+\Hypertarget{class_animal_abc6b4ca5d836809cf58c2ee3c9c308d7}\index{Animal@{Animal}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily \label{class_animal_abc6b4ca5d836809cf58c2ee3c9c308d7} 
+void Animal\+::set\+Position (\begin{DoxyParamCaption}\item[{const sf\+::\+Vector2f \&}]{position}{}\end{DoxyParamCaption})}
+
+
+
+Sets the on screen sprite position. 
+
+Sets the on screen position of the \doxylink{class_animal}{Animal}\textquotesingle{}s sprite.
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Pixel coordinates.\\
+\hline
+{\em position} & New world position. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_animal_8h}{Animal.\+h}}\item 
+C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_animal_8cpp}{Animal.\+cpp}}\end{DoxyCompactItemize}

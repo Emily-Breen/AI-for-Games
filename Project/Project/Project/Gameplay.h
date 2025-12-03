@@ -4,8 +4,16 @@
 #include "Board.h"
 #include <vector>
 #include <limits>
+/**
+ * @file Gameplay.h
+ * @brief Contains AI logic, board evaluation, move generation and minimax.
+ */
 
-// represents a move from (row1, col1) to (row2, col2)
+/**
+ * @struct Move
+ * @brief Represents a move from one board coordinate to another.
+ */
+
 struct Move {
 	int row1, col1;
 	int row2, col2;
@@ -20,14 +28,24 @@ struct Move {
 	}
 };
 
-// Struct for AI evaluation of each piece on the board
+/**
+ * @struct PieceState
+ * @brief Representation of a board piece used for AI calculations.
+ * Contains only owner and type.
+ */
+
 // No rendering information, otherwise performance will be TERRIBLE
 struct PieceState {
 	Player owner;
 	AnimalType type;
 };
 
-// Represents the current state of the board
+/**
+ * @struct Boardstate
+ * @brief Represents the full internal board state used by AI.
+ *
+ * Contains a grid of PieceState and the current player's turn.
+ */
 struct Boardstate {
 	PieceState grid[BOARD_SIZE][BOARD_SIZE];
 	Player currentPlayer;
@@ -50,39 +68,92 @@ struct Boardstate {
 	}
 };
 
-static const int UNLIMITED_POWER = 999999; // I really hope you get the reference :D
-
+static const int UNLIMITED_POWER = 999999; ///< Infinity value for evaluation
+/**
+ * @class Gameplay
+ * @brief Handles all AI logic: minimax, evaluation, move generation, win checks.
+ */
 class Gameplay
 {
 public:
+    /**
+     * @brief Constructs a Gameplay object with default AI parameters.
+     */
 	Gameplay();
-
-	// function to choose the best move for the current player
+	/**
+	 * @brief Computes the best move for the current player using minimax.
+	 * @param state Current board state.
+	 * @param depth Search depth for minimax.
+	 * @return The best move found.
+	 */
 	Move chooseBestMove(const Boardstate& state, int depth);
 
-	// function to check for win condition
+	/**
+	 * @brief Checks if the board contains a win condition.
+	 * @param state The current board state.
+	 * @param winner Output parameter storing the winning player.
+	 * @return true if a player has achieved four in a row.
+	 */
 	bool checkWimCondition(const Boardstate& state, Player& winner);
+	/**
+	 * @brief Gets all valid moves for a piece located at (row, col).
+	 * @param row Piece row.
+	 * @param col Piece column.
+	 * @param state Current board state.
+	 * @return List of valid moves.
+	 */
+
 	std::vector<Move> getValidMovesForPiece(int row, int col, const Boardstate& state);
+	/**
+	 * @brief Converts an Animal instance into a PieceState.
+	 */
 	static PieceState toPieceState(const Animal& animal);
+	/**
+	* @brief Converts a PieceState into an Animal instance.
+	*/
 	static Animal toAnimal(const PieceState& pieceState);
 
 private:
-	// minimax algorithm with alpha-beta pruning
+	/**
+	 * @brief Minimax algorithm with alpha-beta pruning.
+	 * @param state Current board state.
+	 * @param depth Remaining recursion depth.
+	 * @param isMaximizing True if evaluating AI's turn, false for opponent.
+	 * @param alpha Alpha pruning value.
+	 * @param beta Beta pruning value.
+	 * @return The evaluated score.
+	 */
 	int miniMax(const Boardstate& state, int depth, bool isMaximizing, int alpha, int beta);
 
-	// heuristic evaluation function
+	/**
+	 * @brief Heuristic board evaluation used when minimax depth ends.
+	 * @param state Current board state.
+	 * @param maximizingPlayer AI-controlled player.
+	 * @return Numeric score (higher = better for AI).
+	 */
 	int evaluateBoard(const Boardstate& state, Player maximizingPlayer);
-
+	/**
+	 * @brief Calculates threat patterns (3 in a row with one empty).
+	 */
 	int evaluateThreats(const Boardstate& state, Player player);
+	/**
+	 * @brief Checks four tiles for a potential threat.
+	 */
 	int checkForThreats(Player p1, Player p2, Player p3, Player p4, Player player);
 
-	// function to generate all possible moves for the current player
+	/**
+	 * @brief Generates all legal moves for the current player.
+	 */
 	std::vector<Move> generateMoves(const Boardstate& state);
 
-	// function to apply a move and return the new board state
+	/**
+	 * @brief Applies a move to a board and returns the resulting state.
+	 */
 	Boardstate makeMove(const Boardstate& state, const Move& move);
 
-	// Helper function to check if a position is within board bounds
+	/**
+	 * @brief Checks whether a board coordinate is valid.
+	 */
 	bool isValidPosition(int row, int col) const;
 
 	// The player that the AI is trying to maximize
