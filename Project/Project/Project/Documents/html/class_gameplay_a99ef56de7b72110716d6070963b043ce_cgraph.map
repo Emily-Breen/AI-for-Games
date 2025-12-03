@@ -1,0 +1,5 @@
+<map id="Gameplay::evaluateTwoInARow" name="Gameplay::evaluateTwoInARow">
+<area shape="rect" id="Node000001" title="Calculates patterns of two in a row with two empty." alt="" coords="5,5,214,32"/>
+<area shape="rect" id="Node000002" href="$class_gameplay.html#a2384d786712dc45870b66c32bb55ba23" title="Checks four tiles for a potential two&#45;in&#45;a&#45;row." alt="" coords="262,5,475,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,16,248,19,243,19,214,21"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="Game" name="Game">
+<area shape="rect" id="Node000001" title="Main controller for the entire game logic, rendering, input, AI, UI and state transitions." alt="" coords="164,168,220,195"/>
+<area shape="rect" id="Node000002" href="$class_board.html" title="Handles drawing, sizing, and positioning of the game board grid." alt="" coords="5,5,61,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="28,45,30,96,36,121,49,142,67,153,97,162,166,176,161,178,96,168,65,158,45,146,31,123,25,97,27,50"/>
+<area shape="rect" id="Node000003" href="$class_animal.html" title="Represents a single game piece placed on the board." alt="" coords="92,5,153,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="117,45,113,95,117,120,126,143,143,159,166,173,160,172,140,164,121,145,111,121,108,95,114,50"/>
+<area shape="rect" id="Node000004" href="$class_gameplay.html" title="Handles all AI logic: minimax, evaluation, move generation, win checks." alt="" coords="221,5,301,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="261,46,254,95,246,121,234,145,211,170,209,165,229,143,241,119,248,94,257,50"/>
+<area shape="rect" id="Node000005" href="$struct_menu_button.html" title="UI button used on the main menu screen." alt="" coords="329,5,420,32"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="378,46,372,98,363,124,347,146,325,158,291,168,221,180,220,174,290,162,323,153,343,142,358,121,367,96,374,50"/>
+</map>

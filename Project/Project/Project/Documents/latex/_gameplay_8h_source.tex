@@ -1,4 +1,4 @@
-\doxysection{C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\+Gameplay.h}
+\doxysection{Gameplay.\+h}
 \hypertarget{_gameplay_8h_source}{}\label{_gameplay_8h_source}\mbox{\hyperlink{_gameplay_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
@@ -52,7 +52,7 @@
 \DoxyCodeLine{00068\ \ \ \ \ \}}
 \DoxyCodeLine{00069\ \};}
 \DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ UNLIMITED\_POWER\ =\ 999999;\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_gameplay_8h_a20ea8608dd6ba8d410f343caafe837ab}{UNLIMITED\_POWER}}\ =\ 999999;\ }
 \DoxyCodeLine{00076\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_gameplay_a04898da34fb7c6a290a193f9e7ec1219}{Gameplay}}}
 \DoxyCodeLine{00077\ \{}
 \DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
@@ -66,24 +66,27 @@
 \DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_animal}{Animal}}\ \mbox{\hyperlink{class_gameplay_a8d18d410c57e827962146a0d44bcff44}{toAnimal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_piece_state}{PieceState}}\&\ pieceState);}
 \DoxyCodeLine{00115\ }
 \DoxyCodeLine{00116\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{int}\ miniMax(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state,\ \textcolor{keywordtype}{int}\ depth,\ \textcolor{keywordtype}{bool}\ isMaximizing,\ \textcolor{keywordtype}{int}\ alpha,\ \textcolor{keywordtype}{int}\ beta);}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_gameplay_a18d8e116e550085670f18ea41a8b157b}{miniMax}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state,\ \textcolor{keywordtype}{int}\ depth,\ \textcolor{keywordtype}{bool}\ isMaximizing,\ \textcolor{keywordtype}{int}\ alpha,\ \textcolor{keywordtype}{int}\ beta);}
 \DoxyCodeLine{00127\ }
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{int}\ evaluateBoard(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ maximizingPlayer);}
-\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{int}\ evaluateThreats(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ player);}
-\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{int}\ checkForThreats(\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p1,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p2,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p3,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p4,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ player);}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_gameplay_ad7296cc2f90f36ef3ae336dc48c4b80c}{evaluateBoard}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ maximizingPlayer);}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_gameplay_a376da2c28d3a73a725db1eae32b6f40e}{evaluateThreeInARow}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ player);}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_gameplay_a911a53b66a99e2161ce68f61648de01a}{checkForThreeInARow}}(\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p1,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p2,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p3,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p4,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ player);}
 \DoxyCodeLine{00143\ }
-\DoxyCodeLine{00147\ \ \ \ \ std::vector<Move>\ generateMoves(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state);}
-\DoxyCodeLine{00148\ }
-\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\ makeMove(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_move}{Move}}\&\ move);}
-\DoxyCodeLine{00153\ }
-\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{bool}\ isValidPosition(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ The\ player\ that\ the\ AI\ is\ trying\ to\ maximize}}
-\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ m\_maximizingPlayer;}
-\DoxyCodeLine{00161\ }
-\DoxyCodeLine{00162\ \ \ \ \ \textcolor{comment}{//\ Counter\ for\ debugging\ -\/\ tracks\ how\ many\ board\ states\ the\ AI\ evaluated\ before\ choosing\ a\ move}}
-\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_nodesEvaluated;}
-\DoxyCodeLine{00164\ \};}
-\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_gameplay_a99ef56de7b72110716d6070963b043ce}{evaluateTwoInARow}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ player);}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_gameplay_a2384d786712dc45870b66c32bb55ba23}{checkForTwoInARow}}(\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p1,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p2,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p3,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ p4,\ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ player);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00156\ \ \ \ \ std::vector<Move>\ \mbox{\hyperlink{class_gameplay_a6d32cbd15c3c131e91b2b686252e559e}{generateMoves}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\ \mbox{\hyperlink{class_gameplay_ab625a9fdc2dc68884e50786eba67f396}{makeMove}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_boardstate}{Boardstate}}\&\ state,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_move}{Move}}\&\ move);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_gameplay_ab27e2ba44c89585ae32837fc7eb51b20}{isValidPosition}}(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ The\ player\ that\ the\ AI\ is\ trying\ to\ maximize}}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ \mbox{\hyperlink{class_gameplay_aab31e7528a9fd28140072ace42b22a9c}{m\_maximizingPlayer}};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ Counter\ for\ debugging\ -\/\ tracks\ how\ many\ board\ states\ the\ AI\ evaluated\ before\ choosing\ a\ move}}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_gameplay_aae73b2abbc755e91ee34082e8bd458c7}{m\_nodesEvaluated}};}
+\DoxyCodeLine{00173\ \};}
+\DoxyCodeLine{00174\ }
 
 \end{DoxyCode}

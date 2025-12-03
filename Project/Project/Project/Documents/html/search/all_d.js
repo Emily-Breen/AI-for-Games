@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['recalculategrid_0',['recalculateGrid',['../class_board.html#a103ba19faa0f8748739c730cabcd2144',1,'Board']]],
-  ['rescale_1',['rescale',['../class_animal.html#ab82e8398cd9e7769dfda4741b13a8e0b',1,'Animal']]],
-  ['row1_2',['row1',['../struct_move.html#a71edae61465dcbfab3a15eea25670603',1,'Move']]],
-  ['row2_3',['row2',['../struct_move.html#ac7175d49704aeadc6b4018439f0f4b03',1,'Move']]],
-  ['run_4',['run',['../class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game']]]
+  ['piecestate_0',['PieceState',['../struct_piece_state.html',1,'']]],
+  ['placement_1',['Placement',['../_game_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285aae13e51f99f3be623a6d44d7439d9bb5',1,'Game.h']]],
+  ['player_2',['Player',['../_animal_8h.html#a9c8780378078e51e7c9041cbac392db9',1,'Animal.h']]],
+  ['player1_3',['Player1',['../_animal_8h.html#a9c8780378078e51e7c9041cbac392db9a600f125ca9ad5fe29a6252a73c5772a6',1,'Animal.h']]],
+  ['player2_4',['Player2',['../_animal_8h.html#a9c8780378078e51e7c9041cbac392db9ac087f1da5fc64e9c3909af05608f6dd8',1,'Animal.h']]],
+  ['processevents_5',['processEvents',['../class_game.html#a79f698dda206dd7a9bed28b3f88bdc38',1,'Game']]],
+  ['processkeys_6',['processKeys',['../class_game.html#a88c8c1e5ea297bb218d81b6a2a61c580',1,'Game']]]
 ];

@@ -1,0 +1,44 @@
+<map id="Game::run" name="Game::run">
+<area shape="rect" id="Node000001" title="Main game loop." alt="" coords="5,259,88,285"/>
+<area shape="rect" id="Node000002" href="$class_game.html#a79f698dda206dd7a9bed28b3f88bdc38" title="Poll and handle SFML events." alt="" coords="136,132,287,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,257,181,166,180,171,67,260"/>
+<area shape="rect" id="Node000012" href="$class_game.html#a15ddd769261d923827a3cdf41499c843" title="Render all game graphics." alt="" coords="161,259,262,285"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="87,270,147,270,143,274,89,274"/>
+<area shape="rect" id="Node000014" href="$class_game.html#a1d2aee62bac8e228344e1f44fab504e0" title="Update game logic." alt="" coords="160,385,263,412"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="66,283,183,374,178,377,65,288"/>
+<area shape="rect" id="Node000003" href="$class_game.html#ab0ceef9b57efb693a6a3d1061ebfdb7e" title="Handle mouse drag." alt="" coords="350,107,530,133"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="286,135,337,130,332,133,289,139"/>
+<area shape="rect" id="Node000004" href="$class_game.html#a60f89eec51c0de6d82b220c87fd41fed" title="Handle mouse down." alt="" coords="352,56,528,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="241,129,334,92,363,85,359,89,336,97,244,134"/>
+<area shape="rect" id="Node000006" href="$class_game.html#a951b4c28944b18a6513fcf057f3a705c" title="Handle mouse release." alt="" coords="346,208,535,235"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="249,157,336,187,380,202,375,204,334,192,251,162"/>
+<area shape="rect" id="Node000009" href="$class_game.html#a1c18201afcab542552a47f32f07c547b" title="Update positions/scales when window resizes." alt="" coords="613,208,764,235"/>
+<area shape="poly" id="edge12_Node000002_Node000009" title=" " alt="" coords="287,154,546,193,600,204,595,206,545,199,288,159"/>
+<area shape="rect" id="Node000010" href="$class_game.html#a88c8c1e5ea297bb218d81b6a2a61c580" title="Handle key press events." alt="" coords="370,5,510,32"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="223,130,269,86,300,62,334,42,357,34,353,37,336,46,303,66,272,90,227,133"/>
+<area shape="rect" id="Node000005" href="$class_game.html#a7dfba4bb3ee3f963117cf10efff89824" title="Converts pixel coords to grid coords." alt="" coords="618,107,759,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="509,81,607,102,602,104,510,86"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="474,205,642,138,637,141,476,210"/>
+<area shape="rect" id="Node000007" href="$class_game.html#a5326bb6708fc28e477b8b72958476c19" title="Checks 4&#45;in&#45;a&#45;row for current player." alt="" coords="600,360,777,387"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="517,233,547,244,583,267,616,294,669,348,663,348,613,298,580,271,544,249,518,238"/>
+<area shape="rect" id="Node000008" href="$class_game.html#a81f1f347ed371c39c3a4fbbf52a7c761" title="Transition between phases." alt="" coords="604,461,773,488"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="529,233,547,245,563,263,572,282,576,319,579,357,584,376,596,397,622,427,653,453,648,452,618,431,591,400,579,378,574,357,571,319,566,283,558,266,544,249,529,238"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="535,219,600,220,595,222,536,224"/>
+<area shape="rect" id="Node000011" href="$class_game.html#a47c726a80fd133c0a4f6b8fba56d8832" title="Reset everything back to MainMenu." alt="" coords="624,5,753,32"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="510,16,611,17,607,20,511,21"/>
+<area shape="rect" id="Node000013" href="$class_game.html#acc87a0ee91d27ab844b0a8ff9a210ab4" title="Highlights valid moves." alt="" coords="335,259,545,285"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="261,269,322,271,317,273,263,275"/>
+<area shape="poly" id="edge17_Node000014_Node000007" title=" " alt="" coords="263,393,586,377,583,381,264,399"/>
+<area shape="poly" id="edge23_Node000014_Node000008" title=" " alt="" coords="239,410,284,430,336,447,400,459,467,467,591,476,586,476,466,472,400,464,334,452,282,435,239,415"/>
+<area shape="poly" id="edge24_Node000014_Node000009" title=" " alt="" coords="262,384,392,348,469,323,544,295,601,268,649,244,654,242,603,273,546,300,471,328,394,353,264,389"/>
+<area shape="rect" id="Node000015" href="$class_game.html#a55249c1379fd2c654bcb754273d5e9c5" title="Check real&#45;time keyboard input." alt="" coords="348,411,533,437"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="263,402,334,411,329,413,264,407"/>
+<area shape="rect" id="Node000016" href="$class_game.html#ad43a19f5b2e047e7efe96f0f876b6938" title="Performs AI decision making for current player&#39;s turn." alt="" coords="370,512,511,539"/>
+<area shape="poly" id="edge18_Node000014_Node000016" title=" " alt="" coords="227,410,275,450,336,491,369,507,364,507,334,496,271,454,226,415"/>
+<area shape="poly" id="edge19_Node000016_Node000007" title=" " alt="" coords="463,509,650,396,655,394,465,514"/>
+<area shape="poly" id="edge22_Node000016_Node000008" title=" " alt="" coords="509,509,602,492,607,491,510,514"/>
+<area shape="rect" id="Node000017" href="$class_game.html#a8ebc0fe99f64aec284e319a53dbd6074" title="Converts live grid to AI friendly Boardstate." alt="" coords="593,563,784,589"/>
+<area shape="poly" id="edge20_Node000016_Node000017" title=" " alt="" coords="510,537,607,559,602,559,509,542"/>
+<area shape="rect" id="Node000018" href="$struct_move.html#a6e80a6c039ba805bac3ff6402c56b76c" title=" " alt="" coords="639,512,738,539"/>
+<area shape="poly" id="edge21_Node000016_Node000018" title=" " alt="" coords="511,523,626,525,620,526,511,528"/>
+</map>

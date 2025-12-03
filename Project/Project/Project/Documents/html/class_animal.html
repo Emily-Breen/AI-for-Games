@@ -28,7 +28,7 @@
   <td id="projectalign">
    <div id="projectname">The Fourth Protocol
    </div>
-   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row game&quot;</div>
+   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row&quot; style game with a twist!</div>
   </td>
  </tr>
  </tbody>
@@ -128,6 +128,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa877ca8e4c0747f5794614e7b35c2fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment operator.  <br /></td></tr>
 <tr class="memitem:a6d95f368dafb0071915618c41cd487fd" id="r_a6d95f368dafb0071915618c41cd487fd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; sf::Vector2i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d95f368dafb0071915618c41cd487fd">getValidMoves</a> (int currentRow, int currentCol, const <a class="el" href="class_animal.html">Animal</a> *grid, int boardSize) const</td></tr>
 <tr class="memdesc:a6d95f368dafb0071915618c41cd487fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes valid movement locations for this animal.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a4a432c83d9290b59c7b41956122bab1e" id="r_a4a432c83d9290b59c7b41956122bab1e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a432c83d9290b59c7b41956122bab1e">isValidPosition</a> (int row, int col, int boardSize) const</td></tr>
+<tr class="memdesc:a4a432c83d9290b59c7b41956122bab1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a position is within board bounds.  <br /></td></tr>
+<tr class="memitem:ab4ab82b6c86f8726d31d5f9b6cd0aa0c" id="r_ab4ab82b6c86f8726d31d5f9b6cd0aa0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4ab82b6c86f8726d31d5f9b6cd0aa0c">addAdjacentMoves</a> (int row, int col, const <a class="el" href="class_animal.html">Animal</a> *grid, int boardSize, std::vector&lt; sf::Vector2i &gt; &amp;moves, bool includeDiagonal) const</td></tr>
+<tr class="memdesc:ab4ab82b6c86f8726d31d5f9b6cd0aa0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds adjacent moves (cardinal + optional diagonal).  <br /></td></tr>
+<tr class="memitem:aed3cda05602b23e452129fbdc1066158" id="r_aed3cda05602b23e452129fbdc1066158"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed3cda05602b23e452129fbdc1066158">addFrogJumpMoves</a> (int row, int col, const <a class="el" href="class_animal.html">Animal</a> *grid, int boardSize, std::vector&lt; sf::Vector2i &gt; &amp;moves) const</td></tr>
+<tr class="memdesc:aed3cda05602b23e452129fbdc1066158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds frog style multi tile jumping moves.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a9e35e11d495bbcbb6ec40da47c9fe60a" id="r_a9e35e11d495bbcbb6ec40da47c9fe60a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e35e11d495bbcbb6ec40da47c9fe60a">m_owner</a></td></tr>
+<tr class="memitem:aac828bf021e2f508644c0dd1f8b38801" id="r_aac828bf021e2f508644c0dd1f8b38801"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_animal_8h.html#a6f4aee1c6d261958dbe9554417a936db">AnimalType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac828bf021e2f508644c0dd1f8b38801">m_type</a></td></tr>
+<tr class="memitem:a684695058eb666ded5f4d0d0981218b0" id="r_a684695058eb666ded5f4d0d0981218b0"><td class="memItemLeft" align="right" valign="top">sf::Texture&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a684695058eb666ded5f4d0d0981218b0">m_texture</a></td></tr>
+<tr class="memitem:a5050621e8c8bc51103b7775eabdc43de" id="r_a5050621e8c8bc51103b7775eabdc43de"><td class="memItemLeft" align="right" valign="top">sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5050621e8c8bc51103b7775eabdc43de">m_sprite</a> { <a class="el" href="#a684695058eb666ded5f4d0d0981218b0">m_texture</a> }</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a single game piece placed on the board. </p>
@@ -213,11 +229,143 @@ Public Member Functions</h2></td></tr>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_animal_ac9cb0456a22b938ef4a6adf4a371f778_cgraph.png" border="0" usemap="#aclass_animal_ac9cb0456a22b938ef4a6adf4a371f778_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_animal_ac9cb0456a22b938ef4a6adf4a371f778_cgraph" id="aclass_animal_ac9cb0456a22b938ef4a6adf4a371f778_cgraph">
+<area shape="rect" title="Copy constructor." alt="" coords="5,5,115,32"/>
+<area shape="rect" href="class_animal.html#a1e726a49ec952443190ac62dad22353c" title="Default constructor. Creates an empty/unoccupied piece." alt="" coords="163,5,272,32"/>
+<area shape="poly" title=" " alt="" coords="115,16,150,18,145,19,115,21"/>
+</map>
 </div>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ab4ab82b6c86f8726d31d5f9b6cd0aa0c" name="ab4ab82b6c86f8726d31d5f9b6cd0aa0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4ab82b6c86f8726d31d5f9b6cd0aa0c">&#9670;&#160;</a></span>addAdjacentMoves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Animal::addAdjacentMoves </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>col</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_animal.html">Animal</a> *</td>          <td class="paramname"><span class="paramname"><em>grid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>boardSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; sf::Vector2i &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>moves</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>includeDiagonal</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds adjacent moves (cardinal + optional diagonal). </p>
+<p>Adds all 1-step moves (cardinal &amp; diagonal if allowed). </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_animal_ab4ab82b6c86f8726d31d5f9b6cd0aa0c_cgraph.png" border="0" usemap="#aclass_animal_ab4ab82b6c86f8726d31d5f9b6cd0aa0c_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_animal_ab4ab82b6c86f8726d31d5f9b6cd0aa0c_cgraph" id="aclass_animal_ab4ab82b6c86f8726d31d5f9b6cd0aa0c_cgraph">
+<area shape="rect" title="Adds adjacent moves (cardinal + optional diagonal)." alt="" coords="5,56,186,83"/>
+<area shape="rect" href="class_animal.html#a1e726a49ec952443190ac62dad22353c" title="Default constructor. Creates an empty/unoccupied piece." alt="" coords="256,5,366,32"/>
+<area shape="poly" title=" " alt="" coords="155,53,243,34,239,36,156,58"/>
+<area shape="rect" href="class_animal.html#aef86c4a26a318399a9de683fd0e1b713" title="Checks if this is an empty piece (no owner, no type)." alt="" coords="252,56,370,83"/>
+<area shape="poly" title=" " alt="" coords="185,67,239,69,234,70,186,72"/>
+<area shape="rect" href="class_animal.html#a4a432c83d9290b59c7b41956122bab1e" title="Checks if a position is within board bounds." alt="" coords="234,107,388,133"/>
+<area shape="poly" title=" " alt="" coords="156,81,239,102,234,103,155,86"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aed3cda05602b23e452129fbdc1066158" name="aed3cda05602b23e452129fbdc1066158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed3cda05602b23e452129fbdc1066158">&#9670;&#160;</a></span>addFrogJumpMoves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Animal::addFrogJumpMoves </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>col</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_animal.html">Animal</a> *</td>          <td class="paramname"><span class="paramname"><em>grid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>boardSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; sf::Vector2i &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>moves</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds frog style multi tile jumping moves. </p>
+<p>Adds frog jump moves (jump over any piece and land on next empty tile). </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_animal_aed3cda05602b23e452129fbdc1066158_cgraph.png" border="0" usemap="#aclass_animal_aed3cda05602b23e452129fbdc1066158_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_animal_aed3cda05602b23e452129fbdc1066158_cgraph" id="aclass_animal_aed3cda05602b23e452129fbdc1066158_cgraph">
+<area shape="rect" title="Adds frog style multi tile jumping moves." alt="" coords="5,56,193,83"/>
+<area shape="rect" href="class_animal.html#a1e726a49ec952443190ac62dad22353c" title="Default constructor. Creates an empty/unoccupied piece." alt="" coords="263,5,372,32"/>
+<area shape="poly" title=" " alt="" coords="159,53,250,34,245,36,161,58"/>
+<area shape="rect" href="class_animal.html#aef86c4a26a318399a9de683fd0e1b713" title="Checks if this is an empty piece (no owner, no type)." alt="" coords="259,56,376,83"/>
+<area shape="poly" title=" " alt="" coords="193,67,246,69,241,70,194,72"/>
+<area shape="rect" href="class_animal.html#a4a432c83d9290b59c7b41956122bab1e" title="Checks if a position is within board bounds." alt="" coords="241,107,395,133"/>
+<area shape="poly" title=" " alt="" coords="160,81,245,102,240,103,160,86"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a94768be1c3820699d74a3f6a2621448c" name="a94768be1c3820699d74a3f6a2621448c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94768be1c3820699d74a3f6a2621448c">&#9670;&#160;</a></span>draw()</h2>
 
@@ -246,6 +394,11 @@ Here is the call graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_animal_a94768be1c3820699d74a3f6a2621448c_cgraph.png" border="0" usemap="#aclass_animal_a94768be1c3820699d74a3f6a2621448c_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_animal_a94768be1c3820699d74a3f6a2621448c_cgraph" id="aclass_animal_a94768be1c3820699d74a3f6a2621448c_cgraph">
+<area shape="rect" title="Draws the animal sprite to the window." alt="" coords="5,5,103,32"/>
+<area shape="rect" href="class_animal.html#aef86c4a26a318399a9de683fd0e1b713" title="Checks if this is an empty piece (no owner, no type)." alt="" coords="151,5,268,32"/>
+<area shape="poly" title=" " alt="" coords="103,16,138,18,132,19,103,21"/>
+</map>
 </div>
 
 </div>
@@ -395,6 +548,24 @@ Frog, Snake, Donkey, or NoType. </dd></dl>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_animal_a6d95f368dafb0071915618c41cd487fd_cgraph.png" border="0" usemap="#aclass_animal_a6d95f368dafb0071915618c41cd487fd_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_animal_a6d95f368dafb0071915618c41cd487fd_cgraph" id="aclass_animal_a6d95f368dafb0071915618c41cd487fd_cgraph">
+<area shape="rect" title="Computes valid movement locations for this animal." alt="" coords="5,56,160,83"/>
+<area shape="rect" href="class_animal.html#ab4ab82b6c86f8726d31d5f9b6cd0aa0c" title="Adds adjacent moves (cardinal + optional diagonal)." alt="" coords="211,31,392,57"/>
+<area shape="poly" title=" " alt="" coords="159,58,198,55,193,57,161,63"/>
+<area shape="rect" href="class_animal.html#a1e726a49ec952443190ac62dad22353c" title="Default constructor. Creates an empty/unoccupied piece." alt="" coords="466,5,575,32"/>
+<area shape="poly" title=" " alt="" coords="108,53,153,32,207,16,271,7,336,4,453,10,448,12,336,10,272,13,208,21,155,37,111,58"/>
+<area shape="rect" href="class_animal.html#aef86c4a26a318399a9de683fd0e1b713" title="Checks if this is an empty piece (no owner, no type)." alt="" coords="462,107,579,133"/>
+<area shape="poly" title=" " alt="" coords="110,81,155,101,208,117,270,126,333,129,443,128,448,128,333,134,270,131,207,123,153,106,109,86"/>
+<area shape="rect" href="class_animal.html#aed3cda05602b23e452129fbdc1066158" title="Adds frog style multi tile jumping moves." alt="" coords="208,81,395,108"/>
+<area shape="poly" title=" " alt="" coords="160,76,195,82,189,82,160,81"/>
+<area shape="poly" title=" " alt="" coords="391,31,453,26,447,27,392,36"/>
+<area shape="poly" title=" " alt="" coords="361,55,396,67,444,92,461,101,456,101,442,97,394,72,361,61"/>
+<area shape="rect" href="class_animal.html#a4a432c83d9290b59c7b41956122bab1e" title="Checks if a position is within board bounds." alt="" coords="443,56,597,83"/>
+<area shape="poly" title=" " alt="" coords="392,52,430,59,425,59,392,57"/>
+<area shape="poly" title=" " alt="" coords="360,78,394,67,442,42,456,38,461,37,444,46,396,72,362,83"/>
+<area shape="poly" title=" " alt="" coords="396,103,449,111,443,111,395,108"/>
+<area shape="poly" title=" " alt="" coords="395,81,431,80,425,80,396,86"/>
+</map>
 </div>
 
 </div>
@@ -449,6 +620,43 @@ true if owner is NoPlayer. </dd></dl>
 
 </div>
 </div>
+<a id="a4a432c83d9290b59c7b41956122bab1e" name="a4a432c83d9290b59c7b41956122bab1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a432c83d9290b59c7b41956122bab1e">&#9670;&#160;</a></span>isValidPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Animal::isValidPosition </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>col</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>boardSize</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if a position is within board bounds. </p>
+<p>Checks if a board coordinate is within valid range. </p>
+
+</div>
+</div>
 <a id="aa877ca8e4c0747f5794614e7b35c2fa5" name="aa877ca8e4c0747f5794614e7b35c2fa5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa877ca8e4c0747f5794614e7b35c2fa5">&#9670;&#160;</a></span>operator=()</h2>
 
@@ -478,6 +686,13 @@ true if owner is NoPlayer. </dd></dl>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_animal_aa877ca8e4c0747f5794614e7b35c2fa5_cgraph.png" border="0" usemap="#aclass_animal_aa877ca8e4c0747f5794614e7b35c2fa5_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_animal_aa877ca8e4c0747f5794614e7b35c2fa5_cgraph" id="aclass_animal_aa877ca8e4c0747f5794614e7b35c2fa5_cgraph">
+<area shape="rect" title="Copy assignment operator." alt="" coords="5,31,130,57"/>
+<area shape="rect" href="class_animal.html#a1e726a49ec952443190ac62dad22353c" title="Default constructor. Creates an empty/unoccupied piece." alt="" coords="208,5,317,32"/>
+<area shape="poly" title=" " alt="" coords="130,33,195,27,190,29,131,39"/>
+<area shape="rect" href="class_animal.html#a67bcb3b65f047d38f98cc74399ba8fea" title="Loads the correct sprite texture and scales it to cellSize." alt="" coords="178,56,347,83"/>
+<area shape="poly" title=" " alt="" coords="130,49,165,56,160,57,130,55"/>
+</map>
 </div>
 
 </div>
@@ -510,6 +725,11 @@ Here is the call graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_animal_ab82e8398cd9e7769dfda4741b13a8e0b_cgraph.png" border="0" usemap="#aclass_animal_ab82e8398cd9e7769dfda4741b13a8e0b_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_animal_ab82e8398cd9e7769dfda4741b13a8e0b_cgraph" id="aclass_animal_ab82e8398cd9e7769dfda4741b13a8e0b_cgraph">
+<area shape="rect" title="Rescales the sprite when the board/cell size changes." alt="" coords="5,5,117,32"/>
+<area shape="rect" href="class_animal.html#aef86c4a26a318399a9de683fd0e1b713" title="Checks if this is an empty piece (no owner, no type)." alt="" coords="165,5,282,32"/>
+<area shape="poly" title=" " alt="" coords="117,16,152,18,147,19,117,21"/>
+</map>
 </div>
 
 </div>
@@ -541,9 +761,98 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a9e35e11d495bbcbb6ec40da47c9fe60a" name="a9e35e11d495bbcbb6ec40da47c9fe60a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e35e11d495bbcbb6ec40da47c9fe60a">&#9670;&#160;</a></span>m_owner</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> Animal::m_owner</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5050621e8c8bc51103b7775eabdc43de" name="a5050621e8c8bc51103b7775eabdc43de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5050621e8c8bc51103b7775eabdc43de">&#9670;&#160;</a></span>m_sprite</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Sprite Animal::m_sprite { <a class="el" href="#a684695058eb666ded5f4d0d0981218b0">m_texture</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a684695058eb666ded5f4d0d0981218b0" name="a684695058eb666ded5f4d0d0981218b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a684695058eb666ded5f4d0d0981218b0">&#9670;&#160;</a></span>m_texture</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Texture Animal::m_texture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac828bf021e2f508644c0dd1f8b38801" name="aac828bf021e2f508644c0dd1f8b38801"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac828bf021e2f508644c0dd1f8b38801">&#9670;&#160;</a></span>m_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_animal_8h.html#a6f4aee1c6d261958dbe9554417a936db">AnimalType</a> Animal::m_type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/emily/source/repos/AI-for-Games/Project/Project/Project/<a class="el" href="_animal_8h_source.html">Animal.h</a></li>
-<li>C:/Users/emily/source/repos/AI-for-Games/Project/Project/Project/<a class="el" href="_animal_8cpp.html">Animal.cpp</a></li>
+<li><a class="el" href="_animal_8h_source.html">Animal.h</a></li>
+<li><a class="el" href="_animal_8cpp.html">Animal.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -1,0 +1,28 @@
+<map id="Game.h" name="Game.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="168,5,236,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,304,143,331"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,26,142,33,113,44,86,60,64,82,51,106,43,134,40,162,42,191,52,246,66,290,60,290,47,247,36,192,35,162,38,133,46,104,60,78,83,56,111,39,140,28,170,23"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="360,80,478,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,29,369,73,365,76,236,34"/>
+<area shape="rect" id="Node000004" href="$_board_8h.html" title="Declares the Board class, responsible for drawing and managing a square game grid." alt="" coords="169,155,235,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,30,205,140,199,139,201,35"/>
+<area shape="rect" id="Node000005" href="$_animal_8h.html" title=" " alt="" coords="228,229,301,256"/>
+<area shape="poly" id="edge10_Node000001_Node000005" title=" " alt="" coords="212,30,246,83,263,117,275,154,278,185,274,216,269,213,273,185,270,155,258,119,241,85,211,35"/>
+<area shape="rect" id="Node000009" href="$_gameplay_8h.html" title="Contains AI logic, board evaluation, move generation and minimax." alt="" coords="74,80,164,107"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="186,35,147,71,143,68,189,30"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="197,180,175,218,144,258,103,296,100,292,140,254,170,215,193,184"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="214,179,247,218,241,217,212,184"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="72,229,129,256"/>
+<area shape="poly" id="edge9_Node000004_Node000008" title=" " alt="" coords="182,184,132,222,129,218,186,180"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="234,257,122,301,120,296,229,256"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="194,304,247,331"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="259,255,238,293,234,289,255,258"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="272,304,343,331"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="273,254,295,291,290,290,271,259"/>
+<area shape="poly" id="edge12_Node000009_Node000002" title=" " alt="" coords="105,109,90,130,74,156,64,182,60,204,63,256,69,289,64,289,58,256,55,204,59,181,69,154,85,127,107,105"/>
+<area shape="poly" id="edge14_Node000009_Node000004" title=" " alt="" coords="134,105,179,144,174,145,134,110"/>
+<area shape="poly" id="edge13_Node000009_Node000005" title=" " alt="" coords="165,102,210,121,232,135,250,153,263,183,268,215,263,213,258,184,245,156,228,139,208,126,165,108"/>
+<area shape="poly" id="edge15_Node000009_Node000008" title=" " alt="" coords="106,110,94,130,82,155,81,186,90,215,84,215,75,186,77,154,90,127,109,105"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="92,155,144,181"/>
+<area shape="poly" id="edge16_Node000009_Node000010" title=" " alt="" coords="120,105,121,140,116,138,118,110"/>
+</map>

@@ -276,7 +276,10 @@ int Gameplay::checkForThreeInARow(Player p1, Player p2, Player p3, Player p4, Pl
 	return (playerCount == 3 && emptyCount == 1) ? 1 : 0;
 }
 
-
+/**
+ * @brief Calculates number of 2-in-a-rows for a given player.
+ * @return Number of 2-in-a-rows.
+ */
 int Gameplay::evaluateTwoInARow(const Boardstate& state, Player player)
 {
 	int twoInARows = 0;
@@ -335,7 +338,9 @@ int Gameplay::evaluateTwoInARow(const Boardstate& state, Player player)
 
 	return twoInARows;
 }
-
+/**
+ * @brief Checks whether 4 tiles contain exactly 2 of player's pieces and 2 empty.
+ */
 int Gameplay::checkForTwoInARow(Player p1, Player p2, Player p3, Player p4, Player player)
 {
 	int playerCount = 0;

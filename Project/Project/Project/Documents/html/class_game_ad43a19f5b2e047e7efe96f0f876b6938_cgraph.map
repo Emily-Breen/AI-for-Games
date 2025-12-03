@@ -1,0 +1,11 @@
+<map id="Game::handleAITurn" name="Game::handleAITurn">
+<area shape="rect" id="Node000001" title="Performs AI decision making for current player&#39;s turn." alt="" coords="5,81,147,108"/>
+<area shape="rect" id="Node000002" href="$class_game.html#a5326bb6708fc28e477b8b72958476c19" title="Checks 4&#45;in&#45;a&#45;row for current player." alt="" coords="201,5,378,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,78,194,41,219,36,215,38,196,47,108,83"/>
+<area shape="rect" id="Node000003" href="$class_game.html#a8ebc0fe99f64aec284e319a53dbd6074" title="Converts live grid to AI friendly Boardstate." alt="" coords="195,56,385,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,84,182,81,177,83,148,89"/>
+<area shape="rect" id="Node000004" href="$struct_move.html#a6e80a6c039ba805bac3ff6402c56b76c" title=" " alt="" coords="240,107,340,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="147,100,227,111,222,113,147,106"/>
+<area shape="rect" id="Node000005" href="$class_game.html#a81f1f347ed371c39c3a4fbbf52a7c761" title="Transition between phases." alt="" coords="206,157,374,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="107,106,196,143,220,153,214,152,194,148,106,111"/>
+</map>

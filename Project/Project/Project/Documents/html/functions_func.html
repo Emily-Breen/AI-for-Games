@@ -28,7 +28,7 @@
   <td id="projectalign">
    <div id="projectname">The Fourth Protocol
    </div>
-   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row game&quot;</div>
+   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row&quot; style game with a twist!</div>
   </td>
  </tr>
  </tbody>
@@ -92,6 +92,8 @@ $(function(){initNavTree('functions_func.html','',''); });
 <div class="textblock">Here is a list of all functions with links to the classes they belong to:</div>
 
 <h3 class="doxsection"><a id="index_a" name="index_a"></a>- a -</h3><ul>
+<li>addAdjacentMoves()&#160;:&#160;<a class="el" href="class_animal.html#ab4ab82b6c86f8726d31d5f9b6cd0aa0c">Animal</a></li>
+<li>addFrogJumpMoves()&#160;:&#160;<a class="el" href="class_animal.html#aed3cda05602b23e452129fbdc1066158">Animal</a></li>
 <li>Animal()&#160;:&#160;<a class="el" href="class_animal.html#a1e726a49ec952443190ac62dad22353c">Animal</a></li>
 </ul>
 
@@ -103,22 +105,37 @@ $(function(){initNavTree('functions_func.html','',''); });
 
 
 <h3 class="doxsection"><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>checkForThreeInARow()&#160;:&#160;<a class="el" href="class_gameplay.html#a911a53b66a99e2161ce68f61648de01a">Gameplay</a></li>
+<li>checkForTwoInARow()&#160;:&#160;<a class="el" href="class_gameplay.html#a2384d786712dc45870b66c32bb55ba23">Gameplay</a></li>
+<li>checkKeyboardState()&#160;:&#160;<a class="el" href="class_game.html#a55249c1379fd2c654bcb754273d5e9c5">Game</a></li>
 <li>checkWimCondition()&#160;:&#160;<a class="el" href="class_gameplay.html#a5b0cc99aaa3448fb8c300b5f5435e2f3">Gameplay</a></li>
+<li>checkWinCondition()&#160;:&#160;<a class="el" href="class_game.html#a5326bb6708fc28e477b8b72958476c19">Game</a></li>
 <li>chooseBestMove()&#160;:&#160;<a class="el" href="class_gameplay.html#a8b72181a6097357f75705b53d2f80ee0">Gameplay</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_d" name="index_d"></a>- d -</h3><ul>
 <li>draw()&#160;:&#160;<a class="el" href="class_animal.html#a94768be1c3820699d74a3f6a2621448c">Animal</a>, <a class="el" href="class_board.html#a1fa67ca04a50dc4a17428848413b1549">Board</a></li>
+<li>drawGrid()&#160;:&#160;<a class="el" href="class_board.html#ab53f40e997d3d413d9b0d245b9a630ff">Board</a></li>
+<li>drawValidMoveHighlights()&#160;:&#160;<a class="el" href="class_game.html#acc87a0ee91d27ab844b0a8ff9a210ab4">Game</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_e" name="index_e"></a>- e -</h3><ul>
+<li>evaluateBoard()&#160;:&#160;<a class="el" href="class_gameplay.html#ad7296cc2f90f36ef3ae336dc48c4b80c">Gameplay</a></li>
+<li>evaluateThreeInARow()&#160;:&#160;<a class="el" href="class_gameplay.html#a376da2c28d3a73a725db1eae32b6f40e">Gameplay</a></li>
+<li>evaluateTwoInARow()&#160;:&#160;<a class="el" href="class_gameplay.html#a99ef56de7b72110716d6070963b043ce">Gameplay</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_g" name="index_g"></a>- g -</h3><ul>
 <li>Game()&#160;:&#160;<a class="el" href="class_game.html#ad59df6562a58a614fda24622d3715b65">Game</a></li>
 <li>Gameplay()&#160;:&#160;<a class="el" href="class_gameplay.html#a04898da34fb7c6a290a193f9e7ec1219">Gameplay</a></li>
+<li>generateMoves()&#160;:&#160;<a class="el" href="class_gameplay.html#a6d32cbd15c3c131e91b2b686252e559e">Gameplay</a></li>
 <li>getBounds()&#160;:&#160;<a class="el" href="class_animal.html#a47c598d084494af38838976f2ad8dd19">Animal</a></li>
 <li>getCellCenter()&#160;:&#160;<a class="el" href="class_board.html#a2896834d7ccd0f4796161cfed23e4983">Board</a></li>
 <li>getCellSize()&#160;:&#160;<a class="el" href="class_board.html#a980a8d446778ef702c1c00f414cf0904">Board</a></li>
+<li>getCurrentBoardState()&#160;:&#160;<a class="el" href="class_game.html#a8ebc0fe99f64aec284e319a53dbd6074">Game</a></li>
 <li>getName()&#160;:&#160;<a class="el" href="class_animal.html#a1b18a05b8aaecfccf98e96ba3f6b4fd3">Animal</a></li>
 <li>getOwner()&#160;:&#160;<a class="el" href="class_animal.html#a36e7f70668605ebf27946415e315e2bc">Animal</a></li>
 <li>getSize()&#160;:&#160;<a class="el" href="class_board.html#a72fbd999c7411d051ff3bf4d568f8244">Board</a></li>
@@ -128,15 +145,26 @@ $(function(){initNavTree('functions_func.html','',''); });
 </ul>
 
 
+<h3 class="doxsection"><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>handleAITurn()&#160;:&#160;<a class="el" href="class_game.html#ad43a19f5b2e047e7efe96f0f876b6938">Game</a></li>
+<li>handleMouseMoved()&#160;:&#160;<a class="el" href="class_game.html#ab0ceef9b57efb693a6a3d1061ebfdb7e">Game</a></li>
+<li>handleMousePress()&#160;:&#160;<a class="el" href="class_game.html#a60f89eec51c0de6d82b220c87fd41fed">Game</a></li>
+<li>handleMouseRelease()&#160;:&#160;<a class="el" href="class_game.html#a951b4c28944b18a6513fcf057f3a705c">Game</a></li>
+</ul>
+
+
 <h3 class="doxsection"><a id="index_i" name="index_i"></a>- i -</h3><ul>
 <li>initAnimalTexture()&#160;:&#160;<a class="el" href="class_animal.html#a67bcb3b65f047d38f98cc74399ba8fea">Animal</a></li>
 <li>isEmpty()&#160;:&#160;<a class="el" href="class_animal.html#aef86c4a26a318399a9de683fd0e1b713">Animal</a></li>
 <li>isValid()&#160;:&#160;<a class="el" href="struct_move.html#a6e80a6c039ba805bac3ff6402c56b76c">Move</a></li>
+<li>isValidPosition()&#160;:&#160;<a class="el" href="class_animal.html#a4a432c83d9290b59c7b41956122bab1e">Animal</a>, <a class="el" href="class_gameplay.html#ab27e2ba44c89585ae32837fc7eb51b20">Gameplay</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_m" name="index_m"></a>- m -</h3><ul>
+<li>makeMove()&#160;:&#160;<a class="el" href="class_gameplay.html#ab625a9fdc2dc68884e50786eba67f396">Gameplay</a></li>
 <li>MenuButton()&#160;:&#160;<a class="el" href="struct_menu_button.html#aab3f6d05cdd6056f8a8c54752a8073e3">MenuButton</a></li>
+<li>miniMax()&#160;:&#160;<a class="el" href="class_gameplay.html#a18d8e116e550085670f18ea41a8b157b">Gameplay</a></li>
 <li>Move()&#160;:&#160;<a class="el" href="struct_move.html#a4b1acc3a67d30c385ad9a6000526393a">Move</a></li>
 </ul>
 
@@ -146,15 +174,26 @@ $(function(){initNavTree('functions_func.html','',''); });
 </ul>
 
 
+<h3 class="doxsection"><a id="index_p" name="index_p"></a>- p -</h3><ul>
+<li>processEvents()&#160;:&#160;<a class="el" href="class_game.html#a79f698dda206dd7a9bed28b3f88bdc38">Game</a></li>
+<li>processKeys()&#160;:&#160;<a class="el" href="class_game.html#a88c8c1e5ea297bb218d81b6a2a61c580">Game</a></li>
+</ul>
+
+
 <h3 class="doxsection"><a id="index_r" name="index_r"></a>- r -</h3><ul>
 <li>recalculateGrid()&#160;:&#160;<a class="el" href="class_board.html#a103ba19faa0f8748739c730cabcd2144">Board</a></li>
+<li>render()&#160;:&#160;<a class="el" href="class_game.html#a15ddd769261d923827a3cdf41499c843">Game</a></li>
 <li>rescale()&#160;:&#160;<a class="el" href="class_animal.html#ab82e8398cd9e7769dfda4741b13a8e0b">Animal</a></li>
+<li>resetGame()&#160;:&#160;<a class="el" href="class_game.html#a47c726a80fd133c0a4f6b8fba56d8832">Game</a></li>
 <li>run()&#160;:&#160;<a class="el" href="class_game.html#a1ab78f5ed0d5ea879157357cf2fb2afa">Game</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>screenToGrid()&#160;:&#160;<a class="el" href="class_game.html#a7dfba4bb3ee3f963117cf10efff89824">Game</a></li>
 <li>setPosition()&#160;:&#160;<a class="el" href="class_animal.html#abc6b4ca5d836809cf58c2ee3c9c308d7">Animal</a></li>
+<li>setupButtons()&#160;:&#160;<a class="el" href="class_game.html#a4d8d8a2e806c0f0b6cc69c78c619257c">Game</a></li>
+<li>switchGameState()&#160;:&#160;<a class="el" href="class_game.html#a81f1f347ed371c39c3a4fbbf52a7c761">Game</a></li>
 </ul>
 
 
@@ -165,6 +204,8 @@ $(function(){initNavTree('functions_func.html','',''); });
 
 
 <h3 class="doxsection"><a id="index_u" name="index_u"></a>- u -</h3><ul>
+<li>update()&#160;:&#160;<a class="el" href="class_game.html#a1d2aee62bac8e228344e1f44fab504e0">Game</a></li>
+<li>updateAnimals()&#160;:&#160;<a class="el" href="class_game.html#a1c18201afcab542552a47f32f07c547b">Game</a></li>
 <li>updateCellSize()&#160;:&#160;<a class="el" href="class_board.html#a2188a44aa20b853c8f90639954fa6e92">Board</a></li>
 </ul>
 

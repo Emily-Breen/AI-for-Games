@@ -1,0 +1,19 @@
+<map id="Game::update" name="Game::update">
+<area shape="rect" id="Node000001" title="Update game logic." alt="" coords="5,107,109,133"/>
+<area shape="rect" id="Node000002" href="$class_game.html#a55249c1379fd2c654bcb754273d5e9c5" title="Check real&#45;time keyboard input." alt="" coords="157,5,342,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,104,110,76,155,48,188,36,184,39,158,53,113,81,77,108"/>
+<area shape="rect" id="Node000003" href="$class_game.html#a5326bb6708fc28e477b8b72958476c19" title="Checks 4&#45;in&#45;a&#45;row for current player." alt="" coords="396,31,574,57"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="108,104,156,92,272,71,383,56,378,58,273,76,157,97,110,108"/>
+<area shape="rect" id="Node000004" href="$class_game.html#ad43a19f5b2e047e7efe96f0f876b6938" title="Performs AI decision making for current player&#39;s turn." alt="" coords="179,107,320,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="109,117,165,119,161,121,110,123"/>
+<area shape="rect" id="Node000007" href="$class_game.html#a81f1f347ed371c39c3a4fbbf52a7c761" title="Transition between phases." alt="" coords="401,183,569,209"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="108,131,157,143,276,164,388,183,383,184,275,169,156,148,109,137"/>
+<area shape="rect" id="Node000008" href="$class_game.html#a1c18201afcab542552a47f32f07c547b" title="Update positions/scales when window resizes." alt="" coords="174,208,324,235"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="75,131,113,159,158,187,189,202,184,202,155,192,110,164,74,136"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="290,104,341,86,389,67,416,61,411,63,391,72,343,90,292,109"/>
+<area shape="rect" id="Node000005" href="$class_game.html#a8ebc0fe99f64aec284e319a53dbd6074" title="Converts live grid to AI friendly Boardstate." alt="" coords="390,81,580,108"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="320,110,377,106,372,107,321,115"/>
+<area shape="rect" id="Node000006" href="$struct_move.html#a6e80a6c039ba805bac3ff6402c56b76c" title=" " alt="" coords="436,132,535,159"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="321,125,423,138,417,139,321,130"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="291,131,343,150,391,168,417,178,411,178,389,173,341,154,291,137"/>
+</map>

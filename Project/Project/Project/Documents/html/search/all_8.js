@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['label_0',['label',['../struct_menu_button.html#adfa3b27d487e68b763d638810016d20c',1,'MenuButton']]]
+  ['initanimaltexture_0',['initAnimalTexture',['../class_animal.html#a67bcb3b65f047d38f98cc74399ba8fea',1,'Animal']]],
+  ['isempty_1',['isEmpty',['../class_animal.html#aef86c4a26a318399a9de683fd0e1b713',1,'Animal']]],
+  ['isvalid_2',['isValid',['../struct_move.html#a6e80a6c039ba805bac3ff6402c56b76c',1,'Move']]],
+  ['isvalidposition_3',['isValidPosition',['../class_animal.html#a4a432c83d9290b59c7b41956122bab1e',1,'Animal::isValidPosition()'],['../class_gameplay.html#ab27e2ba44c89585ae32837fc7eb51b20',1,'Gameplay::isValidPosition()']]]
 ];

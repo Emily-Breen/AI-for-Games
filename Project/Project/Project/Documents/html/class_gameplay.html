@@ -28,7 +28,7 @@
   <td id="projectalign">
    <div id="projectname">The Fourth Protocol
    </div>
-   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row game&quot;</div>
+   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row&quot; style game with a twist!</div>
   </td>
  </tr>
  </tbody>
@@ -115,6 +115,32 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a867eb847894615ead59ed8131ccfacb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an <a class="el" href="class_animal.html" title="Represents a single game piece placed on the board.">Animal</a> instance into a <a class="el" href="struct_piece_state.html" title="Representation of a board piece used for AI calculations. Contains only owner and type.">PieceState</a>.  <br /></td></tr>
 <tr class="memitem:a8d18d410c57e827962146a0d44bcff44" id="r_a8d18d410c57e827962146a0d44bcff44"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_animal.html">Animal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d18d410c57e827962146a0d44bcff44">toAnimal</a> (const <a class="el" href="struct_piece_state.html">PieceState</a> &amp;pieceState)</td></tr>
 <tr class="memdesc:a8d18d410c57e827962146a0d44bcff44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <a class="el" href="struct_piece_state.html" title="Representation of a board piece used for AI calculations. Contains only owner and type.">PieceState</a> into an <a class="el" href="class_animal.html" title="Represents a single game piece placed on the board.">Animal</a> instance.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a18d8e116e550085670f18ea41a8b157b" id="r_a18d8e116e550085670f18ea41a8b157b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18d8e116e550085670f18ea41a8b157b">miniMax</a> (const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;state, int depth, bool isMaximizing, int alpha, int beta)</td></tr>
+<tr class="memdesc:a18d8e116e550085670f18ea41a8b157b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimax algorithm with alpha-beta pruning.  <br /></td></tr>
+<tr class="memitem:ad7296cc2f90f36ef3ae336dc48c4b80c" id="r_ad7296cc2f90f36ef3ae336dc48c4b80c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7296cc2f90f36ef3ae336dc48c4b80c">evaluateBoard</a> (const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;state, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> maximizingPlayer)</td></tr>
+<tr class="memdesc:ad7296cc2f90f36ef3ae336dc48c4b80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heuristic board evaluation used when minimax depth ends.  <br /></td></tr>
+<tr class="memitem:a376da2c28d3a73a725db1eae32b6f40e" id="r_a376da2c28d3a73a725db1eae32b6f40e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a376da2c28d3a73a725db1eae32b6f40e">evaluateThreeInARow</a> (const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;state, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> player)</td></tr>
+<tr class="memdesc:a376da2c28d3a73a725db1eae32b6f40e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates threat patterns (3 in a row with one empty).  <br /></td></tr>
+<tr class="memitem:a911a53b66a99e2161ce68f61648de01a" id="r_a911a53b66a99e2161ce68f61648de01a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a911a53b66a99e2161ce68f61648de01a">checkForThreeInARow</a> (<a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> p1, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> p2, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> p3, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> p4, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> player)</td></tr>
+<tr class="memdesc:a911a53b66a99e2161ce68f61648de01a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks four tiles for a potential threat.  <br /></td></tr>
+<tr class="memitem:a99ef56de7b72110716d6070963b043ce" id="r_a99ef56de7b72110716d6070963b043ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99ef56de7b72110716d6070963b043ce">evaluateTwoInARow</a> (const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;state, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> player)</td></tr>
+<tr class="memdesc:a99ef56de7b72110716d6070963b043ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates patterns of two in a row with two empty.  <br /></td></tr>
+<tr class="memitem:a2384d786712dc45870b66c32bb55ba23" id="r_a2384d786712dc45870b66c32bb55ba23"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2384d786712dc45870b66c32bb55ba23">checkForTwoInARow</a> (<a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> p1, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> p2, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> p3, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> p4, <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> player)</td></tr>
+<tr class="memdesc:a2384d786712dc45870b66c32bb55ba23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks four tiles for a potential two-in-a-row.  <br /></td></tr>
+<tr class="memitem:a6d32cbd15c3c131e91b2b686252e559e" id="r_a6d32cbd15c3c131e91b2b686252e559e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_move.html">Move</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d32cbd15c3c131e91b2b686252e559e">generateMoves</a> (const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;state)</td></tr>
+<tr class="memdesc:a6d32cbd15c3c131e91b2b686252e559e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates all legal moves for the current player.  <br /></td></tr>
+<tr class="memitem:ab625a9fdc2dc68884e50786eba67f396" id="r_ab625a9fdc2dc68884e50786eba67f396"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_boardstate.html">Boardstate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab625a9fdc2dc68884e50786eba67f396">makeMove</a> (const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;state, const <a class="el" href="struct_move.html">Move</a> &amp;move)</td></tr>
+<tr class="memdesc:ab625a9fdc2dc68884e50786eba67f396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a move to a board and returns the resulting state.  <br /></td></tr>
+<tr class="memitem:ab27e2ba44c89585ae32837fc7eb51b20" id="r_ab27e2ba44c89585ae32837fc7eb51b20"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab27e2ba44c89585ae32837fc7eb51b20">isValidPosition</a> (int row, int col) const</td></tr>
+<tr class="memdesc:ab27e2ba44c89585ae32837fc7eb51b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a board coordinate is valid.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aab31e7528a9fd28140072ace42b22a9c" id="r_aab31e7528a9fd28140072ace42b22a9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab31e7528a9fd28140072ace42b22a9c">m_maximizingPlayer</a></td></tr>
+<tr class="memitem:aae73b2abbc755e91ee34082e8bd458c7" id="r_aae73b2abbc755e91ee34082e8bd458c7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae73b2abbc755e91ee34082e8bd458c7">m_nodesEvaluated</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles all AI logic: minimax, evaluation, move generation, win checks. </p>
@@ -140,6 +166,100 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a911a53b66a99e2161ce68f61648de01a" name="a911a53b66a99e2161ce68f61648de01a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a911a53b66a99e2161ce68f61648de01a">&#9670;&#160;</a></span>checkForThreeInARow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Gameplay::checkForThreeInARow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>p1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>p2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>p3</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>p4</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks four tiles for a potential threat. </p>
+<p>Checks whether 4 tiles form a threat condition. </p>
+
+</div>
+</div>
+<a id="a2384d786712dc45870b66c32bb55ba23" name="a2384d786712dc45870b66c32bb55ba23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2384d786712dc45870b66c32bb55ba23">&#9670;&#160;</a></span>checkForTwoInARow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Gameplay::checkForTwoInARow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>p1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>p2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>p3</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>p4</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks four tiles for a potential two-in-a-row. </p>
+<p>Checks whether 4 tiles contain exactly 2 of player's pieces and 2 empty. </p>
+
+</div>
+</div>
 <a id="a5b0cc99aaa3448fb8c300b5f5435e2f3" name="a5b0cc99aaa3448fb8c300b5f5435e2f3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5b0cc99aaa3448fb8c300b5f5435e2f3">&#9670;&#160;</a></span>checkWimCondition()</h2>
 
@@ -217,6 +337,229 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Selected best <a class="el" href="struct_move.html" title="Represents a move from one board coordinate to another.">Move</a>. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_gameplay_a8b72181a6097357f75705b53d2f80ee0_cgraph.png" border="0" usemap="#aclass_gameplay_a8b72181a6097357f75705b53d2f80ee0_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_gameplay_a8b72181a6097357f75705b53d2f80ee0_cgraph" id="aclass_gameplay_a8b72181a6097357f75705b53d2f80ee0_cgraph">
+<area shape="rect" title="Computes the best move for the current player using minimax." alt="" coords="5,52,195,79"/>
+<area shape="rect" href="class_gameplay.html#a6d32cbd15c3c131e91b2b686252e559e" title="Generates all legal moves for the current player." alt="" coords="442,13,619,40"/>
+<area shape="poly" title=" " alt="" coords="195,54,428,34,425,38,196,59"/>
+<area shape="rect" href="class_gameplay.html#ab625a9fdc2dc68884e50786eba67f396" title="Applies a move to a board and returns the resulting state." alt="" coords="454,67,607,93"/>
+<area shape="poly" title=" " alt="" coords="195,66,440,75,437,79,195,71"/>
+<area shape="rect" href="class_gameplay.html#a18d8e116e550085670f18ea41a8b157b" title="Minimax algorithm with alpha&#45;beta pruning." alt="" coords="243,127,380,153"/>
+<area shape="poly" title=" " alt="" coords="140,77,259,120,254,122,140,82"/>
+<area shape="rect" href="class_gameplay.html#abec49da7249d41f91f22d17a25f32d9e" title="Gets all valid moves for a piece located at (row, col)." alt="" coords="694,5,886,48"/>
+<area shape="poly" title=" " alt="" coords="620,24,681,26,676,27,620,29"/>
+<area shape="rect" href="class_gameplay.html#ab27e2ba44c89585ae32837fc7eb51b20" title="Checks whether a board coordinate is valid." alt="" coords="971,13,1144,40"/>
+<area shape="poly" title=" " alt="" coords="886,24,959,26,953,27,887,29"/>
+<area shape="poly" title=" " alt="" coords="326,124,369,88,427,52,449,46,453,44,429,57,372,93,329,128"/>
+<area shape="poly" title=" " alt="" coords="362,124,467,97,462,99,364,129"/>
+<area shape="poly" title=" " alt="" coords="275,126,269,118,274,108,288,102,311,100,336,103,351,112,346,111,335,108,311,105,289,107,277,112,274,117,280,127"/>
+<area shape="rect" href="class_gameplay.html#a5b0cc99aaa3448fb8c300b5f5435e2f3" title="Checks if the board contains a win condition." alt="" coords="428,123,633,149"/>
+<area shape="poly" title=" " alt="" coords="380,136,415,138,410,139,381,141"/>
+<area shape="rect" href="class_gameplay.html#ad7296cc2f90f36ef3ae336dc48c4b80c" title="Heuristic board evaluation used when minimax depth ends." alt="" coords="445,173,616,200"/>
+<area shape="poly" title=" " alt="" coords="377,151,452,169,447,170,377,157"/>
+<area shape="rect" href="class_gameplay.html#a376da2c28d3a73a725db1eae32b6f40e" title="Calculates threat patterns (3 in a row with one empty)." alt="" coords="681,199,899,225"/>
+<area shape="poly" title=" " alt="" coords="617,192,669,200,663,200,617,198"/>
+<area shape="rect" href="class_gameplay.html#a99ef56de7b72110716d6070963b043ce" title="Calculates patterns of two in a row with two empty." alt="" coords="686,148,894,175"/>
+<area shape="poly" title=" " alt="" coords="617,176,668,173,673,173,617,181"/>
+<area shape="rect" href="class_gameplay.html#a911a53b66a99e2161ce68f61648de01a" title="Checks four tiles for a potential threat." alt="" coords="947,199,1169,225"/>
+<area shape="poly" title=" " alt="" coords="899,209,934,212,928,212,899,215"/>
+<area shape="rect" href="class_gameplay.html#a2384d786712dc45870b66c32bb55ba23" title="Checks four tiles for a potential two&#45;in&#45;a&#45;row." alt="" coords="951,148,1164,175"/>
+<area shape="poly" title=" " alt="" coords="895,159,938,161,933,161,895,164"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad7296cc2f90f36ef3ae336dc48c4b80c" name="ad7296cc2f90f36ef3ae336dc48c4b80c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7296cc2f90f36ef3ae336dc48c4b80c">&#9670;&#160;</a></span>evaluateBoard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Gameplay::evaluateBoard </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>maximizingPlayer</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Heuristic board evaluation used when minimax depth ends. </p>
+<p>Heuristic evaluation of the board state.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Current board state. </td></tr>
+    <tr><td class="paramname">maximizingPlayer</td><td>AI-controlled player. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numeric score (higher = better for AI).</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Current board. </td></tr>
+    <tr><td class="paramname">maximizingPlayer</td><td><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9" title="Represents which player owns a piece.">Player</a> being evaluated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numeric score for the board. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_gameplay_ad7296cc2f90f36ef3ae336dc48c4b80c_cgraph.png" border="0" usemap="#aclass_gameplay_ad7296cc2f90f36ef3ae336dc48c4b80c_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_gameplay_ad7296cc2f90f36ef3ae336dc48c4b80c_cgraph" id="aclass_gameplay_ad7296cc2f90f36ef3ae336dc48c4b80c_cgraph">
+<area shape="rect" title="Heuristic board evaluation used when minimax depth ends." alt="" coords="5,31,177,57"/>
+<area shape="rect" href="class_gameplay.html#a376da2c28d3a73a725db1eae32b6f40e" title="Calculates threat patterns (3 in a row with one empty)." alt="" coords="225,5,442,32"/>
+<area shape="poly" title=" " alt="" coords="177,32,212,31,206,32,178,38"/>
+<area shape="rect" href="class_gameplay.html#a99ef56de7b72110716d6070963b043ce" title="Calculates patterns of two in a row with two empty." alt="" coords="229,56,438,83"/>
+<area shape="poly" title=" " alt="" coords="177,50,216,57,211,57,177,56"/>
+<area shape="rect" href="class_gameplay.html#a911a53b66a99e2161ce68f61648de01a" title="Checks four tiles for a potential threat." alt="" coords="490,5,712,32"/>
+<area shape="poly" title=" " alt="" coords="442,16,477,18,472,19,443,21"/>
+<area shape="rect" href="class_gameplay.html#a2384d786712dc45870b66c32bb55ba23" title="Checks four tiles for a potential two&#45;in&#45;a&#45;row." alt="" coords="494,56,708,83"/>
+<area shape="poly" title=" " alt="" coords="438,67,482,69,476,69,438,72"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a376da2c28d3a73a725db1eae32b6f40e" name="a376da2c28d3a73a725db1eae32b6f40e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a376da2c28d3a73a725db1eae32b6f40e">&#9670;&#160;</a></span>evaluateThreeInARow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Gameplay::evaluateThreeInARow </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates threat patterns (3 in a row with one empty). </p>
+<p>Calculates threats for a given player (3 in a row with an empty).</p>
+<dl class="section return"><dt>Returns</dt><dd>Number of threats. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_gameplay_a376da2c28d3a73a725db1eae32b6f40e_cgraph.png" border="0" usemap="#aclass_gameplay_a376da2c28d3a73a725db1eae32b6f40e_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_gameplay_a376da2c28d3a73a725db1eae32b6f40e_cgraph" id="aclass_gameplay_a376da2c28d3a73a725db1eae32b6f40e_cgraph">
+<area shape="rect" title="Calculates threat patterns (3 in a row with one empty)." alt="" coords="5,5,223,32"/>
+<area shape="rect" href="class_gameplay.html#a911a53b66a99e2161ce68f61648de01a" title="Checks four tiles for a potential threat." alt="" coords="271,5,493,32"/>
+<area shape="poly" title=" " alt="" coords="223,16,258,19,252,19,223,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a99ef56de7b72110716d6070963b043ce" name="a99ef56de7b72110716d6070963b043ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99ef56de7b72110716d6070963b043ce">&#9670;&#160;</a></span>evaluateTwoInARow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Gameplay::evaluateTwoInARow </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates patterns of two in a row with two empty. </p>
+<p>Calculates number of 2-in-a-rows for a given player.</p>
+<dl class="section return"><dt>Returns</dt><dd>Number of 2-in-a-rows. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_gameplay_a99ef56de7b72110716d6070963b043ce_cgraph.png" border="0" usemap="#aclass_gameplay_a99ef56de7b72110716d6070963b043ce_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_gameplay_a99ef56de7b72110716d6070963b043ce_cgraph" id="aclass_gameplay_a99ef56de7b72110716d6070963b043ce_cgraph">
+<area shape="rect" title="Calculates patterns of two in a row with two empty." alt="" coords="5,5,214,32"/>
+<area shape="rect" href="class_gameplay.html#a2384d786712dc45870b66c32bb55ba23" title="Checks four tiles for a potential two&#45;in&#45;a&#45;row." alt="" coords="262,5,475,32"/>
+<area shape="poly" title=" " alt="" coords="214,16,248,19,243,19,214,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6d32cbd15c3c131e91b2b686252e559e" name="a6d32cbd15c3c131e91b2b686252e559e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d32cbd15c3c131e91b2b686252e559e">&#9670;&#160;</a></span>generateMoves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="struct_move.html">Move</a> &gt; Gameplay::generateMoves </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generates all legal moves for the current player. </p>
+<p>Generates all possible moves for current player in state. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_gameplay_a6d32cbd15c3c131e91b2b686252e559e_cgraph.png" border="0" usemap="#aclass_gameplay_a6d32cbd15c3c131e91b2b686252e559e_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_gameplay_a6d32cbd15c3c131e91b2b686252e559e_cgraph" id="aclass_gameplay_a6d32cbd15c3c131e91b2b686252e559e_cgraph">
+<area shape="rect" title="Generates all legal moves for the current player." alt="" coords="5,13,183,40"/>
+<area shape="rect" href="class_gameplay.html#abec49da7249d41f91f22d17a25f32d9e" title="Gets all valid moves for a piece located at (row, col)." alt="" coords="231,5,423,48"/>
+<area shape="poly" title=" " alt="" coords="183,24,218,26,212,27,183,29"/>
+<area shape="rect" href="class_gameplay.html#ab27e2ba44c89585ae32837fc7eb51b20" title="Checks whether a board coordinate is valid." alt="" coords="471,13,644,40"/>
+<area shape="poly" title=" " alt="" coords="424,24,458,27,452,27,424,29"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -255,6 +598,177 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>List of valid moves. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_gameplay_abec49da7249d41f91f22d17a25f32d9e_cgraph.png" border="0" usemap="#aclass_gameplay_abec49da7249d41f91f22d17a25f32d9e_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_gameplay_abec49da7249d41f91f22d17a25f32d9e_cgraph" id="aclass_gameplay_abec49da7249d41f91f22d17a25f32d9e_cgraph">
+<area shape="rect" title="Gets all valid moves for a piece located at (row, col)." alt="" coords="5,5,198,48"/>
+<area shape="rect" href="class_gameplay.html#ab27e2ba44c89585ae32837fc7eb51b20" title="Checks whether a board coordinate is valid." alt="" coords="246,13,419,40"/>
+<area shape="poly" title=" " alt="" coords="198,24,232,26,227,27,198,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab27e2ba44c89585ae32837fc7eb51b20" name="ab27e2ba44c89585ae32837fc7eb51b20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab27e2ba44c89585ae32837fc7eb51b20">&#9670;&#160;</a></span>isValidPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Gameplay::isValidPosition </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>col</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether a board coordinate is valid. </p>
+<p>Checks if board coordinate is within bounds. </p>
+
+</div>
+</div>
+<a id="ab625a9fdc2dc68884e50786eba67f396" name="ab625a9fdc2dc68884e50786eba67f396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab625a9fdc2dc68884e50786eba67f396">&#9670;&#160;</a></span>makeMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_boardstate.html">Boardstate</a> Gameplay::makeMove </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_move.html">Move</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>move</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Applies a move to a board and returns the resulting state. </p>
+<p>Applies a move to a board and returns updated state. </p>
+
+</div>
+</div>
+<a id="a18d8e116e550085670f18ea41a8b157b" name="a18d8e116e550085670f18ea41a8b157b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18d8e116e550085670f18ea41a8b157b">&#9670;&#160;</a></span>miniMax()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Gameplay::miniMax </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_boardstate.html">Boardstate</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>depth</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isMaximizing</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>beta</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Minimax algorithm with alpha-beta pruning. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>Current board state. </td></tr>
+    <tr><td class="paramname">depth</td><td>Remaining recursion depth. </td></tr>
+    <tr><td class="paramname">isMaximizing</td><td>True if evaluating AI's turn, false for opponent. </td></tr>
+    <tr><td class="paramname">alpha</td><td>Alpha pruning value. </td></tr>
+    <tr><td class="paramname">beta</td><td>Beta pruning value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The evaluated score.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td><a class="el" href="class_board.html" title="Handles drawing, sizing, and positioning of the game board grid.">Board</a> state. </td></tr>
+    <tr><td class="paramname">depth</td><td>Remaining depth. </td></tr>
+    <tr><td class="paramname">isMaximizing</td><td>Whether evaluating maximizing player. </td></tr>
+    <tr><td class="paramname">alpha</td><td>Alpha bound. </td></tr>
+    <tr><td class="paramname">beta</td><td>Beta bound. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluation score. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_gameplay_a18d8e116e550085670f18ea41a8b157b_cgraph.png" border="0" usemap="#aclass_gameplay_a18d8e116e550085670f18ea41a8b157b_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_gameplay_a18d8e116e550085670f18ea41a8b157b_cgraph" id="aclass_gameplay_a18d8e116e550085670f18ea41a8b157b_cgraph">
+<area shape="rect" title="Minimax algorithm with alpha&#45;beta pruning." alt="" coords="5,81,143,108"/>
+<area shape="poly" title=" " alt="" coords="37,81,30,73,35,63,50,57,74,55,100,57,115,65,110,67,99,62,74,60,51,62,38,67,36,72,42,80"/>
+<area shape="rect" href="class_gameplay.html#a5b0cc99aaa3448fb8c300b5f5435e2f3" title="Checks if the board contains a win condition." alt="" coords="191,5,396,32"/>
+<area shape="poly" title=" " alt="" coords="102,78,190,41,217,35,212,38,192,47,104,83"/>
+<area shape="rect" href="class_gameplay.html#ad7296cc2f90f36ef3ae336dc48c4b80c" title="Heuristic board evaluation used when minimax depth ends." alt="" coords="208,56,379,83"/>
+<area shape="poly" title=" " alt="" coords="143,84,194,80,190,82,144,89"/>
+<area shape="rect" href="class_gameplay.html#a6d32cbd15c3c131e91b2b686252e559e" title="Generates all legal moves for the current player." alt="" coords="205,107,382,133"/>
+<area shape="poly" title=" " alt="" coords="143,100,192,107,187,109,144,105"/>
+<area shape="rect" href="class_gameplay.html#ab625a9fdc2dc68884e50786eba67f396" title="Applies a move to a board and returns the resulting state." alt="" coords="217,157,370,184"/>
+<area shape="poly" title=" " alt="" coords="104,106,192,143,217,153,212,153,190,148,103,111"/>
+<area shape="rect" href="class_gameplay.html#a376da2c28d3a73a725db1eae32b6f40e" title="Calculates threat patterns (3 in a row with one empty)." alt="" coords="444,5,661,32"/>
+<area shape="poly" title=" " alt="" coords="365,53,469,35,464,36,366,58"/>
+<area shape="rect" href="class_gameplay.html#a99ef56de7b72110716d6070963b043ce" title="Calculates patterns of two in a row with two empty." alt="" coords="448,56,657,83"/>
+<area shape="poly" title=" " alt="" coords="379,67,435,69,430,70,380,72"/>
+<area shape="rect" href="class_gameplay.html#a911a53b66a99e2161ce68f61648de01a" title="Checks four tiles for a potential threat." alt="" coords="709,5,932,32"/>
+<area shape="poly" title=" " alt="" coords="662,16,696,18,691,19,662,21"/>
+<area shape="rect" href="class_gameplay.html#a2384d786712dc45870b66c32bb55ba23" title="Checks four tiles for a potential two&#45;in&#45;a&#45;row." alt="" coords="714,56,927,83"/>
+<area shape="poly" title=" " alt="" coords="657,67,701,69,696,70,657,72"/>
+<area shape="rect" href="class_gameplay.html#abec49da7249d41f91f22d17a25f32d9e" title="Gets all valid moves for a piece located at (row, col)." alt="" coords="456,107,649,149"/>
+<area shape="poly" title=" " alt="" coords="383,120,444,124,439,125,383,125"/>
+<area shape="rect" href="class_gameplay.html#ab27e2ba44c89585ae32837fc7eb51b20" title="Checks whether a board coordinate is valid." alt="" coords="734,115,907,141"/>
+<area shape="poly" title=" " alt="" coords="649,125,721,128,716,128,649,131"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -315,13 +829,65 @@ Static Public Member Functions</h2></td></tr>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_gameplay_a867eb847894615ead59ed8131ccfacb6_cgraph.png" border="0" usemap="#aclass_gameplay_a867eb847894615ead59ed8131ccfacb6_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_gameplay_a867eb847894615ead59ed8131ccfacb6_cgraph" id="aclass_gameplay_a867eb847894615ead59ed8131ccfacb6_cgraph">
+<area shape="rect" title="Converts an Animal instance into a PieceState." alt="" coords="5,31,169,57"/>
+<area shape="rect" href="class_animal.html#a36e7f70668605ebf27946415e315e2bc" title="Gets the owning player." alt="" coords="217,5,342,32"/>
+<area shape="poly" title=" " alt="" coords="169,31,204,28,199,30,170,36"/>
+<area shape="rect" href="class_animal.html#a34d4028e12055ebde6047aa81e3b9f30" title="Gets the type of animal." alt="" coords="222,56,337,83"/>
+<area shape="poly" title=" " alt="" coords="169,52,209,60,204,60,169,57"/>
+</map>
 </div>
 
 </div>
 </div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aab31e7528a9fd28140072ace42b22a9c" name="aab31e7528a9fd28140072ace42b22a9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab31e7528a9fd28140072ace42b22a9c">&#9670;&#160;</a></span>m_maximizingPlayer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> Gameplay::m_maximizingPlayer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae73b2abbc755e91ee34082e8bd458c7" name="aae73b2abbc755e91ee34082e8bd458c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae73b2abbc755e91ee34082e8bd458c7">&#9670;&#160;</a></span>m_nodesEvaluated</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Gameplay::m_nodesEvaluated</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/emily/source/repos/AI-for-Games/Project/Project/Project/<a class="el" href="_gameplay_8h_source.html">Gameplay.h</a></li>
-<li>C:/Users/emily/source/repos/AI-for-Games/Project/Project/Project/<a class="el" href="_gameplay_8cpp.html">Gameplay.cpp</a></li>
+<li><a class="el" href="_gameplay_8h_source.html">Gameplay.h</a></li>
+<li><a class="el" href="_gameplay_8cpp.html">Gameplay.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

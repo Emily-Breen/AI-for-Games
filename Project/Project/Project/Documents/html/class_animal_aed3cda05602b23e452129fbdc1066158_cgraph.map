@@ -1,0 +1,9 @@
+<map id="Animal::addFrogJumpMoves" name="Animal::addFrogJumpMoves">
+<area shape="rect" id="Node000001" title="Adds frog style multi tile jumping moves." alt="" coords="5,56,193,83"/>
+<area shape="rect" id="Node000002" href="$class_animal.html#a1e726a49ec952443190ac62dad22353c" title="Default constructor. Creates an empty/unoccupied piece." alt="" coords="263,5,372,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,53,250,34,245,36,161,58"/>
+<area shape="rect" id="Node000003" href="$class_animal.html#aef86c4a26a318399a9de683fd0e1b713" title="Checks if this is an empty piece (no owner, no type)." alt="" coords="259,56,376,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="193,67,246,69,241,70,194,72"/>
+<area shape="rect" id="Node000004" href="$class_animal.html#a4a432c83d9290b59c7b41956122bab1e" title="Checks if a position is within board bounds." alt="" coords="241,107,395,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,81,245,102,240,103,160,86"/>
+</map>

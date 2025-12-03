@@ -1,0 +1,7 @@
+<map id="Board::draw" name="Board::draw">
+<area shape="rect" id="Node000001" title="Draws the full board (recalculates layout then draws the grid)." alt="" coords="5,31,97,57"/>
+<area shape="rect" id="Node000002" href="$class_board.html#ab53f40e997d3d413d9b0d245b9a630ff" title="Draws the individual grid lines and cells." alt="" coords="162,5,278,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,35,149,29,144,31,98,40"/>
+<area shape="rect" id="Node000003" href="$class_board.html#a103ba19faa0f8748739c730cabcd2144" title="Recalculates the board&#39;s screen offset so it stays centered." alt="" coords="145,56,295,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,48,132,55,126,56,97,54"/>
+</map>

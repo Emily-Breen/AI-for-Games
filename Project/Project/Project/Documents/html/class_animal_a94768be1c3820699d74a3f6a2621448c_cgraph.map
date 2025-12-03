@@ -1,0 +1,5 @@
+<map id="Animal::draw" name="Animal::draw">
+<area shape="rect" id="Node000001" title="Draws the animal sprite to the window." alt="" coords="5,5,103,32"/>
+<area shape="rect" id="Node000002" href="$class_animal.html#aef86c4a26a318399a9de683fd0e1b713" title="Checks if this is an empty piece (no owner, no type)." alt="" coords="151,5,268,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,16,138,18,132,19,103,21"/>
+</map>

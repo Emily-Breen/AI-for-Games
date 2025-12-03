@@ -1,0 +1,5 @@
+<map id="Animal::Animal" name="Animal::Animal">
+<area shape="rect" id="Node000001" title="Copy constructor." alt="" coords="5,5,115,32"/>
+<area shape="rect" id="Node000002" href="$class_animal.html#a1e726a49ec952443190ac62dad22353c" title="Default constructor. Creates an empty/unoccupied piece." alt="" coords="163,5,272,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,16,150,18,145,19,115,21"/>
+</map>

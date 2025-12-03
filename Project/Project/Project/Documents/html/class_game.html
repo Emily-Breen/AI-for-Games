@@ -28,7 +28,7 @@
   <td id="projectalign">
    <div id="projectname">The Fourth Protocol
    </div>
-   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row game&quot;</div>
+   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row&quot; style game with a twist!</div>
   </td>
  </tr>
  </tbody>
@@ -97,6 +97,22 @@ $(function(){initNavTree('class_game.html','','class_game-members'); });
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_game_8h_source.html">Game.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for Game:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game__coll__graph.png" border="0" usemap="#a_game_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<map name="a_game_coll__map" id="a_game_coll__map">
+<area shape="rect" title="Main controller for the entire game logic, rendering, input, AI, UI and state transitions." alt="" coords="164,168,220,195"/>
+<area shape="rect" href="class_board.html" title="Handles drawing, sizing, and positioning of the game board grid." alt="" coords="5,5,61,32"/>
+<area shape="poly" title=" " alt="" coords="28,45,30,96,36,121,49,142,67,153,97,162,166,176,161,178,96,168,65,158,45,146,31,123,25,97,27,50"/>
+<area shape="rect" href="class_animal.html" title="Represents a single game piece placed on the board." alt="" coords="92,5,153,32"/>
+<area shape="poly" title=" " alt="" coords="117,45,113,95,117,120,126,143,143,159,166,173,160,172,140,164,121,145,111,121,108,95,114,50"/>
+<area shape="rect" href="class_gameplay.html" title="Handles all AI logic: minimax, evaluation, move generation, win checks." alt="" coords="221,5,301,32"/>
+<area shape="poly" title=" " alt="" coords="261,46,254,95,246,121,234,145,211,170,209,165,229,143,241,119,248,94,257,50"/>
+<area shape="rect" href="struct_menu_button.html" title="UI button used on the main menu screen." alt="" coords="329,5,420,32"/>
+<area shape="poly" title=" " alt="" coords="378,46,372,98,363,124,347,146,325,158,291,168,221,180,220,174,290,162,323,153,343,142,358,121,367,96,374,50"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -106,6 +122,90 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae3d112ca6e0e55150d2fdbc704474530"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
 <tr class="memitem:a1ab78f5ed0d5ea879157357cf2fb2afa" id="r_a1ab78f5ed0d5ea879157357cf2fb2afa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ab78f5ed0d5ea879157357cf2fb2afa">run</a> ()</td></tr>
 <tr class="memdesc:a1ab78f5ed0d5ea879157357cf2fb2afa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main game loop.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a79f698dda206dd7a9bed28b3f88bdc38" id="r_a79f698dda206dd7a9bed28b3f88bdc38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79f698dda206dd7a9bed28b3f88bdc38">processEvents</a> ()</td></tr>
+<tr class="memdesc:a79f698dda206dd7a9bed28b3f88bdc38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Poll and handle SFML events.  <br /></td></tr>
+<tr class="memitem:a88c8c1e5ea297bb218d81b6a2a61c580" id="r_a88c8c1e5ea297bb218d81b6a2a61c580"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88c8c1e5ea297bb218d81b6a2a61c580">processKeys</a> (const std::optional&lt; sf::Event &gt; t_event)</td></tr>
+<tr class="memdesc:a88c8c1e5ea297bb218d81b6a2a61c580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle key press events.  <br /></td></tr>
+<tr class="memitem:a55249c1379fd2c654bcb754273d5e9c5" id="r_a55249c1379fd2c654bcb754273d5e9c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55249c1379fd2c654bcb754273d5e9c5">checkKeyboardState</a> ()</td></tr>
+<tr class="memdesc:a55249c1379fd2c654bcb754273d5e9c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check real-time keyboard input.  <br /></td></tr>
+<tr class="memitem:a1d2aee62bac8e228344e1f44fab504e0" id="r_a1d2aee62bac8e228344e1f44fab504e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d2aee62bac8e228344e1f44fab504e0">update</a> (sf::Time t_deltaTime)</td></tr>
+<tr class="memdesc:a1d2aee62bac8e228344e1f44fab504e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update game logic.  <br /></td></tr>
+<tr class="memitem:a15ddd769261d923827a3cdf41499c843" id="r_a15ddd769261d923827a3cdf41499c843"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15ddd769261d923827a3cdf41499c843">render</a> ()</td></tr>
+<tr class="memdesc:a15ddd769261d923827a3cdf41499c843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render all game graphics.  <br /></td></tr>
+<tr class="memitem:a1c18201afcab542552a47f32f07c547b" id="r_a1c18201afcab542552a47f32f07c547b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c18201afcab542552a47f32f07c547b">updateAnimals</a> ()</td></tr>
+<tr class="memdesc:a1c18201afcab542552a47f32f07c547b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update positions/scales when window resizes.  <br /></td></tr>
+<tr class="memitem:a60f89eec51c0de6d82b220c87fd41fed" id="r_a60f89eec51c0de6d82b220c87fd41fed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60f89eec51c0de6d82b220c87fd41fed">handleMousePress</a> (sf::Vector2i mousePos)</td></tr>
+<tr class="memdesc:a60f89eec51c0de6d82b220c87fd41fed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle mouse down.  <br /></td></tr>
+<tr class="memitem:a951b4c28944b18a6513fcf057f3a705c" id="r_a951b4c28944b18a6513fcf057f3a705c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a951b4c28944b18a6513fcf057f3a705c">handleMouseRelease</a> (sf::Vector2i mousePos)</td></tr>
+<tr class="memdesc:a951b4c28944b18a6513fcf057f3a705c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle mouse release.  <br /></td></tr>
+<tr class="memitem:ab0ceef9b57efb693a6a3d1061ebfdb7e" id="r_ab0ceef9b57efb693a6a3d1061ebfdb7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0ceef9b57efb693a6a3d1061ebfdb7e">handleMouseMoved</a> (sf::Vector2i mousePos)</td></tr>
+<tr class="memdesc:ab0ceef9b57efb693a6a3d1061ebfdb7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle mouse drag.  <br /></td></tr>
+<tr class="memitem:a5326bb6708fc28e477b8b72958476c19" id="r_a5326bb6708fc28e477b8b72958476c19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5326bb6708fc28e477b8b72958476c19">checkWinCondition</a> ()</td></tr>
+<tr class="memdesc:a5326bb6708fc28e477b8b72958476c19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks 4-in-a-row for current player.  <br /></td></tr>
+<tr class="memitem:a81f1f347ed371c39c3a4fbbf52a7c761" id="r_a81f1f347ed371c39c3a4fbbf52a7c761"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81f1f347ed371c39c3a4fbbf52a7c761">switchGameState</a> (<a class="el" href="_game_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285">GameState</a> newState)</td></tr>
+<tr class="memdesc:a81f1f347ed371c39c3a4fbbf52a7c761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transition between phases.  <br /></td></tr>
+<tr class="memitem:a47c726a80fd133c0a4f6b8fba56d8832" id="r_a47c726a80fd133c0a4f6b8fba56d8832"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47c726a80fd133c0a4f6b8fba56d8832">resetGame</a> ()</td></tr>
+<tr class="memdesc:a47c726a80fd133c0a4f6b8fba56d8832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset everything back to MainMenu.  <br /></td></tr>
+<tr class="memitem:a4d8d8a2e806c0f0b6cc69c78c619257c" id="r_a4d8d8a2e806c0f0b6cc69c78c619257c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d8d8a2e806c0f0b6cc69c78c619257c">setupButtons</a> (<a class="el" href="struct_menu_button.html">MenuButton</a> *btn, sf::Font &amp;font, const std::string &amp;text, float y)</td></tr>
+<tr class="memdesc:a4d8d8a2e806c0f0b6cc69c78c619257c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and positions a menu button.  <br /></td></tr>
+<tr class="memitem:acc87a0ee91d27ab844b0a8ff9a210ab4" id="r_acc87a0ee91d27ab844b0a8ff9a210ab4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc87a0ee91d27ab844b0a8ff9a210ab4">drawValidMoveHighlights</a> (sf::RenderWindow &amp;window)</td></tr>
+<tr class="memdesc:acc87a0ee91d27ab844b0a8ff9a210ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Highlights valid moves.  <br /></td></tr>
+<tr class="memitem:a7dfba4bb3ee3f963117cf10efff89824" id="r_a7dfba4bb3ee3f963117cf10efff89824"><td class="memItemLeft" align="right" valign="top">sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dfba4bb3ee3f963117cf10efff89824">screenToGrid</a> (sf::Vector2i screenPos) const</td></tr>
+<tr class="memdesc:a7dfba4bb3ee3f963117cf10efff89824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts pixel coords to grid coords.  <br /></td></tr>
+<tr class="memitem:ad43a19f5b2e047e7efe96f0f876b6938" id="r_ad43a19f5b2e047e7efe96f0f876b6938"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad43a19f5b2e047e7efe96f0f876b6938">handleAITurn</a> ()</td></tr>
+<tr class="memdesc:ad43a19f5b2e047e7efe96f0f876b6938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs AI decision making for current player's turn.  <br /></td></tr>
+<tr class="memitem:a8ebc0fe99f64aec284e319a53dbd6074" id="r_a8ebc0fe99f64aec284e319a53dbd6074"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_boardstate.html">Boardstate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ebc0fe99f64aec284e319a53dbd6074">getCurrentBoardState</a> () const</td></tr>
+<tr class="memdesc:a8ebc0fe99f64aec284e319a53dbd6074"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts live grid to AI friendly <a class="el" href="struct_boardstate.html" title="Represents the full internal board state used by AI.">Boardstate</a>.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ab28ed2c042ec89b177a4866c9fe3bc04" id="r_ab28ed2c042ec89b177a4866c9fe3bc04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_board.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab28ed2c042ec89b177a4866c9fe3bc04">m_board</a> { 5, 150.f }</td></tr>
+<tr class="memdesc:ab28ed2c042ec89b177a4866c9fe3bc04"><td class="mdescLeft">&#160;</td><td class="mdescRight">5×5 board  <br /></td></tr>
+<tr class="memitem:ae23e51fc29cc0dc2099466b844d3caae" id="r_ae23e51fc29cc0dc2099466b844d3caae"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_animal.html">Animal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae23e51fc29cc0dc2099466b844d3caae">m_player1Pieces</a></td></tr>
+<tr class="memdesc:ae23e51fc29cc0dc2099466b844d3caae"><td class="mdescLeft">&#160;</td><td class="mdescRight">P1 unplaced pieces.  <br /></td></tr>
+<tr class="memitem:aad5fc8b45bbf32f081abb944f15c2435" id="r_aad5fc8b45bbf32f081abb944f15c2435"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_animal.html">Animal</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad5fc8b45bbf32f081abb944f15c2435">m_player2Pieces</a></td></tr>
+<tr class="memdesc:aad5fc8b45bbf32f081abb944f15c2435"><td class="mdescLeft">&#160;</td><td class="mdescRight">P2 unplaced pieces.  <br /></td></tr>
+<tr class="memitem:ac613805bdcd6c91b23a2b7a6fea4dba5" id="r_ac613805bdcd6c91b23a2b7a6fea4dba5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_animal.html">Animal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac613805bdcd6c91b23a2b7a6fea4dba5">m_grid</a> [<a class="el" href="_board_8h.html#aa7a2b8ea2c784a4ad8b58a3262bb4f07">BOARD_SIZE</a>][<a class="el" href="_board_8h.html#aa7a2b8ea2c784a4ad8b58a3262bb4f07">BOARD_SIZE</a>] {}</td></tr>
+<tr class="memdesc:ac613805bdcd6c91b23a2b7a6fea4dba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Placed animals.  <br /></td></tr>
+<tr class="memitem:a22a61b5ea27c609be8cf2724c33d7ae5" id="r_a22a61b5ea27c609be8cf2724c33d7ae5"><td class="memItemLeft" align="right" valign="top">sf::RenderWindow&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22a61b5ea27c609be8cf2724c33d7ae5">m_window</a></td></tr>
+<tr class="memdesc:a22a61b5ea27c609be8cf2724c33d7ae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main SFML window.  <br /></td></tr>
+<tr class="memitem:a853939dbd7545ae9dd5efc844482d3b0" id="r_a853939dbd7545ae9dd5efc844482d3b0"><td class="memItemLeft" align="right" valign="top">sf::Font&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a></td></tr>
+<tr class="memdesc:a853939dbd7545ae9dd5efc844482d3b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary UI font.  <br /></td></tr>
+<tr class="memitem:a2b78145e81e29acac0cb19d4f0e8f2d1" id="r_a2b78145e81e29acac0cb19d4f0e8f2d1"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b78145e81e29acac0cb19d4f0e8f2d1">m_winMessage</a> { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td></tr>
+<tr class="memitem:a9bcde36a4911a5cdef21cc2124e513f4" id="r_a9bcde36a4911a5cdef21cc2124e513f4"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bcde36a4911a5cdef21cc2124e513f4">m_winMessage2</a> { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td></tr>
+<tr class="memitem:ad7a573e580c736d52b94762949165e5e" id="r_ad7a573e580c736d52b94762949165e5e"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7a573e580c736d52b94762949165e5e">m_instructionText</a> { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td></tr>
+<tr class="memitem:a19b7cecb5ee517c2816d127b8cf1c21f" id="r_a19b7cecb5ee517c2816d127b8cf1c21f"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19b7cecb5ee517c2816d127b8cf1c21f">m_menuTitle</a> { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td></tr>
+<tr class="memitem:a08fd5da0e5ca2c799eb447c1bea01618" id="r_a08fd5da0e5ca2c799eb447c1bea01618"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08fd5da0e5ca2c799eb447c1bea01618">m_menuSubtitle</a> { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td></tr>
+<tr class="memitem:adb9fa83180a7f4c10fbf7d16f9c4e5da" id="r_adb9fa83180a7f4c10fbf7d16f9c4e5da"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb9fa83180a7f4c10fbf7d16f9c4e5da">m_menuCredits</a> { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td></tr>
+<tr class="memitem:ac945229f4838bd5fae0b4d406a001861" id="r_ac945229f4838bd5fae0b4d406a001861"><td class="memItemLeft" align="right" valign="top">sf::Clock&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac945229f4838bd5fae0b4d406a001861">m_animationClock</a></td></tr>
+<tr class="memitem:acad554239a4bc27babf242a14f99fa36" id="r_acad554239a4bc27babf242a14f99fa36"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acad554239a4bc27babf242a14f99fa36">m_DELETEwelcomeMessage</a> { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td></tr>
+<tr class="memitem:ada7c821937ba3c60ae257c8caac7115a" id="r_ada7c821937ba3c60ae257c8caac7115a"><td class="memItemLeft" align="right" valign="top">sf::Texture&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada7c821937ba3c60ae257c8caac7115a">m_DELETElogoTexture</a></td></tr>
+<tr class="memitem:a743a323841d0ee5e39dad813662c5320" id="r_a743a323841d0ee5e39dad813662c5320"><td class="memItemLeft" align="right" valign="top">sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a743a323841d0ee5e39dad813662c5320">m_DELETElogoSprite</a> { <a class="el" href="#ada7c821937ba3c60ae257c8caac7115a">m_DELETElogoTexture</a> }</td></tr>
+<tr class="memitem:af7e37120a0caf2b763e00ab4af84a71e" id="r_af7e37120a0caf2b763e00ab4af84a71e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_game_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285">GameState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7e37120a0caf2b763e00ab4af84a71e">m_currentGameState</a> { <a class="el" href="_game_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285aae13e51f99f3be623a6d44d7439d9bb5">GameState::Placement</a> }</td></tr>
+<tr class="memitem:a55bf9199cd241b3e7cebd0b91b0f9d71" id="r_a55bf9199cd241b3e7cebd0b91b0f9d71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55bf9199cd241b3e7cebd0b91b0f9d71">m_currentPlayer</a> { <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9a600f125ca9ad5fe29a6252a73c5772a6">Player::Player1</a> }</td></tr>
+<tr class="memitem:a4fb273bbad45c19252092a04d1477803" id="r_a4fb273bbad45c19252092a04d1477803"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fb273bbad45c19252092a04d1477803">m_winner</a> { <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9ab4cb3ef9db0929a23abf8da5b05fbbe9">Player::NoPlayer</a> }</td></tr>
+<tr class="memitem:ab669854f3d0d36b0e0588f08ea05914c" id="r_ab669854f3d0d36b0e0588f08ea05914c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab669854f3d0d36b0e0588f08ea05914c">m_player1PiecesPlaced</a> { 0 }</td></tr>
+<tr class="memitem:a940a736c804130bdbdb953e0c0b2b086" id="r_a940a736c804130bdbdb953e0c0b2b086"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a940a736c804130bdbdb953e0c0b2b086">m_player2PiecesPlaced</a> { 0 }</td></tr>
+<tr class="memitem:ad8379df4481e56cb10f48ac503bc845d" id="r_ad8379df4481e56cb10f48ac503bc845d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8379df4481e56cb10f48ac503bc845d">m_isDragging</a> { false }</td></tr>
+<tr class="memitem:a1b38a7b32c0d74e2e18c7e2f7f8f07b1" id="r_a1b38a7b32c0d74e2e18c7e2f7f8f07b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b38a7b32c0d74e2e18c7e2f7f8f07b1">m_draggedPieceIndex</a> { -1 }</td></tr>
+<tr class="memitem:a9e49339dad37011e908bf346f5b38799" id="r_a9e49339dad37011e908bf346f5b38799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_animal.html">Animal</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e49339dad37011e908bf346f5b38799">m_draggedPiece</a> { nullptr }</td></tr>
+<tr class="memitem:a38f308df0b1f2f4e99deb3fa6f90d774" id="r_a38f308df0b1f2f4e99deb3fa6f90d774"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38f308df0b1f2f4e99deb3fa6f90d774">m_isPieceSelected</a> { false }</td></tr>
+<tr class="memitem:af95050bd8cbfd4ce93626bb7dd10c16b" id="r_af95050bd8cbfd4ce93626bb7dd10c16b"><td class="memItemLeft" align="right" valign="top">sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af95050bd8cbfd4ce93626bb7dd10c16b">m_selectedCell</a> { -1, -1 }</td></tr>
+<tr class="memitem:a34a52bd064863470ff1505b68ec2d044" id="r_a34a52bd064863470ff1505b68ec2d044"><td class="memItemLeft" align="right" valign="top">sf::Vector2i&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34a52bd064863470ff1505b68ec2d044">m_originalCell</a> { -1, -1 }</td></tr>
+<tr class="memitem:a4478b6c5ad4862e668026c0d482bbc66" id="r_a4478b6c5ad4862e668026c0d482bbc66"><td class="memItemLeft" align="right" valign="top">std::vector&lt; sf::Vector2i &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4478b6c5ad4862e668026c0d482bbc66">m_validMoves</a></td></tr>
+<tr class="memitem:a872eb9653a03adccefdc3ebee4b34ead" id="r_a872eb9653a03adccefdc3ebee4b34ead"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_animal.html">Animal</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a872eb9653a03adccefdc3ebee4b34ead">m_selectedPiece</a> { nullptr }</td></tr>
+<tr class="memitem:a0f2d059d0ef4b76004b9dcef5313d69b" id="r_a0f2d059d0ef4b76004b9dcef5313d69b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f2d059d0ef4b76004b9dcef5313d69b">m_DELETEexitGame</a></td></tr>
+<tr class="memitem:a4f1415f2f3f8ffecd4616ce05bb0f3e2" id="r_a4f1415f2f3f8ffecd4616ce05bb0f3e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_gameplay.html">Gameplay</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f1415f2f3f8ffecd4616ce05bb0f3e2">m_aiPlayer</a></td></tr>
+<tr class="memitem:af440aa8d540175e20553fef858218de9" id="r_af440aa8d540175e20553fef858218de9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_gameplay.html">Gameplay</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af440aa8d540175e20553fef858218de9">m_gameplay</a></td></tr>
+<tr class="memitem:ac151d54c0dc7d7e7c1600bdd933ba63a" id="r_ac151d54c0dc7d7e7c1600bdd933ba63a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac151d54c0dc7d7e7c1600bdd933ba63a">m_player2IsAI</a> { true }</td></tr>
+<tr class="memitem:a4e2fc446aebd13525345bb972e97ac41" id="r_a4e2fc446aebd13525345bb972e97ac41"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e2fc446aebd13525345bb972e97ac41">m_player1IsAI</a> { false }</td></tr>
+<tr class="memitem:a1ee1164055433db90178c71d2892528c" id="r_a1ee1164055433db90178c71d2892528c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_menu_button.html">MenuButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ee1164055433db90178c71d2892528c">m_btnHvH</a> {}</td></tr>
+<tr class="memitem:a7f3da533970f1c367ea08f3a13a68581" id="r_a7f3da533970f1c367ea08f3a13a68581"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_menu_button.html">MenuButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f3da533970f1c367ea08f3a13a68581">m_btnHvAI</a> {}</td></tr>
+<tr class="memitem:a56889a726fe76c47fdd8f7c3a2f68480" id="r_a56889a726fe76c47fdd8f7c3a2f68480"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_menu_button.html">MenuButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56889a726fe76c47fdd8f7c3a2f68480">m_btnAIvAI</a> {}</td></tr>
+<tr class="memitem:a9ed638c37520f598a1308a5e63252670" id="r_a9ed638c37520f598a1308a5e63252670"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_menu_button.html">MenuButton</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ed638c37520f598a1308a5e63252670">m_btnQuit</a> {}</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main controller for the entire game logic, rendering, input, AI, UI and state transitions. </p>
@@ -134,6 +234,16 @@ Public Member Functions</h2></td></tr>
 <li>Creates all main menu buttons</li>
 <li>Sets initial game state to MainMenu </li>
 </ul>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game_ad59df6562a58a614fda24622d3715b65_cgraph.png" border="0" usemap="#aclass_game_ad59df6562a58a614fda24622d3715b65_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_game_ad59df6562a58a614fda24622d3715b65_cgraph" id="aclass_game_ad59df6562a58a614fda24622d3715b65_cgraph">
+<area shape="rect" title="Constructs the game, loads fonts, initializes UI and pieces." alt="" coords="5,5,105,32"/>
+<area shape="rect" href="class_game.html#a4d8d8a2e806c0f0b6cc69c78c619257c" title="Creates and positions a menu button." alt="" coords="153,5,294,32"/>
+<area shape="poly" title=" " alt="" coords="105,16,139,18,134,19,105,21"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -158,6 +268,497 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a55249c1379fd2c654bcb754273d5e9c5" name="a55249c1379fd2c654bcb754273d5e9c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55249c1379fd2c654bcb754273d5e9c5">&#9670;&#160;</a></span>checkKeyboardState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::checkKeyboardState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check real-time keyboard input. </p>
+<p>Continuous keyboard state checking (ESC). </p>
+
+</div>
+</div>
+<a id="a5326bb6708fc28e477b8b72958476c19" name="a5326bb6708fc28e477b8b72958476c19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5326bb6708fc28e477b8b72958476c19">&#9670;&#160;</a></span>checkWinCondition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Game::checkWinCondition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks 4-in-a-row for current player. </p>
+<p>Checks all win conditions (horizontal, vertical, diagonal).</p>
+<dl class="section return"><dt>Returns</dt><dd>true if the current player has 4 in a row. </dd></dl>
+
+</div>
+</div>
+<a id="acc87a0ee91d27ab844b0a8ff9a210ab4" name="acc87a0ee91d27ab844b0a8ff9a210ab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc87a0ee91d27ab844b0a8ff9a210ab4">&#9670;&#160;</a></span>drawValidMoveHighlights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::drawValidMoveHighlights </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;</td>          <td class="paramname"><span class="paramname"><em>window</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Highlights valid moves. </p>
+<p>Draws visual highlights for the selected piece and its valid moves.</p>
+<p>Highlights:</p><ul>
+<li>Yellow square for selected piece</li>
+<li>Green circles for all valid move locations</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>Render window to draw to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8ebc0fe99f64aec284e319a53dbd6074" name="a8ebc0fe99f64aec284e319a53dbd6074"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ebc0fe99f64aec284e319a53dbd6074">&#9670;&#160;</a></span>getCurrentBoardState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_boardstate.html">Boardstate</a> Game::getCurrentBoardState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts live grid to AI friendly <a class="el" href="struct_boardstate.html" title="Represents the full internal board state used by AI.">Boardstate</a>. </p>
+<p>Converts the current game grid into a <a class="el" href="struct_boardstate.html" title="Represents the full internal board state used by AI.">Boardstate</a> used by the AI.</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_boardstate.html" title="Represents the full internal board state used by AI.">Boardstate</a> version of m_grid. </dd></dl>
+
+</div>
+</div>
+<a id="ad43a19f5b2e047e7efe96f0f876b6938" name="ad43a19f5b2e047e7efe96f0f876b6938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad43a19f5b2e047e7efe96f0f876b6938">&#9670;&#160;</a></span>handleAITurn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::handleAITurn </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Performs AI decision making for current player's turn. </p>
+<p>Executes the AI's turn during the movement phase.</p>
+<p>Uses minimax to compute best move, applies it, checks win, and switches the current player. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game_ad43a19f5b2e047e7efe96f0f876b6938_cgraph.png" border="0" usemap="#aclass_game_ad43a19f5b2e047e7efe96f0f876b6938_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_game_ad43a19f5b2e047e7efe96f0f876b6938_cgraph" id="aclass_game_ad43a19f5b2e047e7efe96f0f876b6938_cgraph">
+<area shape="rect" title="Performs AI decision making for current player&#39;s turn." alt="" coords="5,81,147,108"/>
+<area shape="rect" href="class_game.html#a5326bb6708fc28e477b8b72958476c19" title="Checks 4&#45;in&#45;a&#45;row for current player." alt="" coords="201,5,378,32"/>
+<area shape="poly" title=" " alt="" coords="105,78,194,41,219,36,215,38,196,47,108,83"/>
+<area shape="rect" href="class_game.html#a8ebc0fe99f64aec284e319a53dbd6074" title="Converts live grid to AI friendly Boardstate." alt="" coords="195,56,385,83"/>
+<area shape="poly" title=" " alt="" coords="146,84,182,81,177,83,148,89"/>
+<area shape="rect" href="struct_move.html#a6e80a6c039ba805bac3ff6402c56b76c" title=" " alt="" coords="240,107,340,133"/>
+<area shape="poly" title=" " alt="" coords="147,100,227,111,222,113,147,106"/>
+<area shape="rect" href="class_game.html#a81f1f347ed371c39c3a4fbbf52a7c761" title="Transition between phases." alt="" coords="206,157,374,184"/>
+<area shape="poly" title=" " alt="" coords="107,106,196,143,220,153,214,152,194,148,106,111"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab0ceef9b57efb693a6a3d1061ebfdb7e" name="ab0ceef9b57efb693a6a3d1061ebfdb7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0ceef9b57efb693a6a3d1061ebfdb7e">&#9670;&#160;</a></span>handleMouseMoved()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::handleMouseMoved </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2i</td>          <td class="paramname"><span class="paramname"><em>mousePos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle mouse drag. </p>
+<p>Updates the position of dragged pieces while holding the mouse.</p>
+<p>Works for both:</p><ul>
+<li>Placement phase (dragging unplaced pieces)</li>
+<li>Movement phase (dragging selected board pieces)</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mousePos</td><td>Pixel position. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a60f89eec51c0de6d82b220c87fd41fed" name="a60f89eec51c0de6d82b220c87fd41fed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60f89eec51c0de6d82b220c87fd41fed">&#9670;&#160;</a></span>handleMousePress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::handleMousePress </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2i</td>          <td class="paramname"><span class="paramname"><em>mousePos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle mouse down. </p>
+<p>Handles mouse input when pressing the left mouse button.</p>
+<p>Behavior depends on the current game state:</p><ul>
+<li>MainMenu: click buttons</li>
+<li>Placement: pick up unplaced pieces</li>
+<li>Movement: select a piece already on the board</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mousePos</td><td>Pixel position of the mouse. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game_a60f89eec51c0de6d82b220c87fd41fed_cgraph.png" border="0" usemap="#aclass_game_a60f89eec51c0de6d82b220c87fd41fed_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_game_a60f89eec51c0de6d82b220c87fd41fed_cgraph" id="aclass_game_a60f89eec51c0de6d82b220c87fd41fed_cgraph">
+<area shape="rect" title="Handle mouse down." alt="" coords="5,5,181,32"/>
+<area shape="rect" href="class_game.html#a7dfba4bb3ee3f963117cf10efff89824" title="Converts pixel coords to grid coords." alt="" coords="229,5,370,32"/>
+<area shape="poly" title=" " alt="" coords="181,16,216,19,211,19,181,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a951b4c28944b18a6513fcf057f3a705c" name="a951b4c28944b18a6513fcf057f3a705c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a951b4c28944b18a6513fcf057f3a705c">&#9670;&#160;</a></span>handleMouseRelease()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::handleMouseRelease </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2i</td>          <td class="paramname"><span class="paramname"><em>mousePos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle mouse release. </p>
+<p>Handles releasing a dragged piece.</p>
+<p>Behavior:</p><ul>
+<li>Placement phase: drop piece into grid cell if valid</li>
+<li>Movement phase: move piece to a valid move location</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mousePos</td><td>Pixel position where mouse was released. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game_a951b4c28944b18a6513fcf057f3a705c_cgraph.png" border="0" usemap="#aclass_game_a951b4c28944b18a6513fcf057f3a705c_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_game_a951b4c28944b18a6513fcf057f3a705c_cgraph" id="aclass_game_a951b4c28944b18a6513fcf057f3a705c_cgraph">
+<area shape="rect" title="Handle mouse release." alt="" coords="5,81,195,108"/>
+<area shape="rect" href="class_game.html#a5326bb6708fc28e477b8b72958476c19" title="Checks 4&#45;in&#45;a&#45;row for current player." alt="" coords="243,5,420,32"/>
+<area shape="poly" title=" " alt="" coords="137,78,242,41,268,36,263,38,244,47,139,83"/>
+<area shape="rect" href="class_game.html#a7dfba4bb3ee3f963117cf10efff89824" title="Converts pixel coords to grid coords." alt="" coords="261,56,402,83"/>
+<area shape="poly" title=" " alt="" coords="194,82,248,78,243,80,196,87"/>
+<area shape="rect" href="class_game.html#a81f1f347ed371c39c3a4fbbf52a7c761" title="Transition between phases." alt="" coords="247,107,416,133"/>
+<area shape="poly" title=" " alt="" coords="195,102,234,109,229,110,195,108"/>
+<area shape="rect" href="class_game.html#a1c18201afcab542552a47f32f07c547b" title="Update positions/scales when window resizes." alt="" coords="256,157,406,184"/>
+<area shape="poly" title=" " alt="" coords="139,106,244,143,268,153,263,152,242,148,138,111"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a79f698dda206dd7a9bed28b3f88bdc38" name="a79f698dda206dd7a9bed28b3f88bdc38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79f698dda206dd7a9bed28b3f88bdc38">&#9670;&#160;</a></span>processEvents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::processEvents </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Poll and handle SFML events. </p>
+<p>Polls and handles all events (mouse, keyboard, close, resize).</p>
+<p>Handles:</p><ul>
+<li>Closing the window</li>
+<li>Key presses</li>
+<li>Resizing and view adjustment</li>
+<li>Mouse dragging, movement, releasing </li>
+</ul>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game_a79f698dda206dd7a9bed28b3f88bdc38_cgraph.png" border="0" usemap="#aclass_game_a79f698dda206dd7a9bed28b3f88bdc38_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_game_a79f698dda206dd7a9bed28b3f88bdc38_cgraph" id="aclass_game_a79f698dda206dd7a9bed28b3f88bdc38_cgraph">
+<area shape="rect" title="Poll and handle SFML events." alt="" coords="5,107,157,133"/>
+<area shape="rect" href="class_game.html#ab0ceef9b57efb693a6a3d1061ebfdb7e" title="Handle mouse drag." alt="" coords="209,5,390,32"/>
+<area shape="poly" title=" " alt="" coords="99,104,145,73,204,42,224,36,220,39,206,46,148,77,103,108"/>
+<area shape="rect" href="class_game.html#a60f89eec51c0de6d82b220c87fd41fed" title="Handle mouse down." alt="" coords="212,56,387,83"/>
+<area shape="poly" title=" " alt="" coords="141,104,226,85,222,88,143,109"/>
+<area shape="rect" href="class_game.html#a951b4c28944b18a6513fcf057f3a705c" title="Handle mouse release." alt="" coords="205,107,394,133"/>
+<area shape="poly" title=" " alt="" coords="157,117,192,119,187,121,158,123"/>
+<area shape="rect" href="class_game.html#a1c18201afcab542552a47f32f07c547b" title="Update positions/scales when window resizes." alt="" coords="456,157,606,184"/>
+<area shape="poly" title=" " alt="" coords="142,131,205,143,328,156,442,166,437,167,327,162,204,148,142,137"/>
+<area shape="rect" href="class_game.html#a88c8c1e5ea297bb218d81b6a2a61c580" title="Handle key press events." alt="" coords="229,208,370,235"/>
+<area shape="poly" title=" " alt="" coords="104,131,151,159,206,187,240,202,235,202,204,192,148,163,103,136"/>
+<area shape="rect" href="class_game.html#a7dfba4bb3ee3f963117cf10efff89824" title="Converts pixel coords to grid coords." alt="" coords="460,5,601,32"/>
+<area shape="poly" title=" " alt="" coords="363,53,454,35,449,37,365,58"/>
+<area shape="poly" title=" " alt="" coords="368,104,393,92,407,80,416,68,425,55,441,42,450,40,455,37,443,46,429,58,420,71,411,84,395,97,370,109"/>
+<area shape="rect" href="class_game.html#a5326bb6708fc28e477b8b72958476c19" title="Checks 4&#45;in&#45;a&#45;row for current player." alt="" coords="442,56,619,83"/>
+<area shape="poly" title=" " alt="" coords="363,103,454,86,449,87,364,109"/>
+<area shape="rect" href="class_game.html#a81f1f347ed371c39c3a4fbbf52a7c761" title="Transition between phases." alt="" coords="446,107,615,133"/>
+<area shape="poly" title=" " alt="" coords="394,117,434,120,428,120,395,123"/>
+<area shape="poly" title=" " alt="" coords="364,131,454,153,449,154,364,137"/>
+<area shape="rect" href="class_game.html#a47c726a80fd133c0a4f6b8fba56d8832" title="Reset everything back to MainMenu." alt="" coords="466,208,595,235"/>
+<area shape="poly" title=" " alt="" coords="370,219,454,221,448,221,370,224"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a88c8c1e5ea297bb218d81b6a2a61c580" name="a88c8c1e5ea297bb218d81b6a2a61c580"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88c8c1e5ea297bb218d81b6a2a61c580">&#9670;&#160;</a></span>processKeys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::processKeys </td>
+          <td>(</td>
+          <td class="paramtype">const std::optional&lt; sf::Event &gt;</td>          <td class="paramname"><span class="paramname"><em>t_event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle key press events. </p>
+<p>Handles keyboard key-press events.</p>
+<p>ESC closes the game. Any key during GameOver returns to main menu via <a class="el" href="#a47c726a80fd133c0a4f6b8fba56d8832" title="Reset everything back to MainMenu.">resetGame()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t_event</td><td>KeyPressed event. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game_a88c8c1e5ea297bb218d81b6a2a61c580_cgraph.png" border="0" usemap="#aclass_game_a88c8c1e5ea297bb218d81b6a2a61c580_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_game_a88c8c1e5ea297bb218d81b6a2a61c580_cgraph" id="aclass_game_a88c8c1e5ea297bb218d81b6a2a61c580_cgraph">
+<area shape="rect" title="Handle key press events." alt="" coords="5,5,146,32"/>
+<area shape="rect" href="class_game.html#a47c726a80fd133c0a4f6b8fba56d8832" title="Reset everything back to MainMenu." alt="" coords="194,5,322,32"/>
+<area shape="poly" title=" " alt="" coords="146,16,181,19,175,19,146,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a15ddd769261d923827a3cdf41499c843" name="a15ddd769261d923827a3cdf41499c843"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ddd769261d923827a3cdf41499c843">&#9670;&#160;</a></span>render()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::render </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Render all game graphics. </p>
+<p>Renders the entire game depending on the current game state.</p>
+<p>Draws:</p><ul>
+<li><a class="el" href="class_board.html" title="Handles drawing, sizing, and positioning of the game board grid.">Board</a></li>
+<li>Pieces</li>
+<li>Dragged piece</li>
+<li>Valid move highlights</li>
+<li>Main menu UI</li>
+<li><a class="el" href="class_game.html" title="Main controller for the entire game logic, rendering, input, AI, UI and state transitions.">Game</a> over messages </li>
+</ul>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game_a15ddd769261d923827a3cdf41499c843_cgraph.png" border="0" usemap="#aclass_game_a15ddd769261d923827a3cdf41499c843_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_game_a15ddd769261d923827a3cdf41499c843_cgraph" id="aclass_game_a15ddd769261d923827a3cdf41499c843_cgraph">
+<area shape="rect" title="Render all game graphics." alt="" coords="5,5,106,32"/>
+<area shape="rect" href="class_game.html#acc87a0ee91d27ab844b0a8ff9a210ab4" title="Highlights valid moves." alt="" coords="154,5,364,32"/>
+<area shape="poly" title=" " alt="" coords="106,16,140,18,135,19,106,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a47c726a80fd133c0a4f6b8fba56d8832" name="a47c726a80fd133c0a4f6b8fba56d8832"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47c726a80fd133c0a4f6b8fba56d8832">&#9670;&#160;</a></span>resetGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::resetGame </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset everything back to MainMenu. </p>
+<p>Fully resets the game after <a class="el" href="class_game.html" title="Main controller for the entire game logic, rendering, input, AI, UI and state transitions.">Game</a> Over and sends the player back to MainMenu. </p>
+
+</div>
+</div>
 <a id="a1ab78f5ed0d5ea879157357cf2fb2afa" name="a1ab78f5ed0d5ea879157357cf2fb2afa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1ab78f5ed0d5ea879157357cf2fb2afa">&#9670;&#160;</a></span>run()</h2>
 
@@ -176,12 +777,1127 @@ Public Member Functions</h2></td></tr>
 <p>Main game loop. </p>
 <p>Main game loop running at 60 FPS.</p>
 <p>Handles event processing, updates, and rendering. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game_a1ab78f5ed0d5ea879157357cf2fb2afa_cgraph.png" border="0" usemap="#aclass_game_a1ab78f5ed0d5ea879157357cf2fb2afa_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_game_a1ab78f5ed0d5ea879157357cf2fb2afa_cgraph" id="aclass_game_a1ab78f5ed0d5ea879157357cf2fb2afa_cgraph">
+<area shape="rect" title="Main game loop." alt="" coords="5,259,88,285"/>
+<area shape="rect" href="class_game.html#a79f698dda206dd7a9bed28b3f88bdc38" title="Poll and handle SFML events." alt="" coords="136,132,287,159"/>
+<area shape="poly" title=" " alt="" coords="63,257,181,166,180,171,67,260"/>
+<area shape="rect" href="class_game.html#a15ddd769261d923827a3cdf41499c843" title="Render all game graphics." alt="" coords="161,259,262,285"/>
+<area shape="poly" title=" " alt="" coords="87,270,147,270,143,274,89,274"/>
+<area shape="rect" href="class_game.html#a1d2aee62bac8e228344e1f44fab504e0" title="Update game logic." alt="" coords="160,385,263,412"/>
+<area shape="poly" title=" " alt="" coords="66,283,183,374,178,377,65,288"/>
+<area shape="rect" href="class_game.html#ab0ceef9b57efb693a6a3d1061ebfdb7e" title="Handle mouse drag." alt="" coords="350,107,530,133"/>
+<area shape="poly" title=" " alt="" coords="286,135,337,130,332,133,289,139"/>
+<area shape="rect" href="class_game.html#a60f89eec51c0de6d82b220c87fd41fed" title="Handle mouse down." alt="" coords="352,56,528,83"/>
+<area shape="poly" title=" " alt="" coords="241,129,334,92,363,85,359,89,336,97,244,134"/>
+<area shape="rect" href="class_game.html#a951b4c28944b18a6513fcf057f3a705c" title="Handle mouse release." alt="" coords="346,208,535,235"/>
+<area shape="poly" title=" " alt="" coords="249,157,336,187,380,202,375,204,334,192,251,162"/>
+<area shape="rect" href="class_game.html#a1c18201afcab542552a47f32f07c547b" title="Update positions/scales when window resizes." alt="" coords="613,208,764,235"/>
+<area shape="poly" title=" " alt="" coords="287,154,546,193,600,204,595,206,545,199,288,159"/>
+<area shape="rect" href="class_game.html#a88c8c1e5ea297bb218d81b6a2a61c580" title="Handle key press events." alt="" coords="370,5,510,32"/>
+<area shape="poly" title=" " alt="" coords="223,130,269,86,300,62,334,42,357,34,353,37,336,46,303,66,272,90,227,133"/>
+<area shape="rect" href="class_game.html#a7dfba4bb3ee3f963117cf10efff89824" title="Converts pixel coords to grid coords." alt="" coords="618,107,759,133"/>
+<area shape="poly" title=" " alt="" coords="509,81,607,102,602,104,510,86"/>
+<area shape="poly" title=" " alt="" coords="474,205,642,138,637,141,476,210"/>
+<area shape="rect" href="class_game.html#a5326bb6708fc28e477b8b72958476c19" title="Checks 4&#45;in&#45;a&#45;row for current player." alt="" coords="600,360,777,387"/>
+<area shape="poly" title=" " alt="" coords="517,233,547,244,583,267,616,294,669,348,663,348,613,298,580,271,544,249,518,238"/>
+<area shape="rect" href="class_game.html#a81f1f347ed371c39c3a4fbbf52a7c761" title="Transition between phases." alt="" coords="604,461,773,488"/>
+<area shape="poly" title=" " alt="" coords="529,233,547,245,563,263,572,282,576,319,579,357,584,376,596,397,622,427,653,453,648,452,618,431,591,400,579,378,574,357,571,319,566,283,558,266,544,249,529,238"/>
+<area shape="poly" title=" " alt="" coords="535,219,600,220,595,222,536,224"/>
+<area shape="rect" href="class_game.html#a47c726a80fd133c0a4f6b8fba56d8832" title="Reset everything back to MainMenu." alt="" coords="624,5,753,32"/>
+<area shape="poly" title=" " alt="" coords="510,16,611,17,607,20,511,21"/>
+<area shape="rect" href="class_game.html#acc87a0ee91d27ab844b0a8ff9a210ab4" title="Highlights valid moves." alt="" coords="335,259,545,285"/>
+<area shape="poly" title=" " alt="" coords="261,269,322,271,317,273,263,275"/>
+<area shape="poly" title=" " alt="" coords="263,393,586,377,583,381,264,399"/>
+<area shape="poly" title=" " alt="" coords="239,410,284,430,336,447,400,459,467,467,591,476,586,476,466,472,400,464,334,452,282,435,239,415"/>
+<area shape="poly" title=" " alt="" coords="262,384,392,348,469,323,544,295,601,268,649,244,654,242,603,273,546,300,471,328,394,353,264,389"/>
+<area shape="rect" href="class_game.html#a55249c1379fd2c654bcb754273d5e9c5" title="Check real&#45;time keyboard input." alt="" coords="348,411,533,437"/>
+<area shape="poly" title=" " alt="" coords="263,402,334,411,329,413,264,407"/>
+<area shape="rect" href="class_game.html#ad43a19f5b2e047e7efe96f0f876b6938" title="Performs AI decision making for current player&#39;s turn." alt="" coords="370,512,511,539"/>
+<area shape="poly" title=" " alt="" coords="227,410,275,450,336,491,369,507,364,507,334,496,271,454,226,415"/>
+<area shape="poly" title=" " alt="" coords="463,509,650,396,655,394,465,514"/>
+<area shape="poly" title=" " alt="" coords="509,509,602,492,607,491,510,514"/>
+<area shape="rect" href="class_game.html#a8ebc0fe99f64aec284e319a53dbd6074" title="Converts live grid to AI friendly Boardstate." alt="" coords="593,563,784,589"/>
+<area shape="poly" title=" " alt="" coords="510,537,607,559,602,559,509,542"/>
+<area shape="rect" href="struct_move.html#a6e80a6c039ba805bac3ff6402c56b76c" title=" " alt="" coords="639,512,738,539"/>
+<area shape="poly" title=" " alt="" coords="511,523,626,525,620,526,511,528"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7dfba4bb3ee3f963117cf10efff89824" name="a7dfba4bb3ee3f963117cf10efff89824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dfba4bb3ee3f963117cf10efff89824">&#9670;&#160;</a></span>screenToGrid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2i Game::screenToGrid </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2i</td>          <td class="paramname"><span class="paramname"><em>screenPos</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts pixel coords to grid coords. </p>
+<p>Converts a pixel coordinate to a grid coordinate based on board position.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">screenPos</td><td>Mouse coordinate in screen pixels. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Grid coordinate (row, col). </dd></dl>
+
+</div>
+</div>
+<a id="a4d8d8a2e806c0f0b6cc69c78c619257c" name="a4d8d8a2e806c0f0b6cc69c78c619257c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d8d8a2e806c0f0b6cc69c78c619257c">&#9670;&#160;</a></span>setupButtons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::setupButtons </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_menu_button.html">MenuButton</a> *</td>          <td class="paramname"><span class="paramname"><em>btn</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Font &amp;</td>          <td class="paramname"><span class="paramname"><em>font</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>text</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates and positions a menu button. </p>
+<p>Configures the appearance and position of a main menu button.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">btn</td><td>Button pointer to modify. </td></tr>
+    <tr><td class="paramname">font</td><td>Font reference for the label. </td></tr>
+    <tr><td class="paramname">text</td><td>Text to display. </td></tr>
+    <tr><td class="paramname">y</td><td>Vertical placement.</td></tr>
+    <tr><td class="paramname">btn</td><td>Button to configure. </td></tr>
+    <tr><td class="paramname">font</td><td>Font used for the label text. </td></tr>
+    <tr><td class="paramname">text</td><td>Text appearing on the button. </td></tr>
+    <tr><td class="paramname">y</td><td>Vertical position on screen. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a81f1f347ed371c39c3a4fbbf52a7c761" name="a81f1f347ed371c39c3a4fbbf52a7c761"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81f1f347ed371c39c3a4fbbf52a7c761">&#9670;&#160;</a></span>switchGameState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::switchGameState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_game_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285">GameState</a></td>          <td class="paramname"><span class="paramname"><em>newState</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Transition between phases. </p>
+<p>Switches the active game state and updates UI text for GameOver.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newState</td><td>New state to switch to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1d2aee62bac8e228344e1f44fab504e0" name="a1d2aee62bac8e228344e1f44fab504e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d2aee62bac8e228344e1f44fab504e0">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::update </td>
+          <td>(</td>
+          <td class="paramtype">sf::Time</td>          <td class="paramname"><span class="paramname"><em>t_deltaTime</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update game logic. </p>
+<p>Updates game logic every frame.</p>
+<p>Handles:</p><ul>
+<li>Main menu animation</li>
+<li>Placement logic</li>
+<li>Movement logic</li>
+<li>AI turns for both placement and movement phases</li>
+<li>Closing window</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t_deltaTime</td><td>Time since last update tick. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_game_a1d2aee62bac8e228344e1f44fab504e0_cgraph.png" border="0" usemap="#aclass_game_a1d2aee62bac8e228344e1f44fab504e0_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_game_a1d2aee62bac8e228344e1f44fab504e0_cgraph" id="aclass_game_a1d2aee62bac8e228344e1f44fab504e0_cgraph">
+<area shape="rect" title="Update game logic." alt="" coords="5,107,109,133"/>
+<area shape="rect" href="class_game.html#a55249c1379fd2c654bcb754273d5e9c5" title="Check real&#45;time keyboard input." alt="" coords="157,5,342,32"/>
+<area shape="poly" title=" " alt="" coords="73,104,110,76,155,48,188,36,184,39,158,53,113,81,77,108"/>
+<area shape="rect" href="class_game.html#a5326bb6708fc28e477b8b72958476c19" title="Checks 4&#45;in&#45;a&#45;row for current player." alt="" coords="396,31,574,57"/>
+<area shape="poly" title=" " alt="" coords="108,104,156,92,272,71,383,56,378,58,273,76,157,97,110,108"/>
+<area shape="rect" href="class_game.html#ad43a19f5b2e047e7efe96f0f876b6938" title="Performs AI decision making for current player&#39;s turn." alt="" coords="179,107,320,133"/>
+<area shape="poly" title=" " alt="" coords="109,117,165,119,161,121,110,123"/>
+<area shape="rect" href="class_game.html#a81f1f347ed371c39c3a4fbbf52a7c761" title="Transition between phases." alt="" coords="401,183,569,209"/>
+<area shape="poly" title=" " alt="" coords="108,131,157,143,276,164,388,183,383,184,275,169,156,148,109,137"/>
+<area shape="rect" href="class_game.html#a1c18201afcab542552a47f32f07c547b" title="Update positions/scales when window resizes." alt="" coords="174,208,324,235"/>
+<area shape="poly" title=" " alt="" coords="75,131,113,159,158,187,189,202,184,202,155,192,110,164,74,136"/>
+<area shape="poly" title=" " alt="" coords="290,104,341,86,389,67,416,61,411,63,391,72,343,90,292,109"/>
+<area shape="rect" href="class_game.html#a8ebc0fe99f64aec284e319a53dbd6074" title="Converts live grid to AI friendly Boardstate." alt="" coords="390,81,580,108"/>
+<area shape="poly" title=" " alt="" coords="320,110,377,106,372,107,321,115"/>
+<area shape="rect" href="struct_move.html#a6e80a6c039ba805bac3ff6402c56b76c" title=" " alt="" coords="436,132,535,159"/>
+<area shape="poly" title=" " alt="" coords="321,125,423,138,417,139,321,130"/>
+<area shape="poly" title=" " alt="" coords="291,131,343,150,391,168,417,178,411,178,389,173,341,154,291,137"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1c18201afcab542552a47f32f07c547b" name="a1c18201afcab542552a47f32f07c547b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c18201afcab542552a47f32f07c547b">&#9670;&#160;</a></span>updateAnimals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::updateAnimals </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update positions/scales when window resizes. </p>
+<p>Rescales and repositions all pieces when the board or window is resized. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a4f1415f2f3f8ffecd4616ce05bb0f3e2" name="a4f1415f2f3f8ffecd4616ce05bb0f3e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f1415f2f3f8ffecd4616ce05bb0f3e2">&#9670;&#160;</a></span>m_aiPlayer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_gameplay.html">Gameplay</a> Game::m_aiPlayer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac945229f4838bd5fae0b4d406a001861" name="ac945229f4838bd5fae0b4d406a001861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac945229f4838bd5fae0b4d406a001861">&#9670;&#160;</a></span>m_animationClock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Clock Game::m_animationClock</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab28ed2c042ec89b177a4866c9fe3bc04" name="ab28ed2c042ec89b177a4866c9fe3bc04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab28ed2c042ec89b177a4866c9fe3bc04">&#9670;&#160;</a></span>m_board</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_board.html">Board</a> Game::m_board { 5, 150.f }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>5×5 board </p>
+
+</div>
+</div>
+<a id="a56889a726fe76c47fdd8f7c3a2f68480" name="a56889a726fe76c47fdd8f7c3a2f68480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56889a726fe76c47fdd8f7c3a2f68480">&#9670;&#160;</a></span>m_btnAIvAI</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_menu_button.html">MenuButton</a>* Game::m_btnAIvAI {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f3da533970f1c367ea08f3a13a68581" name="a7f3da533970f1c367ea08f3a13a68581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f3da533970f1c367ea08f3a13a68581">&#9670;&#160;</a></span>m_btnHvAI</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_menu_button.html">MenuButton</a>* Game::m_btnHvAI {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ee1164055433db90178c71d2892528c" name="a1ee1164055433db90178c71d2892528c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ee1164055433db90178c71d2892528c">&#9670;&#160;</a></span>m_btnHvH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_menu_button.html">MenuButton</a>* Game::m_btnHvH {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ed638c37520f598a1308a5e63252670" name="a9ed638c37520f598a1308a5e63252670"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ed638c37520f598a1308a5e63252670">&#9670;&#160;</a></span>m_btnQuit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_menu_button.html">MenuButton</a>* Game::m_btnQuit {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7e37120a0caf2b763e00ab4af84a71e" name="af7e37120a0caf2b763e00ab4af84a71e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7e37120a0caf2b763e00ab4af84a71e">&#9670;&#160;</a></span>m_currentGameState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_game_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285">GameState</a> Game::m_currentGameState { <a class="el" href="_game_8h.html#a7899b65f1ea0f655e4bbf8d2a5714285aae13e51f99f3be623a6d44d7439d9bb5">GameState::Placement</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a55bf9199cd241b3e7cebd0b91b0f9d71" name="a55bf9199cd241b3e7cebd0b91b0f9d71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55bf9199cd241b3e7cebd0b91b0f9d71">&#9670;&#160;</a></span>m_currentPlayer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> Game::m_currentPlayer { <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9a600f125ca9ad5fe29a6252a73c5772a6">Player::Player1</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f2d059d0ef4b76004b9dcef5313d69b" name="a0f2d059d0ef4b76004b9dcef5313d69b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f2d059d0ef4b76004b9dcef5313d69b">&#9670;&#160;</a></span>m_DELETEexitGame</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Game::m_DELETEexitGame</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a743a323841d0ee5e39dad813662c5320" name="a743a323841d0ee5e39dad813662c5320"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a743a323841d0ee5e39dad813662c5320">&#9670;&#160;</a></span>m_DELETElogoSprite</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Sprite Game::m_DELETElogoSprite { <a class="el" href="#ada7c821937ba3c60ae257c8caac7115a">m_DELETElogoTexture</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ada7c821937ba3c60ae257c8caac7115a" name="ada7c821937ba3c60ae257c8caac7115a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada7c821937ba3c60ae257c8caac7115a">&#9670;&#160;</a></span>m_DELETElogoTexture</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Texture Game::m_DELETElogoTexture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acad554239a4bc27babf242a14f99fa36" name="acad554239a4bc27babf242a14f99fa36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acad554239a4bc27babf242a14f99fa36">&#9670;&#160;</a></span>m_DELETEwelcomeMessage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text Game::m_DELETEwelcomeMessage { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e49339dad37011e908bf346f5b38799" name="a9e49339dad37011e908bf346f5b38799"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e49339dad37011e908bf346f5b38799">&#9670;&#160;</a></span>m_draggedPiece</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_animal.html">Animal</a>* Game::m_draggedPiece { nullptr }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b38a7b32c0d74e2e18c7e2f7f8f07b1" name="a1b38a7b32c0d74e2e18c7e2f7f8f07b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b38a7b32c0d74e2e18c7e2f7f8f07b1">&#9670;&#160;</a></span>m_draggedPieceIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Game::m_draggedPieceIndex { -1 }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af440aa8d540175e20553fef858218de9" name="af440aa8d540175e20553fef858218de9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af440aa8d540175e20553fef858218de9">&#9670;&#160;</a></span>m_gameplay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_gameplay.html">Gameplay</a> Game::m_gameplay</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac613805bdcd6c91b23a2b7a6fea4dba5" name="ac613805bdcd6c91b23a2b7a6fea4dba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac613805bdcd6c91b23a2b7a6fea4dba5">&#9670;&#160;</a></span>m_grid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_animal.html">Animal</a> Game::m_grid[<a class="el" href="_board_8h.html#aa7a2b8ea2c784a4ad8b58a3262bb4f07">BOARD_SIZE</a>][<a class="el" href="_board_8h.html#aa7a2b8ea2c784a4ad8b58a3262bb4f07">BOARD_SIZE</a>] {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Placed animals. </p>
+
+</div>
+</div>
+<a id="ad7a573e580c736d52b94762949165e5e" name="ad7a573e580c736d52b94762949165e5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7a573e580c736d52b94762949165e5e">&#9670;&#160;</a></span>m_instructionText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text Game::m_instructionText { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8379df4481e56cb10f48ac503bc845d" name="ad8379df4481e56cb10f48ac503bc845d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8379df4481e56cb10f48ac503bc845d">&#9670;&#160;</a></span>m_isDragging</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Game::m_isDragging { false }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38f308df0b1f2f4e99deb3fa6f90d774" name="a38f308df0b1f2f4e99deb3fa6f90d774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38f308df0b1f2f4e99deb3fa6f90d774">&#9670;&#160;</a></span>m_isPieceSelected</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Game::m_isPieceSelected { false }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a853939dbd7545ae9dd5efc844482d3b0" name="a853939dbd7545ae9dd5efc844482d3b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a853939dbd7545ae9dd5efc844482d3b0">&#9670;&#160;</a></span>m_jerseyFont</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Font Game::m_jerseyFont</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Primary UI font. </p>
+
+</div>
+</div>
+<a id="adb9fa83180a7f4c10fbf7d16f9c4e5da" name="adb9fa83180a7f4c10fbf7d16f9c4e5da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb9fa83180a7f4c10fbf7d16f9c4e5da">&#9670;&#160;</a></span>m_menuCredits</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text Game::m_menuCredits { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08fd5da0e5ca2c799eb447c1bea01618" name="a08fd5da0e5ca2c799eb447c1bea01618"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08fd5da0e5ca2c799eb447c1bea01618">&#9670;&#160;</a></span>m_menuSubtitle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text Game::m_menuSubtitle { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19b7cecb5ee517c2816d127b8cf1c21f" name="a19b7cecb5ee517c2816d127b8cf1c21f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19b7cecb5ee517c2816d127b8cf1c21f">&#9670;&#160;</a></span>m_menuTitle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text Game::m_menuTitle { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34a52bd064863470ff1505b68ec2d044" name="a34a52bd064863470ff1505b68ec2d044"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34a52bd064863470ff1505b68ec2d044">&#9670;&#160;</a></span>m_originalCell</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2i Game::m_originalCell { -1, -1 }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e2fc446aebd13525345bb972e97ac41" name="a4e2fc446aebd13525345bb972e97ac41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e2fc446aebd13525345bb972e97ac41">&#9670;&#160;</a></span>m_player1IsAI</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Game::m_player1IsAI { false }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae23e51fc29cc0dc2099466b844d3caae" name="ae23e51fc29cc0dc2099466b844d3caae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae23e51fc29cc0dc2099466b844d3caae">&#9670;&#160;</a></span>m_player1Pieces</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_animal.html">Animal</a>&gt; Game::m_player1Pieces</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>P1 unplaced pieces. </p>
+
+</div>
+</div>
+<a id="ab669854f3d0d36b0e0588f08ea05914c" name="ab669854f3d0d36b0e0588f08ea05914c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab669854f3d0d36b0e0588f08ea05914c">&#9670;&#160;</a></span>m_player1PiecesPlaced</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Game::m_player1PiecesPlaced { 0 }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac151d54c0dc7d7e7c1600bdd933ba63a" name="ac151d54c0dc7d7e7c1600bdd933ba63a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac151d54c0dc7d7e7c1600bdd933ba63a">&#9670;&#160;</a></span>m_player2IsAI</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Game::m_player2IsAI { true }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aad5fc8b45bbf32f081abb944f15c2435" name="aad5fc8b45bbf32f081abb944f15c2435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad5fc8b45bbf32f081abb944f15c2435">&#9670;&#160;</a></span>m_player2Pieces</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_animal.html">Animal</a>&gt; Game::m_player2Pieces</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>P2 unplaced pieces. </p>
+
+</div>
+</div>
+<a id="a940a736c804130bdbdb953e0c0b2b086" name="a940a736c804130bdbdb953e0c0b2b086"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940a736c804130bdbdb953e0c0b2b086">&#9670;&#160;</a></span>m_player2PiecesPlaced</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Game::m_player2PiecesPlaced { 0 }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af95050bd8cbfd4ce93626bb7dd10c16b" name="af95050bd8cbfd4ce93626bb7dd10c16b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af95050bd8cbfd4ce93626bb7dd10c16b">&#9670;&#160;</a></span>m_selectedCell</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Vector2i Game::m_selectedCell { -1, -1 }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a872eb9653a03adccefdc3ebee4b34ead" name="a872eb9653a03adccefdc3ebee4b34ead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a872eb9653a03adccefdc3ebee4b34ead">&#9670;&#160;</a></span>m_selectedPiece</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_animal.html">Animal</a>* Game::m_selectedPiece { nullptr }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4478b6c5ad4862e668026c0d482bbc66" name="a4478b6c5ad4862e668026c0d482bbc66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4478b6c5ad4862e668026c0d482bbc66">&#9670;&#160;</a></span>m_validMoves</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;sf::Vector2i&gt; Game::m_validMoves</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22a61b5ea27c609be8cf2724c33d7ae5" name="a22a61b5ea27c609be8cf2724c33d7ae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22a61b5ea27c609be8cf2724c33d7ae5">&#9670;&#160;</a></span>m_window</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::RenderWindow Game::m_window</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Main SFML window. </p>
+
+</div>
+</div>
+<a id="a2b78145e81e29acac0cb19d4f0e8f2d1" name="a2b78145e81e29acac0cb19d4f0e8f2d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b78145e81e29acac0cb19d4f0e8f2d1">&#9670;&#160;</a></span>m_winMessage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text Game::m_winMessage { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9bcde36a4911a5cdef21cc2124e513f4" name="a9bcde36a4911a5cdef21cc2124e513f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bcde36a4911a5cdef21cc2124e513f4">&#9670;&#160;</a></span>m_winMessage2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text Game::m_winMessage2 { <a class="el" href="#a853939dbd7545ae9dd5efc844482d3b0">m_jerseyFont</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4fb273bbad45c19252092a04d1477803" name="a4fb273bbad45c19252092a04d1477803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fb273bbad45c19252092a04d1477803">&#9670;&#160;</a></span>m_winner</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> Game::m_winner { <a class="el" href="_animal_8h.html#a9c8780378078e51e7c9041cbac392db9ab4cb3ef9db0929a23abf8da5b05fbbe9">Player::NoPlayer</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/emily/source/repos/AI-for-Games/Project/Project/Project/<a class="el" href="_game_8h_source.html">Game.h</a></li>
-<li>C:/Users/emily/source/repos/AI-for-Games/Project/Project/Project/<a class="el" href="_game_8cpp.html">Game.cpp</a></li>
+<li><a class="el" href="_game_8h_source.html">Game.h</a></li>
+<li><a class="el" href="_game_8cpp.html">Game.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

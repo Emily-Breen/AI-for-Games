@@ -1,0 +1,18 @@
+<map id="Animal::getValidMoves" name="Animal::getValidMoves">
+<area shape="rect" id="Node000001" title="Computes valid movement locations for this animal." alt="" coords="5,56,160,83"/>
+<area shape="rect" id="Node000002" href="$class_animal.html#ab4ab82b6c86f8726d31d5f9b6cd0aa0c" title="Adds adjacent moves (cardinal + optional diagonal)." alt="" coords="211,31,392,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,58,198,55,193,57,161,63"/>
+<area shape="rect" id="Node000003" href="$class_animal.html#a1e726a49ec952443190ac62dad22353c" title="Default constructor. Creates an empty/unoccupied piece." alt="" coords="466,5,575,32"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="108,53,153,32,207,16,271,7,336,4,453,10,448,12,336,10,272,13,208,21,155,37,111,58"/>
+<area shape="rect" id="Node000004" href="$class_animal.html#aef86c4a26a318399a9de683fd0e1b713" title="Checks if this is an empty piece (no owner, no type)." alt="" coords="462,107,579,133"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="110,81,155,101,208,117,270,126,333,129,443,128,448,128,333,134,270,131,207,123,153,106,109,86"/>
+<area shape="rect" id="Node000006" href="$class_animal.html#aed3cda05602b23e452129fbdc1066158" title="Adds frog style multi tile jumping moves." alt="" coords="208,81,395,108"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="160,76,195,82,189,82,160,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,31,453,26,447,27,392,36"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="361,55,396,67,444,92,461,101,456,101,442,97,394,72,361,61"/>
+<area shape="rect" id="Node000005" href="$class_animal.html#a4a432c83d9290b59c7b41956122bab1e" title="Checks if a position is within board bounds." alt="" coords="443,56,597,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="392,52,430,59,425,59,392,57"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="360,78,394,67,442,42,456,38,461,37,444,46,396,72,362,83"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="396,103,449,111,443,111,395,108"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="395,81,431,80,425,80,396,86"/>
+</map>

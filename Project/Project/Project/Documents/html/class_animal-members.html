@@ -28,7 +28,7 @@
   <td id="projectalign">
    <div id="projectname">The Fourth Protocol
    </div>
-   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row game&quot;</div>
+   <div id="projectbrief">End of semester project by Stephen and Emily utilizing minimax in a &quot;4 in a row&quot; style game with a twist!</div>
   </td>
  </tr>
  </tbody>
@@ -95,6 +95,8 @@ $(function(){initNavTree('class_animal.html','',''); });
 
 <p>This is the complete list of members for <a class="el" href="class_animal.html">Animal</a>, including all inherited members.</p>
 <table class="directory">
+  <tr class="even"><td class="entry"><a class="el" href="class_animal.html#ab4ab82b6c86f8726d31d5f9b6cd0aa0c">addAdjacentMoves</a>(int row, int col, const Animal *grid, int boardSize, std::vector&lt; sf::Vector2i &gt; &amp;moves, bool includeDiagonal) const</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_animal.html#aed3cda05602b23e452129fbdc1066158">addFrogJumpMoves</a>(int row, int col, const Animal *grid, int boardSize, std::vector&lt; sf::Vector2i &gt; &amp;moves) const</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_animal.html#a1e726a49ec952443190ac62dad22353c">Animal</a>()</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_animal.html#ada2ed5b6a323ffd867b4211c0dfcb5b0">Animal</a>(Player owner, AnimalType type)</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_animal.html#ac9cb0456a22b938ef4a6adf4a371f778">Animal</a>(const Animal &amp;other)</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
@@ -106,9 +108,14 @@ $(function(){initNavTree('class_animal.html','',''); });
   <tr class="even"><td class="entry"><a class="el" href="class_animal.html#a6d95f368dafb0071915618c41cd487fd">getValidMoves</a>(int currentRow, int currentCol, const Animal *grid, int boardSize) const</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_animal.html#a67bcb3b65f047d38f98cc74399ba8fea">initAnimalTexture</a>(float cellSize)</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_animal.html#aef86c4a26a318399a9de683fd0e1b713">isEmpty</a>() const</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_animal.html#aa877ca8e4c0747f5794614e7b35c2fa5">operator=</a>(const Animal &amp;other)</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_animal.html#ab82e8398cd9e7769dfda4741b13a8e0b">rescale</a>(float cellSize)</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_animal.html#abc6b4ca5d836809cf58c2ee3c9c308d7">setPosition</a>(const sf::Vector2f &amp;position)</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_animal.html#a4a432c83d9290b59c7b41956122bab1e">isValidPosition</a>(int row, int col, int boardSize) const</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_animal.html#a9e35e11d495bbcbb6ec40da47c9fe60a">m_owner</a></td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_animal.html#a5050621e8c8bc51103b7775eabdc43de">m_sprite</a></td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_animal.html#a684695058eb666ded5f4d0d0981218b0">m_texture</a></td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_animal.html#aac828bf021e2f508644c0dd1f8b38801">m_type</a></td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_animal.html#aa877ca8e4c0747f5794614e7b35c2fa5">operator=</a>(const Animal &amp;other)</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_animal.html#ab82e8398cd9e7769dfda4741b13a8e0b">rescale</a>(float cellSize)</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_animal.html#abc6b4ca5d836809cf58c2ee3c9c308d7">setPosition</a>(const sf::Vector2f &amp;position)</td><td class="entry"><a class="el" href="class_animal.html">Animal</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

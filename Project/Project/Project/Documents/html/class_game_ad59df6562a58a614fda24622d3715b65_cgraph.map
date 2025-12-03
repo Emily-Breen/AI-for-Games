@@ -1,0 +1,5 @@
+<map id="Game::Game" name="Game::Game">
+<area shape="rect" id="Node000001" title="Constructs the game, loads fonts, initializes UI and pieces." alt="" coords="5,5,105,32"/>
+<area shape="rect" id="Node000002" href="$class_game.html#a4d8d8a2e806c0f0b6cc69c78c619257c" title="Creates and positions a menu button." alt="" coords="153,5,294,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,16,139,18,134,19,105,21"/>
+</map>

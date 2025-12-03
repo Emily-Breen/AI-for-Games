@@ -1,0 +1,9 @@
+<map id="Animal.h" name="Animal.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="116,5,188,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,59,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,35,67,74,65,69,130,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="83,80,221,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="154,31,154,66,150,63,150,34"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="244,80,316,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="175,30,247,72,242,72,174,35"/>
+</map>

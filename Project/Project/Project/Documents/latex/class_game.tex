@@ -9,6 +9,15 @@ Main controller for the entire game logic, rendering, input, AI, UI and state tr
 
 {\ttfamily \#include $<$Game.\+h$>$}
 
+
+
+Collaboration diagram for Game\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -18,6 +27,122 @@ Main controller for the entire game logic, rendering, input, AI, UI and state tr
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}{run}} ()
 \begin{DoxyCompactList}\small\item\em Main game loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_game_a79f698dda206dd7a9bed28b3f88bdc38}{process\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Poll and handle SFML events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a88c8c1e5ea297bb218d81b6a2a61c580}{process\+Keys}} (const std\+::optional$<$ sf\+::\+Event $>$ t\+\_\+event)
+\begin{DoxyCompactList}\small\item\em Handle key press events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a55249c1379fd2c654bcb754273d5e9c5}{check\+Keyboard\+State}} ()
+\begin{DoxyCompactList}\small\item\em Check real-\/time keyboard input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a1d2aee62bac8e228344e1f44fab504e0}{update}} (sf\+::\+Time t\+\_\+delta\+Time)
+\begin{DoxyCompactList}\small\item\em Update game logic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a15ddd769261d923827a3cdf41499c843}{render}} ()
+\begin{DoxyCompactList}\small\item\em Render all game graphics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a1c18201afcab542552a47f32f07c547b}{update\+Animals}} ()
+\begin{DoxyCompactList}\small\item\em Update positions/scales when window resizes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a60f89eec51c0de6d82b220c87fd41fed}{handle\+Mouse\+Press}} (sf\+::\+Vector2i mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Handle mouse down. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a951b4c28944b18a6513fcf057f3a705c}{handle\+Mouse\+Release}} (sf\+::\+Vector2i mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Handle mouse release. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_ab0ceef9b57efb693a6a3d1061ebfdb7e}{handle\+Mouse\+Moved}} (sf\+::\+Vector2i mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Handle mouse drag. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_game_a5326bb6708fc28e477b8b72958476c19}{check\+Win\+Condition}} ()
+\begin{DoxyCompactList}\small\item\em Checks 4-\/in-\/a-\/row for current player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a81f1f347ed371c39c3a4fbbf52a7c761}{switch\+Game\+State}} (\mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} new\+State)
+\begin{DoxyCompactList}\small\item\em Transition between phases. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a47c726a80fd133c0a4f6b8fba56d8832}{reset\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Reset everything back to Main\+Menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a4d8d8a2e806c0f0b6cc69c78c619257c}{setup\+Buttons}} (\mbox{\hyperlink{struct_menu_button}{Menu\+Button}} \texorpdfstring{$\ast$}{*}btn, sf\+::\+Font \&font, const std\+::string \&text, float y)
+\begin{DoxyCompactList}\small\item\em Creates and positions a menu button. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_acc87a0ee91d27ab844b0a8ff9a210ab4}{draw\+Valid\+Move\+Highlights}} (sf\+::\+Render\+Window \&window)
+\begin{DoxyCompactList}\small\item\em Highlights valid moves. \end{DoxyCompactList}\item 
+sf\+::\+Vector2i \mbox{\hyperlink{class_game_a7dfba4bb3ee3f963117cf10efff89824}{screen\+To\+Grid}} (sf\+::\+Vector2i screen\+Pos) const
+\begin{DoxyCompactList}\small\item\em Converts pixel coords to grid coords. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_ad43a19f5b2e047e7efe96f0f876b6938}{handle\+AITurn}} ()
+\begin{DoxyCompactList}\small\item\em Performs AI decision making for current player\textquotesingle{}s turn. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_boardstate}{Boardstate}} \mbox{\hyperlink{class_game_a8ebc0fe99f64aec284e319a53dbd6074}{get\+Current\+Board\+State}} () const
+\begin{DoxyCompactList}\small\item\em Converts live grid to AI friendly \doxylink{struct_boardstate}{Boardstate}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_board}{Board}} \mbox{\hyperlink{class_game_ab28ed2c042ec89b177a4866c9fe3bc04}{m\+\_\+board}} \{ 5, 150.f \}
+\begin{DoxyCompactList}\small\item\em 5×5 board \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_animal}{Animal}} $>$ \mbox{\hyperlink{class_game_ae23e51fc29cc0dc2099466b844d3caae}{m\+\_\+player1\+Pieces}}
+\begin{DoxyCompactList}\small\item\em P1 unplaced pieces. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_animal}{Animal}} $>$ \mbox{\hyperlink{class_game_aad5fc8b45bbf32f081abb944f15c2435}{m\+\_\+player2\+Pieces}}
+\begin{DoxyCompactList}\small\item\em P2 unplaced pieces. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_animal}{Animal}} \mbox{\hyperlink{class_game_ac613805bdcd6c91b23a2b7a6fea4dba5}{m\+\_\+grid}} \mbox{[}\mbox{\hyperlink{_board_8h_aa7a2b8ea2c784a4ad8b58a3262bb4f07}{BOARD\+\_\+\+SIZE}}\mbox{]}\mbox{[}\mbox{\hyperlink{_board_8h_aa7a2b8ea2c784a4ad8b58a3262bb4f07}{BOARD\+\_\+\+SIZE}}\mbox{]} \{\}
+\begin{DoxyCompactList}\small\item\em Placed animals. \end{DoxyCompactList}\item 
+sf\+::\+Render\+Window \mbox{\hyperlink{class_game_a22a61b5ea27c609be8cf2724c33d7ae5}{m\+\_\+window}}
+\begin{DoxyCompactList}\small\item\em Main SFML window. \end{DoxyCompactList}\item 
+sf\+::\+Font \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}}
+\begin{DoxyCompactList}\small\item\em Primary UI font. \end{DoxyCompactList}\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_a2b78145e81e29acac0cb19d4f0e8f2d1}{m\+\_\+win\+Message}} \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_a9bcde36a4911a5cdef21cc2124e513f4}{m\+\_\+win\+Message2}} \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_ad7a573e580c736d52b94762949165e5e}{m\+\_\+instruction\+Text}} \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_a19b7cecb5ee517c2816d127b8cf1c21f}{m\+\_\+menu\+Title}} \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_a08fd5da0e5ca2c799eb447c1bea01618}{m\+\_\+menu\+Subtitle}} \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_adb9fa83180a7f4c10fbf7d16f9c4e5da}{m\+\_\+menu\+Credits}} \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}
+\item 
+sf\+::\+Clock \mbox{\hyperlink{class_game_ac945229f4838bd5fae0b4d406a001861}{m\+\_\+animation\+Clock}}
+\item 
+sf\+::\+Text \mbox{\hyperlink{class_game_acad554239a4bc27babf242a14f99fa36}{m\+\_\+\+DELETEwelcome\+Message}} \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}
+\item 
+sf\+::\+Texture \mbox{\hyperlink{class_game_ada7c821937ba3c60ae257c8caac7115a}{m\+\_\+\+DELETElogo\+Texture}}
+\item 
+sf\+::\+Sprite \mbox{\hyperlink{class_game_a743a323841d0ee5e39dad813662c5320}{m\+\_\+\+DELETElogo\+Sprite}} \{ \mbox{\hyperlink{class_game_ada7c821937ba3c60ae257c8caac7115a}{m\+\_\+\+DELETElogo\+Texture}} \}
+\item 
+\mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} \mbox{\hyperlink{class_game_af7e37120a0caf2b763e00ab4af84a71e}{m\+\_\+current\+Game\+State}} \{ \mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285aae13e51f99f3be623a6d44d7439d9bb5}{Game\+State\+::\+Placement}} \}
+\item 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \mbox{\hyperlink{class_game_a55bf9199cd241b3e7cebd0b91b0f9d71}{m\+\_\+current\+Player}} \{ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9a600f125ca9ad5fe29a6252a73c5772a6}{Player\+::\+Player1}} \}
+\item 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \mbox{\hyperlink{class_game_a4fb273bbad45c19252092a04d1477803}{m\+\_\+winner}} \{ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9ab4cb3ef9db0929a23abf8da5b05fbbe9}{Player\+::\+No\+Player}} \}
+\item 
+int \mbox{\hyperlink{class_game_ab669854f3d0d36b0e0588f08ea05914c}{m\+\_\+player1\+Pieces\+Placed}} \{ 0 \}
+\item 
+int \mbox{\hyperlink{class_game_a940a736c804130bdbdb953e0c0b2b086}{m\+\_\+player2\+Pieces\+Placed}} \{ 0 \}
+\item 
+bool \mbox{\hyperlink{class_game_ad8379df4481e56cb10f48ac503bc845d}{m\+\_\+is\+Dragging}} \{ false \}
+\item 
+int \mbox{\hyperlink{class_game_a1b38a7b32c0d74e2e18c7e2f7f8f07b1}{m\+\_\+dragged\+Piece\+Index}} \{ -\/1 \}
+\item 
+\mbox{\hyperlink{class_animal}{Animal}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_game_a9e49339dad37011e908bf346f5b38799}{m\+\_\+dragged\+Piece}} \{ nullptr \}
+\item 
+bool \mbox{\hyperlink{class_game_a38f308df0b1f2f4e99deb3fa6f90d774}{m\+\_\+is\+Piece\+Selected}} \{ false \}
+\item 
+sf\+::\+Vector2i \mbox{\hyperlink{class_game_af95050bd8cbfd4ce93626bb7dd10c16b}{m\+\_\+selected\+Cell}} \{ -\/1, -\/1 \}
+\item 
+sf\+::\+Vector2i \mbox{\hyperlink{class_game_a34a52bd064863470ff1505b68ec2d044}{m\+\_\+original\+Cell}} \{ -\/1, -\/1 \}
+\item 
+std\+::vector$<$ sf\+::\+Vector2i $>$ \mbox{\hyperlink{class_game_a4478b6c5ad4862e668026c0d482bbc66}{m\+\_\+valid\+Moves}}
+\item 
+\mbox{\hyperlink{class_animal}{Animal}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_game_a872eb9653a03adccefdc3ebee4b34ead}{m\+\_\+selected\+Piece}} \{ nullptr \}
+\item 
+bool \mbox{\hyperlink{class_game_a0f2d059d0ef4b76004b9dcef5313d69b}{m\+\_\+\+DELETEexit\+Game}}
+\item 
+\mbox{\hyperlink{class_gameplay}{Gameplay}} \mbox{\hyperlink{class_game_a4f1415f2f3f8ffecd4616ce05bb0f3e2}{m\+\_\+ai\+Player}}
+\item 
+\mbox{\hyperlink{class_gameplay}{Gameplay}} \mbox{\hyperlink{class_game_af440aa8d540175e20553fef858218de9}{m\+\_\+gameplay}}
+\item 
+bool \mbox{\hyperlink{class_game_ac151d54c0dc7d7e7c1600bdd933ba63a}{m\+\_\+player2\+Is\+AI}} \{ true \}
+\item 
+bool \mbox{\hyperlink{class_game_a4e2fc446aebd13525345bb972e97ac41}{m\+\_\+player1\+Is\+AI}} \{ false \}
+\item 
+\mbox{\hyperlink{struct_menu_button}{Menu\+Button}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_game_a1ee1164055433db90178c71d2892528c}{m\+\_\+btn\+HvH}} \{\}
+\item 
+\mbox{\hyperlink{struct_menu_button}{Menu\+Button}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_game_a7f3da533970f1c367ea08f3a13a68581}{m\+\_\+btn\+Hv\+AI}} \{\}
+\item 
+\mbox{\hyperlink{struct_menu_button}{Menu\+Button}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_game_a56889a726fe76c47fdd8f7c3a2f68480}{m\+\_\+btn\+AIv\+AI}} \{\}
+\item 
+\mbox{\hyperlink{struct_menu_button}{Menu\+Button}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_game_a9ed638c37520f598a1308a5e63252670}{m\+\_\+btn\+Quit}} \{\}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -45,7 +170,14 @@ This constructor\+:
 \item Initializes player pieces and textures
 \item Creates all main menu buttons
 \item Sets initial game state to Main\+Menu 
-\end{DoxyItemize}\Hypertarget{class_game_ae3d112ca6e0e55150d2fdbc704474530}\index{Game@{Game}!````~Game@{\texorpdfstring{$\sim$}{\string~}Game}}
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{class_game_ad59df6562a58a614fda24622d3715b65_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_ae3d112ca6e0e55150d2fdbc704474530}\index{Game@{Game}!````~Game@{\texorpdfstring{$\sim$}{\string~}Game}}
 \index{````~Game@{\texorpdfstring{$\sim$}{\string~}Game}!Game@{Game}}
 \doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Game()}{\string~Game()}}
 {\footnotesize\ttfamily \label{class_game_ae3d112ca6e0e55150d2fdbc704474530} 
@@ -60,7 +192,261 @@ Default destructor for the \doxylink{class_game}{Game} class.
 \label{doc-func-members}
 \Hypertarget{class_game_doc-func-members}
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}\index{Game@{Game}!run@{run}}
+\Hypertarget{class_game_a55249c1379fd2c654bcb754273d5e9c5}\index{Game@{Game}!checkKeyboardState@{checkKeyboardState}}
+\index{checkKeyboardState@{checkKeyboardState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{checkKeyboardState()}{checkKeyboardState()}}
+{\footnotesize\ttfamily \label{class_game_a55249c1379fd2c654bcb754273d5e9c5} 
+void Game\+::check\+Keyboard\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Check real-\/time keyboard input. 
+
+Continuous keyboard state checking (ESC). \Hypertarget{class_game_a5326bb6708fc28e477b8b72958476c19}\index{Game@{Game}!checkWinCondition@{checkWinCondition}}
+\index{checkWinCondition@{checkWinCondition}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{checkWinCondition()}{checkWinCondition()}}
+{\footnotesize\ttfamily \label{class_game_a5326bb6708fc28e477b8b72958476c19} 
+bool Game\+::check\+Win\+Condition (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks 4-\/in-\/a-\/row for current player. 
+
+Checks all win conditions (horizontal, vertical, diagonal).
+
+\begin{DoxyReturn}{Returns}
+true if the current player has 4 in a row. 
+\end{DoxyReturn}
+\Hypertarget{class_game_acc87a0ee91d27ab844b0a8ff9a210ab4}\index{Game@{Game}!drawValidMoveHighlights@{drawValidMoveHighlights}}
+\index{drawValidMoveHighlights@{drawValidMoveHighlights}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{drawValidMoveHighlights()}{drawValidMoveHighlights()}}
+{\footnotesize\ttfamily \label{class_game_acc87a0ee91d27ab844b0a8ff9a210ab4} 
+void Game\+::draw\+Valid\+Move\+Highlights (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Highlights valid moves. 
+
+Draws visual highlights for the selected piece and its valid moves.
+
+Highlights\+:
+\begin{DoxyItemize}
+\item Yellow square for selected piece
+\item Green circles for all valid move locations
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & Render window to draw to. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a8ebc0fe99f64aec284e319a53dbd6074}\index{Game@{Game}!getCurrentBoardState@{getCurrentBoardState}}
+\index{getCurrentBoardState@{getCurrentBoardState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getCurrentBoardState()}{getCurrentBoardState()}}
+{\footnotesize\ttfamily \label{class_game_a8ebc0fe99f64aec284e319a53dbd6074} 
+\mbox{\hyperlink{struct_boardstate}{Boardstate}} Game\+::get\+Current\+Board\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Converts live grid to AI friendly \doxylink{struct_boardstate}{Boardstate}. 
+
+Converts the current game grid into a \doxylink{struct_boardstate}{Boardstate} used by the AI.
+
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_boardstate}{Boardstate} version of m\+\_\+grid. 
+\end{DoxyReturn}
+\Hypertarget{class_game_ad43a19f5b2e047e7efe96f0f876b6938}\index{Game@{Game}!handleAITurn@{handleAITurn}}
+\index{handleAITurn@{handleAITurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{handleAITurn()}{handleAITurn()}}
+{\footnotesize\ttfamily \label{class_game_ad43a19f5b2e047e7efe96f0f876b6938} 
+void Game\+::handle\+AITurn (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Performs AI decision making for current player\textquotesingle{}s turn. 
+
+Executes the AI\textquotesingle{}s turn during the movement phase.
+
+Uses minimax to compute best move, applies it, checks win, and switches the current player. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_ad43a19f5b2e047e7efe96f0f876b6938_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_ab0ceef9b57efb693a6a3d1061ebfdb7e}\index{Game@{Game}!handleMouseMoved@{handleMouseMoved}}
+\index{handleMouseMoved@{handleMouseMoved}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{handleMouseMoved()}{handleMouseMoved()}}
+{\footnotesize\ttfamily \label{class_game_ab0ceef9b57efb693a6a3d1061ebfdb7e} 
+void Game\+::handle\+Mouse\+Moved (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handle mouse drag. 
+
+Updates the position of dragged pieces while holding the mouse.
+
+Works for both\+:
+\begin{DoxyItemize}
+\item Placement phase (dragging unplaced pieces)
+\item Movement phase (dragging selected board pieces)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse\+Pos} & Pixel position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a60f89eec51c0de6d82b220c87fd41fed}\index{Game@{Game}!handleMousePress@{handleMousePress}}
+\index{handleMousePress@{handleMousePress}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{handleMousePress()}{handleMousePress()}}
+{\footnotesize\ttfamily \label{class_game_a60f89eec51c0de6d82b220c87fd41fed} 
+void Game\+::handle\+Mouse\+Press (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handle mouse down. 
+
+Handles mouse input when pressing the left mouse button.
+
+Behavior depends on the current game state\+:
+\begin{DoxyItemize}
+\item Main\+Menu\+: click buttons
+\item Placement\+: pick up unplaced pieces
+\item Movement\+: select a piece already on the board
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse\+Pos} & Pixel position of the mouse. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a60f89eec51c0de6d82b220c87fd41fed_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_a951b4c28944b18a6513fcf057f3a705c}\index{Game@{Game}!handleMouseRelease@{handleMouseRelease}}
+\index{handleMouseRelease@{handleMouseRelease}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{handleMouseRelease()}{handleMouseRelease()}}
+{\footnotesize\ttfamily \label{class_game_a951b4c28944b18a6513fcf057f3a705c} 
+void Game\+::handle\+Mouse\+Release (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handle mouse release. 
+
+Handles releasing a dragged piece.
+
+Behavior\+:
+\begin{DoxyItemize}
+\item Placement phase\+: drop piece into grid cell if valid
+\item Movement phase\+: move piece to a valid move location
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse\+Pos} & Pixel position where mouse was released. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a951b4c28944b18a6513fcf057f3a705c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_a79f698dda206dd7a9bed28b3f88bdc38}\index{Game@{Game}!processEvents@{processEvents}}
+\index{processEvents@{processEvents}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{processEvents()}{processEvents()}}
+{\footnotesize\ttfamily \label{class_game_a79f698dda206dd7a9bed28b3f88bdc38} 
+void Game\+::process\+Events (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Poll and handle SFML events. 
+
+Polls and handles all events (mouse, keyboard, close, resize).
+
+Handles\+:
+\begin{DoxyItemize}
+\item Closing the window
+\item Key presses
+\item Resizing and view adjustment
+\item Mouse dragging, movement, releasing 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a79f698dda206dd7a9bed28b3f88bdc38_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_a88c8c1e5ea297bb218d81b6a2a61c580}\index{Game@{Game}!processKeys@{processKeys}}
+\index{processKeys@{processKeys}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{processKeys()}{processKeys()}}
+{\footnotesize\ttfamily \label{class_game_a88c8c1e5ea297bb218d81b6a2a61c580} 
+void Game\+::process\+Keys (\begin{DoxyParamCaption}\item[{const std\+::optional$<$ sf\+::\+Event $>$}]{t\+\_\+event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handle key press events. 
+
+Handles keyboard key-\/press events.
+
+ESC closes the game. Any key during Game\+Over returns to main menu via \doxylink{class_game_a47c726a80fd133c0a4f6b8fba56d8832}{reset\+Game()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+event} & Key\+Pressed event. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{class_game_a88c8c1e5ea297bb218d81b6a2a61c580_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_a15ddd769261d923827a3cdf41499c843}\index{Game@{Game}!render@{render}}
+\index{render@{render}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_game_a15ddd769261d923827a3cdf41499c843} 
+void Game\+::render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Render all game graphics. 
+
+Renders the entire game depending on the current game state.
+
+Draws\+:
+\begin{DoxyItemize}
+\item \doxylink{class_board}{Board}
+\item Pieces
+\item Dragged piece
+\item Valid move highlights
+\item Main menu UI
+\item \doxylink{class_game}{Game} over messages 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{class_game_a15ddd769261d923827a3cdf41499c843_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_a47c726a80fd133c0a4f6b8fba56d8832}\index{Game@{Game}!resetGame@{resetGame}}
+\index{resetGame@{resetGame}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{resetGame()}{resetGame()}}
+{\footnotesize\ttfamily \label{class_game_a47c726a80fd133c0a4f6b8fba56d8832} 
+void Game\+::reset\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reset everything back to Main\+Menu. 
+
+Fully resets the game after \doxylink{class_game}{Game} Over and sends the player back to Main\+Menu. \Hypertarget{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa}\index{Game@{Game}!run@{run}}
 \index{run@{run}!Game@{Game}}
 \doxysubsubsection{\texorpdfstring{run()}{run()}}
 {\footnotesize\ttfamily \label{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa} 
@@ -72,9 +458,384 @@ Main game loop.
 
 Main game loop running at 60 FPS.
 
-Handles event processing, updates, and rendering. 
+Handles event processing, updates, and rendering. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a1ab78f5ed0d5ea879157357cf2fb2afa_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_a7dfba4bb3ee3f963117cf10efff89824}\index{Game@{Game}!screenToGrid@{screenToGrid}}
+\index{screenToGrid@{screenToGrid}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{screenToGrid()}{screenToGrid()}}
+{\footnotesize\ttfamily \label{class_game_a7dfba4bb3ee3f963117cf10efff89824} 
+sf\+::\+Vector2i Game\+::screen\+To\+Grid (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{screen\+Pos}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Converts pixel coords to grid coords. 
+
+Converts a pixel coordinate to a grid coordinate based on board position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em screen\+Pos} & Mouse coordinate in screen pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Grid coordinate (row, col). 
+\end{DoxyReturn}
+\Hypertarget{class_game_a4d8d8a2e806c0f0b6cc69c78c619257c}\index{Game@{Game}!setupButtons@{setupButtons}}
+\index{setupButtons@{setupButtons}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setupButtons()}{setupButtons()}}
+{\footnotesize\ttfamily \label{class_game_a4d8d8a2e806c0f0b6cc69c78c619257c} 
+void Game\+::setup\+Buttons (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_menu_button}{Menu\+Button}} \texorpdfstring{$\ast$}{*}}]{btn}{, }\item[{sf\+::\+Font \&}]{font}{, }\item[{const std\+::string \&}]{text}{, }\item[{float}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Creates and positions a menu button. 
+
+Configures the appearance and position of a main menu button.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Button pointer to modify. \\
+\hline
+{\em font} & Font reference for the label. \\
+\hline
+{\em text} & Text to display. \\
+\hline
+{\em y} & Vertical placement.\\
+\hline
+{\em btn} & Button to configure. \\
+\hline
+{\em font} & Font used for the label text. \\
+\hline
+{\em text} & Text appearing on the button. \\
+\hline
+{\em y} & Vertical position on screen. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a81f1f347ed371c39c3a4fbbf52a7c761}\index{Game@{Game}!switchGameState@{switchGameState}}
+\index{switchGameState@{switchGameState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{switchGameState()}{switchGameState()}}
+{\footnotesize\ttfamily \label{class_game_a81f1f347ed371c39c3a4fbbf52a7c761} 
+void Game\+::switch\+Game\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}}}]{new\+State}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Transition between phases. 
+
+Switches the active game state and updates UI text for Game\+Over.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+State} & New state to switch to. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_a1d2aee62bac8e228344e1f44fab504e0}\index{Game@{Game}!update@{update}}
+\index{update@{update}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_game_a1d2aee62bac8e228344e1f44fab504e0} 
+void Game\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{t\+\_\+delta\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Update game logic. 
+
+Updates game logic every frame.
+
+Handles\+:
+\begin{DoxyItemize}
+\item Main menu animation
+\item Placement logic
+\item Movement logic
+\item AI turns for both placement and movement phases
+\item Closing window
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+delta\+Time} & Time since last update tick. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_a1d2aee62bac8e228344e1f44fab504e0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_a1c18201afcab542552a47f32f07c547b}\index{Game@{Game}!updateAnimals@{updateAnimals}}
+\index{updateAnimals@{updateAnimals}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{updateAnimals()}{updateAnimals()}}
+{\footnotesize\ttfamily \label{class_game_a1c18201afcab542552a47f32f07c547b} 
+void Game\+::update\+Animals (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Update positions/scales when window resizes. 
+
+Rescales and repositions all pieces when the board or window is resized. 
+
+\label{doc-variable-members}
+\Hypertarget{class_game_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_game_a4f1415f2f3f8ffecd4616ce05bb0f3e2}\index{Game@{Game}!m\_aiPlayer@{m\_aiPlayer}}
+\index{m\_aiPlayer@{m\_aiPlayer}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_aiPlayer}{m\_aiPlayer}}
+{\footnotesize\ttfamily \label{class_game_a4f1415f2f3f8ffecd4616ce05bb0f3e2} 
+\mbox{\hyperlink{class_gameplay}{Gameplay}} Game\+::m\+\_\+ai\+Player\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_ac945229f4838bd5fae0b4d406a001861}\index{Game@{Game}!m\_animationClock@{m\_animationClock}}
+\index{m\_animationClock@{m\_animationClock}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_animationClock}{m\_animationClock}}
+{\footnotesize\ttfamily \label{class_game_ac945229f4838bd5fae0b4d406a001861} 
+sf\+::\+Clock Game\+::m\+\_\+animation\+Clock\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_ab28ed2c042ec89b177a4866c9fe3bc04}\index{Game@{Game}!m\_board@{m\_board}}
+\index{m\_board@{m\_board}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_board}{m\_board}}
+{\footnotesize\ttfamily \label{class_game_ab28ed2c042ec89b177a4866c9fe3bc04} 
+\mbox{\hyperlink{class_board}{Board}} Game\+::m\+\_\+board \{ 5, 150.f \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+5×5 board 
+
+\Hypertarget{class_game_a56889a726fe76c47fdd8f7c3a2f68480}\index{Game@{Game}!m\_btnAIvAI@{m\_btnAIvAI}}
+\index{m\_btnAIvAI@{m\_btnAIvAI}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_btnAIvAI}{m\_btnAIvAI}}
+{\footnotesize\ttfamily \label{class_game_a56889a726fe76c47fdd8f7c3a2f68480} 
+\mbox{\hyperlink{struct_menu_button}{Menu\+Button}}\texorpdfstring{$\ast$}{*} Game\+::m\+\_\+btn\+AIv\+AI \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a7f3da533970f1c367ea08f3a13a68581}\index{Game@{Game}!m\_btnHvAI@{m\_btnHvAI}}
+\index{m\_btnHvAI@{m\_btnHvAI}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_btnHvAI}{m\_btnHvAI}}
+{\footnotesize\ttfamily \label{class_game_a7f3da533970f1c367ea08f3a13a68581} 
+\mbox{\hyperlink{struct_menu_button}{Menu\+Button}}\texorpdfstring{$\ast$}{*} Game\+::m\+\_\+btn\+Hv\+AI \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a1ee1164055433db90178c71d2892528c}\index{Game@{Game}!m\_btnHvH@{m\_btnHvH}}
+\index{m\_btnHvH@{m\_btnHvH}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_btnHvH}{m\_btnHvH}}
+{\footnotesize\ttfamily \label{class_game_a1ee1164055433db90178c71d2892528c} 
+\mbox{\hyperlink{struct_menu_button}{Menu\+Button}}\texorpdfstring{$\ast$}{*} Game\+::m\+\_\+btn\+HvH \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a9ed638c37520f598a1308a5e63252670}\index{Game@{Game}!m\_btnQuit@{m\_btnQuit}}
+\index{m\_btnQuit@{m\_btnQuit}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_btnQuit}{m\_btnQuit}}
+{\footnotesize\ttfamily \label{class_game_a9ed638c37520f598a1308a5e63252670} 
+\mbox{\hyperlink{struct_menu_button}{Menu\+Button}}\texorpdfstring{$\ast$}{*} Game\+::m\+\_\+btn\+Quit \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_af7e37120a0caf2b763e00ab4af84a71e}\index{Game@{Game}!m\_currentGameState@{m\_currentGameState}}
+\index{m\_currentGameState@{m\_currentGameState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_currentGameState}{m\_currentGameState}}
+{\footnotesize\ttfamily \label{class_game_af7e37120a0caf2b763e00ab4af84a71e} 
+\mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285}{Game\+State}} Game\+::m\+\_\+current\+Game\+State \{ \mbox{\hyperlink{_game_8h_a7899b65f1ea0f655e4bbf8d2a5714285aae13e51f99f3be623a6d44d7439d9bb5}{Game\+State\+::\+Placement}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a55bf9199cd241b3e7cebd0b91b0f9d71}\index{Game@{Game}!m\_currentPlayer@{m\_currentPlayer}}
+\index{m\_currentPlayer@{m\_currentPlayer}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_currentPlayer}{m\_currentPlayer}}
+{\footnotesize\ttfamily \label{class_game_a55bf9199cd241b3e7cebd0b91b0f9d71} 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} Game\+::m\+\_\+current\+Player \{ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9a600f125ca9ad5fe29a6252a73c5772a6}{Player\+::\+Player1}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a0f2d059d0ef4b76004b9dcef5313d69b}\index{Game@{Game}!m\_DELETEexitGame@{m\_DELETEexitGame}}
+\index{m\_DELETEexitGame@{m\_DELETEexitGame}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_DELETEexitGame}{m\_DELETEexitGame}}
+{\footnotesize\ttfamily \label{class_game_a0f2d059d0ef4b76004b9dcef5313d69b} 
+bool Game\+::m\+\_\+\+DELETEexit\+Game\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a743a323841d0ee5e39dad813662c5320}\index{Game@{Game}!m\_DELETElogoSprite@{m\_DELETElogoSprite}}
+\index{m\_DELETElogoSprite@{m\_DELETElogoSprite}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_DELETElogoSprite}{m\_DELETElogoSprite}}
+{\footnotesize\ttfamily \label{class_game_a743a323841d0ee5e39dad813662c5320} 
+sf\+::\+Sprite Game\+::m\+\_\+\+DELETElogo\+Sprite \{ \mbox{\hyperlink{class_game_ada7c821937ba3c60ae257c8caac7115a}{m\+\_\+\+DELETElogo\+Texture}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_ada7c821937ba3c60ae257c8caac7115a}\index{Game@{Game}!m\_DELETElogoTexture@{m\_DELETElogoTexture}}
+\index{m\_DELETElogoTexture@{m\_DELETElogoTexture}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_DELETElogoTexture}{m\_DELETElogoTexture}}
+{\footnotesize\ttfamily \label{class_game_ada7c821937ba3c60ae257c8caac7115a} 
+sf\+::\+Texture Game\+::m\+\_\+\+DELETElogo\+Texture\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_acad554239a4bc27babf242a14f99fa36}\index{Game@{Game}!m\_DELETEwelcomeMessage@{m\_DELETEwelcomeMessage}}
+\index{m\_DELETEwelcomeMessage@{m\_DELETEwelcomeMessage}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_DELETEwelcomeMessage}{m\_DELETEwelcomeMessage}}
+{\footnotesize\ttfamily \label{class_game_acad554239a4bc27babf242a14f99fa36} 
+sf\+::\+Text Game\+::m\+\_\+\+DELETEwelcome\+Message \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a9e49339dad37011e908bf346f5b38799}\index{Game@{Game}!m\_draggedPiece@{m\_draggedPiece}}
+\index{m\_draggedPiece@{m\_draggedPiece}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_draggedPiece}{m\_draggedPiece}}
+{\footnotesize\ttfamily \label{class_game_a9e49339dad37011e908bf346f5b38799} 
+\mbox{\hyperlink{class_animal}{Animal}}\texorpdfstring{$\ast$}{*} Game\+::m\+\_\+dragged\+Piece \{ nullptr \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a1b38a7b32c0d74e2e18c7e2f7f8f07b1}\index{Game@{Game}!m\_draggedPieceIndex@{m\_draggedPieceIndex}}
+\index{m\_draggedPieceIndex@{m\_draggedPieceIndex}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_draggedPieceIndex}{m\_draggedPieceIndex}}
+{\footnotesize\ttfamily \label{class_game_a1b38a7b32c0d74e2e18c7e2f7f8f07b1} 
+int Game\+::m\+\_\+dragged\+Piece\+Index \{ -\/1 \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_af440aa8d540175e20553fef858218de9}\index{Game@{Game}!m\_gameplay@{m\_gameplay}}
+\index{m\_gameplay@{m\_gameplay}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_gameplay}{m\_gameplay}}
+{\footnotesize\ttfamily \label{class_game_af440aa8d540175e20553fef858218de9} 
+\mbox{\hyperlink{class_gameplay}{Gameplay}} Game\+::m\+\_\+gameplay\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_ac613805bdcd6c91b23a2b7a6fea4dba5}\index{Game@{Game}!m\_grid@{m\_grid}}
+\index{m\_grid@{m\_grid}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_grid}{m\_grid}}
+{\footnotesize\ttfamily \label{class_game_ac613805bdcd6c91b23a2b7a6fea4dba5} 
+\mbox{\hyperlink{class_animal}{Animal}} Game\+::m\+\_\+grid\mbox{[}\mbox{\hyperlink{_board_8h_aa7a2b8ea2c784a4ad8b58a3262bb4f07}{BOARD\+\_\+\+SIZE}}\mbox{]}\mbox{[}\mbox{\hyperlink{_board_8h_aa7a2b8ea2c784a4ad8b58a3262bb4f07}{BOARD\+\_\+\+SIZE}}\mbox{]} \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Placed animals. 
+
+\Hypertarget{class_game_ad7a573e580c736d52b94762949165e5e}\index{Game@{Game}!m\_instructionText@{m\_instructionText}}
+\index{m\_instructionText@{m\_instructionText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_instructionText}{m\_instructionText}}
+{\footnotesize\ttfamily \label{class_game_ad7a573e580c736d52b94762949165e5e} 
+sf\+::\+Text Game\+::m\+\_\+instruction\+Text \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_ad8379df4481e56cb10f48ac503bc845d}\index{Game@{Game}!m\_isDragging@{m\_isDragging}}
+\index{m\_isDragging@{m\_isDragging}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_isDragging}{m\_isDragging}}
+{\footnotesize\ttfamily \label{class_game_ad8379df4481e56cb10f48ac503bc845d} 
+bool Game\+::m\+\_\+is\+Dragging \{ false \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a38f308df0b1f2f4e99deb3fa6f90d774}\index{Game@{Game}!m\_isPieceSelected@{m\_isPieceSelected}}
+\index{m\_isPieceSelected@{m\_isPieceSelected}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_isPieceSelected}{m\_isPieceSelected}}
+{\footnotesize\ttfamily \label{class_game_a38f308df0b1f2f4e99deb3fa6f90d774} 
+bool Game\+::m\+\_\+is\+Piece\+Selected \{ false \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a853939dbd7545ae9dd5efc844482d3b0}\index{Game@{Game}!m\_jerseyFont@{m\_jerseyFont}}
+\index{m\_jerseyFont@{m\_jerseyFont}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_jerseyFont}{m\_jerseyFont}}
+{\footnotesize\ttfamily \label{class_game_a853939dbd7545ae9dd5efc844482d3b0} 
+sf\+::\+Font Game\+::m\+\_\+jersey\+Font\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Primary UI font. 
+
+\Hypertarget{class_game_adb9fa83180a7f4c10fbf7d16f9c4e5da}\index{Game@{Game}!m\_menuCredits@{m\_menuCredits}}
+\index{m\_menuCredits@{m\_menuCredits}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_menuCredits}{m\_menuCredits}}
+{\footnotesize\ttfamily \label{class_game_adb9fa83180a7f4c10fbf7d16f9c4e5da} 
+sf\+::\+Text Game\+::m\+\_\+menu\+Credits \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a08fd5da0e5ca2c799eb447c1bea01618}\index{Game@{Game}!m\_menuSubtitle@{m\_menuSubtitle}}
+\index{m\_menuSubtitle@{m\_menuSubtitle}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_menuSubtitle}{m\_menuSubtitle}}
+{\footnotesize\ttfamily \label{class_game_a08fd5da0e5ca2c799eb447c1bea01618} 
+sf\+::\+Text Game\+::m\+\_\+menu\+Subtitle \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a19b7cecb5ee517c2816d127b8cf1c21f}\index{Game@{Game}!m\_menuTitle@{m\_menuTitle}}
+\index{m\_menuTitle@{m\_menuTitle}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_menuTitle}{m\_menuTitle}}
+{\footnotesize\ttfamily \label{class_game_a19b7cecb5ee517c2816d127b8cf1c21f} 
+sf\+::\+Text Game\+::m\+\_\+menu\+Title \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a34a52bd064863470ff1505b68ec2d044}\index{Game@{Game}!m\_originalCell@{m\_originalCell}}
+\index{m\_originalCell@{m\_originalCell}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_originalCell}{m\_originalCell}}
+{\footnotesize\ttfamily \label{class_game_a34a52bd064863470ff1505b68ec2d044} 
+sf\+::\+Vector2i Game\+::m\+\_\+original\+Cell \{ -\/1, -\/1 \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a4e2fc446aebd13525345bb972e97ac41}\index{Game@{Game}!m\_player1IsAI@{m\_player1IsAI}}
+\index{m\_player1IsAI@{m\_player1IsAI}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_player1IsAI}{m\_player1IsAI}}
+{\footnotesize\ttfamily \label{class_game_a4e2fc446aebd13525345bb972e97ac41} 
+bool Game\+::m\+\_\+player1\+Is\+AI \{ false \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_ae23e51fc29cc0dc2099466b844d3caae}\index{Game@{Game}!m\_player1Pieces@{m\_player1Pieces}}
+\index{m\_player1Pieces@{m\_player1Pieces}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_player1Pieces}{m\_player1Pieces}}
+{\footnotesize\ttfamily \label{class_game_ae23e51fc29cc0dc2099466b844d3caae} 
+std\+::vector$<$\mbox{\hyperlink{class_animal}{Animal}}$>$ Game\+::m\+\_\+player1\+Pieces\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+P1 unplaced pieces. 
+
+\Hypertarget{class_game_ab669854f3d0d36b0e0588f08ea05914c}\index{Game@{Game}!m\_player1PiecesPlaced@{m\_player1PiecesPlaced}}
+\index{m\_player1PiecesPlaced@{m\_player1PiecesPlaced}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_player1PiecesPlaced}{m\_player1PiecesPlaced}}
+{\footnotesize\ttfamily \label{class_game_ab669854f3d0d36b0e0588f08ea05914c} 
+int Game\+::m\+\_\+player1\+Pieces\+Placed \{ 0 \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_ac151d54c0dc7d7e7c1600bdd933ba63a}\index{Game@{Game}!m\_player2IsAI@{m\_player2IsAI}}
+\index{m\_player2IsAI@{m\_player2IsAI}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_player2IsAI}{m\_player2IsAI}}
+{\footnotesize\ttfamily \label{class_game_ac151d54c0dc7d7e7c1600bdd933ba63a} 
+bool Game\+::m\+\_\+player2\+Is\+AI \{ true \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_aad5fc8b45bbf32f081abb944f15c2435}\index{Game@{Game}!m\_player2Pieces@{m\_player2Pieces}}
+\index{m\_player2Pieces@{m\_player2Pieces}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_player2Pieces}{m\_player2Pieces}}
+{\footnotesize\ttfamily \label{class_game_aad5fc8b45bbf32f081abb944f15c2435} 
+std\+::vector$<$\mbox{\hyperlink{class_animal}{Animal}}$>$ Game\+::m\+\_\+player2\+Pieces\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+P2 unplaced pieces. 
+
+\Hypertarget{class_game_a940a736c804130bdbdb953e0c0b2b086}\index{Game@{Game}!m\_player2PiecesPlaced@{m\_player2PiecesPlaced}}
+\index{m\_player2PiecesPlaced@{m\_player2PiecesPlaced}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_player2PiecesPlaced}{m\_player2PiecesPlaced}}
+{\footnotesize\ttfamily \label{class_game_a940a736c804130bdbdb953e0c0b2b086} 
+int Game\+::m\+\_\+player2\+Pieces\+Placed \{ 0 \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_af95050bd8cbfd4ce93626bb7dd10c16b}\index{Game@{Game}!m\_selectedCell@{m\_selectedCell}}
+\index{m\_selectedCell@{m\_selectedCell}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_selectedCell}{m\_selectedCell}}
+{\footnotesize\ttfamily \label{class_game_af95050bd8cbfd4ce93626bb7dd10c16b} 
+sf\+::\+Vector2i Game\+::m\+\_\+selected\+Cell \{ -\/1, -\/1 \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a872eb9653a03adccefdc3ebee4b34ead}\index{Game@{Game}!m\_selectedPiece@{m\_selectedPiece}}
+\index{m\_selectedPiece@{m\_selectedPiece}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_selectedPiece}{m\_selectedPiece}}
+{\footnotesize\ttfamily \label{class_game_a872eb9653a03adccefdc3ebee4b34ead} 
+\mbox{\hyperlink{class_animal}{Animal}}\texorpdfstring{$\ast$}{*} Game\+::m\+\_\+selected\+Piece \{ nullptr \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a4478b6c5ad4862e668026c0d482bbc66}\index{Game@{Game}!m\_validMoves@{m\_validMoves}}
+\index{m\_validMoves@{m\_validMoves}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_validMoves}{m\_validMoves}}
+{\footnotesize\ttfamily \label{class_game_a4478b6c5ad4862e668026c0d482bbc66} 
+std\+::vector$<$sf\+::\+Vector2i$>$ Game\+::m\+\_\+valid\+Moves\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a22a61b5ea27c609be8cf2724c33d7ae5}\index{Game@{Game}!m\_window@{m\_window}}
+\index{m\_window@{m\_window}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_window}{m\_window}}
+{\footnotesize\ttfamily \label{class_game_a22a61b5ea27c609be8cf2724c33d7ae5} 
+sf\+::\+Render\+Window Game\+::m\+\_\+window\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Main SFML window. 
+
+\Hypertarget{class_game_a2b78145e81e29acac0cb19d4f0e8f2d1}\index{Game@{Game}!m\_winMessage@{m\_winMessage}}
+\index{m\_winMessage@{m\_winMessage}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_winMessage}{m\_winMessage}}
+{\footnotesize\ttfamily \label{class_game_a2b78145e81e29acac0cb19d4f0e8f2d1} 
+sf\+::\+Text Game\+::m\+\_\+win\+Message \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a9bcde36a4911a5cdef21cc2124e513f4}\index{Game@{Game}!m\_winMessage2@{m\_winMessage2}}
+\index{m\_winMessage2@{m\_winMessage2}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_winMessage2}{m\_winMessage2}}
+{\footnotesize\ttfamily \label{class_game_a9bcde36a4911a5cdef21cc2124e513f4} 
+sf\+::\+Text Game\+::m\+\_\+win\+Message2 \{ \mbox{\hyperlink{class_game_a853939dbd7545ae9dd5efc844482d3b0}{m\+\_\+jersey\+Font}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_a4fb273bbad45c19252092a04d1477803}\index{Game@{Game}!m\_winner@{m\_winner}}
+\index{m\_winner@{m\_winner}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{m\_winner}{m\_winner}}
+{\footnotesize\ttfamily \label{class_game_a4fb273bbad45c19252092a04d1477803} 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} Game\+::m\+\_\+winner \{ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9ab4cb3ef9db0929a23abf8da5b05fbbe9}{Player\+::\+No\+Player}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_game_8h}{Game.\+h}}\item 
-C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_game_8cpp}{Game.\+cpp}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{_game_8h}{Game.\+h}}\item 
+\mbox{\hyperlink{_game_8cpp}{Game.\+cpp}}\end{DoxyCompactItemize}

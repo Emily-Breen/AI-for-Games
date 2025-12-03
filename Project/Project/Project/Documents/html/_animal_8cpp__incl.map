@@ -1,0 +1,11 @@
+<map id="Animal.cpp" name="Animal.cpp">
+<area shape="rect" id="Node000001" title="Implements the Animal class which represents player game pieces, their textures, drawing,..." alt="" coords="109,5,195,32"/>
+<area shape="rect" id="Node000002" href="$_animal_8h.html" title=" " alt="" coords="116,80,188,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,30,155,65,149,63,151,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,59,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="133,109,67,149,65,144,130,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="83,155,221,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="154,105,154,140,150,138,150,109"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="244,155,316,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="175,105,247,146,242,147,174,110"/>
+</map>

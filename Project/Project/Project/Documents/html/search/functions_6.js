@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
-  ['menubutton_1',['MenuButton',['../struct_menu_button.html#aab3f6d05cdd6056f8a8c54752a8073e3',1,'MenuButton']]],
-  ['move_2',['Move',['../struct_move.html#a4b1acc3a67d30c385ad9a6000526393a',1,'Move::Move()'],['../struct_move.html#abb3edb4ad9a2ebe03022591a58c67865',1,'Move::Move(int r1, int c1, int r2, int c2)']]]
+  ['handleaiturn_0',['handleAITurn',['../class_game.html#ad43a19f5b2e047e7efe96f0f876b6938',1,'Game']]],
+  ['handlemousemoved_1',['handleMouseMoved',['../class_game.html#ab0ceef9b57efb693a6a3d1061ebfdb7e',1,'Game']]],
+  ['handlemousepress_2',['handleMousePress',['../class_game.html#a60f89eec51c0de6d82b220c87fd41fed',1,'Game']]],
+  ['handlemouserelease_3',['handleMouseRelease',['../class_game.html#a951b4c28944b18a6513fcf057f3a705c',1,'Game']]]
 ];

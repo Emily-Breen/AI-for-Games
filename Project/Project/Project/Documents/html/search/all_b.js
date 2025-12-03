@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['operator_3d_0',['operator=',['../class_animal.html#aa877ca8e4c0747f5794614e7b35c2fa5',1,'Animal']]],
-  ['owner_1',['owner',['../struct_piece_state.html#abe651014005ba7dd5968efbdc05d78e8',1,'PieceState']]]
+  ['noplayer_0',['NoPlayer',['../_animal_8h.html#a9c8780378078e51e7c9041cbac392db9ab4cb3ef9db0929a23abf8da5b05fbbe9',1,'Animal.h']]],
+  ['notype_1',['NoType',['../_animal_8h.html#a6f4aee1c6d261958dbe9554417a936dba660ceda086e2c9ea5a120caff6419577',1,'Animal.h']]]
 ];

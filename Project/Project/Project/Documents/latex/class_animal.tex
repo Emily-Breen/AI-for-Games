@@ -40,6 +40,26 @@ sf\+::\+Float\+Rect \mbox{\hyperlink{class_animal_a47c598d084494af38838976f2ad8d
 \begin{DoxyCompactList}\small\item\em Copy assignment operator. \end{DoxyCompactList}\item 
 std\+::vector$<$ sf\+::\+Vector2i $>$ \mbox{\hyperlink{class_animal_a6d95f368dafb0071915618c41cd487fd}{get\+Valid\+Moves}} (int current\+Row, int current\+Col, const \mbox{\hyperlink{class_animal}{Animal}} \texorpdfstring{$\ast$}{*}grid, int board\+Size) const
 \begin{DoxyCompactList}\small\item\em Computes valid movement locations for this animal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_animal_a4a432c83d9290b59c7b41956122bab1e}{is\+Valid\+Position}} (int row, int col, int board\+Size) const
+\begin{DoxyCompactList}\small\item\em Checks if a position is within board bounds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animal_ab4ab82b6c86f8726d31d5f9b6cd0aa0c}{add\+Adjacent\+Moves}} (int row, int col, const \mbox{\hyperlink{class_animal}{Animal}} \texorpdfstring{$\ast$}{*}grid, int board\+Size, std\+::vector$<$ sf\+::\+Vector2i $>$ \&moves, bool include\+Diagonal) const
+\begin{DoxyCompactList}\small\item\em Adds adjacent moves (cardinal + optional diagonal). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_animal_aed3cda05602b23e452129fbdc1066158}{add\+Frog\+Jump\+Moves}} (int row, int col, const \mbox{\hyperlink{class_animal}{Animal}} \texorpdfstring{$\ast$}{*}grid, int board\+Size, std\+::vector$<$ sf\+::\+Vector2i $>$ \&moves) const
+\begin{DoxyCompactList}\small\item\em Adds frog style multi tile jumping moves. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \mbox{\hyperlink{class_animal_a9e35e11d495bbcbb6ec40da47c9fe60a}{m\+\_\+owner}}
+\item 
+\mbox{\hyperlink{_animal_8h_a6f4aee1c6d261958dbe9554417a936db}{Animal\+Type}} \mbox{\hyperlink{class_animal_aac828bf021e2f508644c0dd1f8b38801}{m\+\_\+type}}
+\item 
+sf\+::\+Texture \mbox{\hyperlink{class_animal_a684695058eb666ded5f4d0d0981218b0}{m\+\_\+texture}}
+\item 
+sf\+::\+Sprite \mbox{\hyperlink{class_animal_a5050621e8c8bc51103b7775eabdc43de}{m\+\_\+sprite}} \{ \mbox{\hyperlink{class_animal_a684695058eb666ded5f4d0d0981218b0}{m\+\_\+texture}} \}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -100,13 +120,52 @@ Copy constructor. Ensures sprite position and ownership are copied.
 {\em other} & The \doxylink{class_animal}{Animal} to copy. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:
-% FIG 0
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{class_animal_ac9cb0456a22b938ef4a6adf4a371f778_cgraph}
+\end{center}
+\end{figure}
 
 
 \label{doc-func-members}
 \Hypertarget{class_animal_doc-func-members}
 \doxysubsection{Member Function Documentation}
+\Hypertarget{class_animal_ab4ab82b6c86f8726d31d5f9b6cd0aa0c}\index{Animal@{Animal}!addAdjacentMoves@{addAdjacentMoves}}
+\index{addAdjacentMoves@{addAdjacentMoves}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{addAdjacentMoves()}{addAdjacentMoves()}}
+{\footnotesize\ttfamily \label{class_animal_ab4ab82b6c86f8726d31d5f9b6cd0aa0c} 
+void Animal\+::add\+Adjacent\+Moves (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{, }\item[{const \mbox{\hyperlink{class_animal}{Animal}} \texorpdfstring{$\ast$}{*}}]{grid}{, }\item[{int}]{board\+Size}{, }\item[{std\+::vector$<$ sf\+::\+Vector2i $>$ \&}]{moves}{, }\item[{bool}]{include\+Diagonal}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Adds adjacent moves (cardinal + optional diagonal). 
+
+Adds all 1-\/step moves (cardinal \& diagonal if allowed). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_animal_ab4ab82b6c86f8726d31d5f9b6cd0aa0c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_animal_aed3cda05602b23e452129fbdc1066158}\index{Animal@{Animal}!addFrogJumpMoves@{addFrogJumpMoves}}
+\index{addFrogJumpMoves@{addFrogJumpMoves}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{addFrogJumpMoves()}{addFrogJumpMoves()}}
+{\footnotesize\ttfamily \label{class_animal_aed3cda05602b23e452129fbdc1066158} 
+void Animal\+::add\+Frog\+Jump\+Moves (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{, }\item[{const \mbox{\hyperlink{class_animal}{Animal}} \texorpdfstring{$\ast$}{*}}]{grid}{, }\item[{int}]{board\+Size}{, }\item[{std\+::vector$<$ sf\+::\+Vector2i $>$ \&}]{moves}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Adds frog style multi tile jumping moves. 
+
+Adds frog jump moves (jump over any piece and land on next empty tile). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_animal_aed3cda05602b23e452129fbdc1066158_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_animal_a94768be1c3820699d74a3f6a2621448c}\index{Animal@{Animal}!draw@{draw}}
 \index{draw@{draw}!Animal@{Animal}}
 \doxysubsubsection{\texorpdfstring{draw()}{draw()}}
@@ -126,8 +185,13 @@ Draws the animal sprite to the game window.
 {\em m\+\_\+window} & The render window. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:
-% FIG 1
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{class_animal_a94768be1c3820699d74a3f6a2621448c_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_animal_a47c598d084494af38838976f2ad8dd19}\index{Animal@{Animal}!getBounds@{getBounds}}
 \index{getBounds@{getBounds}!Animal@{Animal}}
 \doxysubsubsection{\texorpdfstring{getBounds()}{getBounds()}}
@@ -234,8 +298,13 @@ A list of valid movement destination positions.
 \begin{DoxyReturn}{Returns}
 Vector of valid move coordinates. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:
-% FIG 2
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_animal_a6d95f368dafb0071915618c41cd487fd_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_animal_a67bcb3b65f047d38f98cc74399ba8fea}\index{Animal@{Animal}!initAnimalTexture@{initAnimalTexture}}
 \index{initAnimalTexture@{initAnimalTexture}!Animal@{Animal}}
 \doxysubsubsection{\texorpdfstring{initAnimalTexture()}{initAnimalTexture()}}
@@ -272,7 +341,17 @@ True if this represents an empty cell.
 
 true if owner is No\+Player. 
 \end{DoxyReturn}
-\Hypertarget{class_animal_aa877ca8e4c0747f5794614e7b35c2fa5}\index{Animal@{Animal}!operator=@{operator=}}
+\Hypertarget{class_animal_a4a432c83d9290b59c7b41956122bab1e}\index{Animal@{Animal}!isValidPosition@{isValidPosition}}
+\index{isValidPosition@{isValidPosition}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{isValidPosition()}{isValidPosition()}}
+{\footnotesize\ttfamily \label{class_animal_a4a432c83d9290b59c7b41956122bab1e} 
+bool Animal\+::is\+Valid\+Position (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{, }\item[{int}]{board\+Size}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if a position is within board bounds. 
+
+Checks if a board coordinate is within valid range. \Hypertarget{class_animal_aa877ca8e4c0747f5794614e7b35c2fa5}\index{Animal@{Animal}!operator=@{operator=}}
 \index{operator=@{operator=}!Animal@{Animal}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
 {\footnotesize\ttfamily \label{class_animal_aa877ca8e4c0747f5794614e7b35c2fa5} 
@@ -295,8 +374,13 @@ Reference to this object.
 \begin{DoxyReturn}{Returns}
 Reference to \texorpdfstring{$\ast$}{*}this. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:
-% FIG 3
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{class_animal_aa877ca8e4c0747f5794614e7b35c2fa5_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_animal_ab82e8398cd9e7769dfda4741b13a8e0b}\index{Animal@{Animal}!rescale@{rescale}}
 \index{rescale@{rescale}!Animal@{Animal}}
 \doxysubsubsection{\texorpdfstring{rescale()}{rescale()}}
@@ -316,8 +400,13 @@ Adjusts sprite scale when the board is resized.
 {\em cell\+Size} & New board cell size. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:
-% FIG 4
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{class_animal_ab82e8398cd9e7769dfda4741b13a8e0b_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_animal_abc6b4ca5d836809cf58c2ee3c9c308d7}\index{Animal@{Animal}!setPosition@{setPosition}}
 \index{setPosition@{setPosition}!Animal@{Animal}}
 \doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
@@ -339,7 +428,36 @@ Sets the on screen position of the \doxylink{class_animal}{Animal}\textquotesing
 \end{DoxyParams}
 
 
+\label{doc-variable-members}
+\Hypertarget{class_animal_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_animal_a9e35e11d495bbcbb6ec40da47c9fe60a}\index{Animal@{Animal}!m\_owner@{m\_owner}}
+\index{m\_owner@{m\_owner}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{m\_owner}{m\_owner}}
+{\footnotesize\ttfamily \label{class_animal_a9e35e11d495bbcbb6ec40da47c9fe60a} 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} Animal\+::m\+\_\+owner\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_animal_a5050621e8c8bc51103b7775eabdc43de}\index{Animal@{Animal}!m\_sprite@{m\_sprite}}
+\index{m\_sprite@{m\_sprite}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{m\_sprite}{m\_sprite}}
+{\footnotesize\ttfamily \label{class_animal_a5050621e8c8bc51103b7775eabdc43de} 
+sf\+::\+Sprite Animal\+::m\+\_\+sprite \{ \mbox{\hyperlink{class_animal_a684695058eb666ded5f4d0d0981218b0}{m\+\_\+texture}} \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_animal_a684695058eb666ded5f4d0d0981218b0}\index{Animal@{Animal}!m\_texture@{m\_texture}}
+\index{m\_texture@{m\_texture}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{m\_texture}{m\_texture}}
+{\footnotesize\ttfamily \label{class_animal_a684695058eb666ded5f4d0d0981218b0} 
+sf\+::\+Texture Animal\+::m\+\_\+texture\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_animal_aac828bf021e2f508644c0dd1f8b38801}\index{Animal@{Animal}!m\_type@{m\_type}}
+\index{m\_type@{m\_type}!Animal@{Animal}}
+\doxysubsubsection{\texorpdfstring{m\_type}{m\_type}}
+{\footnotesize\ttfamily \label{class_animal_aac828bf021e2f508644c0dd1f8b38801} 
+\mbox{\hyperlink{_animal_8h_a6f4aee1c6d261958dbe9554417a936db}{Animal\+Type}} Animal\+::m\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_animal_8h}{Animal.\+h}}\item 
-C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_animal_8cpp}{Animal.\+cpp}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{_animal_8h}{Animal.\+h}}\item 
+\mbox{\hyperlink{_animal_8cpp}{Animal.\+cpp}}\end{DoxyCompactItemize}

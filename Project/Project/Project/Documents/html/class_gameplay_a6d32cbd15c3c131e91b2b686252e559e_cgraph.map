@@ -1,0 +1,7 @@
+<map id="Gameplay::generateMoves" name="Gameplay::generateMoves">
+<area shape="rect" id="Node000001" title="Generates all legal moves for the current player." alt="" coords="5,13,183,40"/>
+<area shape="rect" id="Node000002" href="$class_gameplay.html#abec49da7249d41f91f22d17a25f32d9e" title="Gets all valid moves for a piece located at (row, col)." alt="" coords="231,5,423,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,24,218,26,212,27,183,29"/>
+<area shape="rect" id="Node000003" href="$class_gameplay.html#ab27e2ba44c89585ae32837fc7eb51b20" title="Checks whether a board coordinate is valid." alt="" coords="471,13,644,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="424,24,458,27,452,27,424,29"/>
+</map>

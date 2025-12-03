@@ -1,0 +1,28 @@
+<map id="Gameplay::chooseBestMove" name="Gameplay::chooseBestMove">
+<area shape="rect" id="Node000001" title="Computes the best move for the current player using minimax." alt="" coords="5,52,195,79"/>
+<area shape="rect" id="Node000002" href="$class_gameplay.html#a6d32cbd15c3c131e91b2b686252e559e" title="Generates all legal moves for the current player." alt="" coords="442,13,619,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,54,428,34,425,38,196,59"/>
+<area shape="rect" id="Node000005" href="$class_gameplay.html#ab625a9fdc2dc68884e50786eba67f396" title="Applies a move to a board and returns the resulting state." alt="" coords="454,67,607,93"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="195,66,440,75,437,79,195,71"/>
+<area shape="rect" id="Node000006" href="$class_gameplay.html#a18d8e116e550085670f18ea41a8b157b" title="Minimax algorithm with alpha&#45;beta pruning." alt="" coords="243,127,380,153"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="140,77,259,120,254,122,140,82"/>
+<area shape="rect" id="Node000003" href="$class_gameplay.html#abec49da7249d41f91f22d17a25f32d9e" title="Gets all valid moves for a piece located at (row, col)." alt="" coords="694,5,886,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="620,24,681,26,676,27,620,29"/>
+<area shape="rect" id="Node000004" href="$class_gameplay.html#ab27e2ba44c89585ae32837fc7eb51b20" title="Checks whether a board coordinate is valid." alt="" coords="971,13,1144,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="886,24,959,26,953,27,887,29"/>
+<area shape="poly" id="edge12_Node000006_Node000002" title=" " alt="" coords="326,124,369,88,427,52,449,46,453,44,429,57,372,93,329,128"/>
+<area shape="poly" id="edge13_Node000006_Node000005" title=" " alt="" coords="362,124,467,97,462,99,364,129"/>
+<area shape="poly" id="edge14_Node000006_Node000006" title=" " alt="" coords="275,126,269,118,274,108,288,102,311,100,336,103,351,112,346,111,335,108,311,105,289,107,277,112,274,117,280,127"/>
+<area shape="rect" id="Node000007" href="$class_gameplay.html#a5b0cc99aaa3448fb8c300b5f5435e2f3" title="Checks if the board contains a win condition." alt="" coords="428,123,633,149"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="380,136,415,138,410,139,381,141"/>
+<area shape="rect" id="Node000008" href="$class_gameplay.html#ad7296cc2f90f36ef3ae336dc48c4b80c" title="Heuristic board evaluation used when minimax depth ends." alt="" coords="445,173,616,200"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="377,151,452,169,447,170,377,157"/>
+<area shape="rect" id="Node000009" href="$class_gameplay.html#a376da2c28d3a73a725db1eae32b6f40e" title="Calculates threat patterns (3 in a row with one empty)." alt="" coords="681,199,899,225"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="617,192,669,200,663,200,617,198"/>
+<area shape="rect" id="Node000011" href="$class_gameplay.html#a99ef56de7b72110716d6070963b043ce" title="Calculates patterns of two in a row with two empty." alt="" coords="686,148,894,175"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="617,176,668,173,673,173,617,181"/>
+<area shape="rect" id="Node000010" href="$class_gameplay.html#a911a53b66a99e2161ce68f61648de01a" title="Checks four tiles for a potential threat." alt="" coords="947,199,1169,225"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="899,209,934,212,928,212,899,215"/>
+<area shape="rect" id="Node000012" href="$class_gameplay.html#a2384d786712dc45870b66c32bb55ba23" title="Checks four tiles for a potential two&#45;in&#45;a&#45;row." alt="" coords="951,148,1164,175"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="895,159,938,161,933,161,895,164"/>
+</map>

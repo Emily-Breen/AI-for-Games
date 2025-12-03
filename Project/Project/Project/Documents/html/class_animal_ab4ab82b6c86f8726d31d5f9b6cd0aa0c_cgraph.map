@@ -1,0 +1,9 @@
+<map id="Animal::addAdjacentMoves" name="Animal::addAdjacentMoves">
+<area shape="rect" id="Node000001" title="Adds adjacent moves (cardinal + optional diagonal)." alt="" coords="5,56,186,83"/>
+<area shape="rect" id="Node000002" href="$class_animal.html#a1e726a49ec952443190ac62dad22353c" title="Default constructor. Creates an empty/unoccupied piece." alt="" coords="256,5,366,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,53,243,34,239,36,156,58"/>
+<area shape="rect" id="Node000003" href="$class_animal.html#aef86c4a26a318399a9de683fd0e1b713" title="Checks if this is an empty piece (no owner, no type)." alt="" coords="252,56,370,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,67,239,69,234,70,186,72"/>
+<area shape="rect" id="Node000004" href="$class_animal.html#a4a432c83d9290b59c7b41956122bab1e" title="Checks if a position is within board bounds." alt="" coords="234,107,388,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="156,81,239,102,234,103,155,86"/>
+</map>

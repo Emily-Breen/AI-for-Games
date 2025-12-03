@@ -1,0 +1,11 @@
+<map id="Gameplay::evaluateBoard" name="Gameplay::evaluateBoard">
+<area shape="rect" id="Node000001" title="Heuristic board evaluation used when minimax depth ends." alt="" coords="5,31,177,57"/>
+<area shape="rect" id="Node000002" href="$class_gameplay.html#a376da2c28d3a73a725db1eae32b6f40e" title="Calculates threat patterns (3 in a row with one empty)." alt="" coords="225,5,442,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,32,212,31,206,32,178,38"/>
+<area shape="rect" id="Node000004" href="$class_gameplay.html#a99ef56de7b72110716d6070963b043ce" title="Calculates patterns of two in a row with two empty." alt="" coords="229,56,438,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="177,50,216,57,211,57,177,56"/>
+<area shape="rect" id="Node000003" href="$class_gameplay.html#a911a53b66a99e2161ce68f61648de01a" title="Checks four tiles for a potential threat." alt="" coords="490,5,712,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="442,16,477,18,472,19,443,21"/>
+<area shape="rect" id="Node000005" href="$class_gameplay.html#a2384d786712dc45870b66c32bb55ba23" title="Checks four tiles for a potential two&#45;in&#45;a&#45;row." alt="" coords="494,56,708,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="438,67,482,69,476,69,438,72"/>
+</map>

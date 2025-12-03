@@ -1,0 +1,21 @@
+<map id="Gameplay.h" name="Gameplay.h">
+<area shape="rect" id="Node000001" title="Contains AI logic, board evaluation, move generation and minimax." alt="" coords="181,5,271,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,229,143,256"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,34,145,53,127,66,112,82,94,114,83,149,76,214,71,213,78,148,89,112,108,78,124,62,142,49,184,31"/>
+<area shape="rect" id="Node000003" href="$_animal_8h.html" title=" " alt="" coords="162,155,234,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="226,31,206,140,201,138,222,34"/>
+<area shape="rect" id="Node000006" href="$_board_8h.html" title="Declares the Board class, responsible for drawing and managing a square game grid." alt="" coords="122,80,188,107"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="212,34,180,71,176,67,216,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="259,155,316,181"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="233,30,279,141,274,140,230,35"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="314,80,367,107"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="246,30,310,71,305,72,246,35"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="179,181,110,224,107,219,174,182"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="262,229,315,256"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="215,179,264,220,259,220,213,184"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="166,229,238,256"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="200,180,203,215,198,212,197,184"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="151,107,91,217,86,214,146,107"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="164,105,186,141,180,141,162,110"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="179,105,254,146,249,148,178,110"/>
+</map>

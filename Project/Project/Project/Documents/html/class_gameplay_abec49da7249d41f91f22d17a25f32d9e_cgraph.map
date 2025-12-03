@@ -1,0 +1,5 @@
+<map id="Gameplay::getValidMovesForPiece" name="Gameplay::getValidMovesForPiece">
+<area shape="rect" id="Node000001" title="Gets all valid moves for a piece located at (row, col)." alt="" coords="5,5,198,48"/>
+<area shape="rect" id="Node000002" href="$class_gameplay.html#ab27e2ba44c89585ae32837fc7eb51b20" title="Checks whether a board coordinate is valid." alt="" coords="246,13,419,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,24,232,26,227,27,198,29"/>
+</map>

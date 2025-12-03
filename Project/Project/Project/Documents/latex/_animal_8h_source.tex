@@ -1,4 +1,4 @@
-\doxysection{C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\+Animal.h}
+\doxysection{Animal.\+h}
 \hypertarget{_animal_8h_source}{}\label{_animal_8h_source}\mbox{\hyperlink{_animal_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
@@ -52,17 +52,17 @@
 \DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_animal_a1e726a49ec952443190ac62dad22353c}{Animal}}*\ grid,\ \textcolor{keywordtype}{int}\ boardSize)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00124\ }
 \DoxyCodeLine{00125\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ m\_owner;}
-\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{_animal_8h_a6f4aee1c6d261958dbe9554417a936db}{AnimalType}}\ m\_type;}
-\DoxyCodeLine{00128\ \ \ \ \ sf::Texture\ m\_texture;}
-\DoxyCodeLine{00129\ \ \ \ \ sf::Sprite\ m\_sprite\{\ m\_texture\ \};}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}\ \mbox{\hyperlink{class_animal_a9e35e11d495bbcbb6ec40da47c9fe60a}{m\_owner}};}
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{_animal_8h_a6f4aee1c6d261958dbe9554417a936db}{AnimalType}}\ \mbox{\hyperlink{class_animal_aac828bf021e2f508644c0dd1f8b38801}{m\_type}};}
+\DoxyCodeLine{00128\ \ \ \ \ sf::Texture\ \mbox{\hyperlink{class_animal_a684695058eb666ded5f4d0d0981218b0}{m\_texture}};}
+\DoxyCodeLine{00129\ \ \ \ \ sf::Sprite\ \mbox{\hyperlink{class_animal_a5050621e8c8bc51103b7775eabdc43de}{m\_sprite}}\{\ \mbox{\hyperlink{class_animal_a684695058eb666ded5f4d0d0981218b0}{m\_texture}}\ \};}
 \DoxyCodeLine{00130\ }
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{bool}\ isValidPosition(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keywordtype}{int}\ boardSize)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_animal_a4a432c83d9290b59c7b41956122bab1e}{isValidPosition}}(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keywordtype}{int}\ boardSize)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00135\ }
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ addAdjacentMoves(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_animal_a1e726a49ec952443190ac62dad22353c}{Animal}}*\ grid,\ \textcolor{keywordtype}{int}\ boardSize,}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_animal_ab4ab82b6c86f8726d31d5f9b6cd0aa0c}{addAdjacentMoves}}(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_animal}{Animal}}*\ grid,\ \textcolor{keywordtype}{int}\ boardSize,}
 \DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ std::vector<sf::Vector2i>\&\ moves,\ \textcolor{keywordtype}{bool}\ includeDiagonal)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00141\ }
-\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ addFrogJumpMoves(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_animal_a1e726a49ec952443190ac62dad22353c}{Animal}}*\ grid,\ \textcolor{keywordtype}{int}\ boardSize,}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_animal_aed3cda05602b23e452129fbdc1066158}{addFrogJumpMoves}}(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_animal}{Animal}}*\ grid,\ \textcolor{keywordtype}{int}\ boardSize,}
 \DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ std::vector<sf::Vector2i>\&\ moves)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00147\ \};}
 

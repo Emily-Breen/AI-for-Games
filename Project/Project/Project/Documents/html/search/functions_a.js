@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['toanimal_0',['toAnimal',['../class_gameplay.html#a8d18d410c57e827962146a0d44bcff44',1,'Gameplay']]],
-  ['topiecestate_1',['toPieceState',['../class_gameplay.html#a867eb847894615ead59ed8131ccfacb6',1,'Gameplay']]]
+  ['processevents_0',['processEvents',['../class_game.html#a79f698dda206dd7a9bed28b3f88bdc38',1,'Game']]],
+  ['processkeys_1',['processKeys',['../class_game.html#a88c8c1e5ea297bb218d81b6a2a61c580',1,'Game']]]
 ];

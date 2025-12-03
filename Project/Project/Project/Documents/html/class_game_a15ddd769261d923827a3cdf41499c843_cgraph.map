@@ -1,0 +1,5 @@
+<map id="Game::render" name="Game::render">
+<area shape="rect" id="Node000001" title="Render all game graphics." alt="" coords="5,5,106,32"/>
+<area shape="rect" id="Node000002" href="$class_game.html#acc87a0ee91d27ab844b0a8ff9a210ab4" title="Highlights valid moves." alt="" coords="154,5,364,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,16,140,18,135,19,106,21"/>
+</map>

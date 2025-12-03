@@ -26,6 +26,22 @@ int \mbox{\hyperlink{class_board_a72fbd999c7411d051ff3bf4d568f8244}{get\+Size}} 
 \begin{DoxyCompactList}\small\item\em Gets the number of cells per side (board size). \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{class_board_a980a8d446778ef702c1c00f414cf0904}{get\+Cell\+Size}} () const
 \begin{DoxyCompactList}\small\item\em Gets the current pixel size of each cell. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_board_ab53f40e997d3d413d9b0d245b9a630ff}{draw\+Grid}} (sf\+::\+Render\+Window \&window)
+\begin{DoxyCompactList}\small\item\em Draws the individual grid lines and cells. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_board_a5644bdc0d08b82f81767c0084cacb87a}{m\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Width/height of the board in cells. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_board_a369f7ff49a25b863a2bf4b10ef60898c}{m\+\_\+cell\+Size}}
+\begin{DoxyCompactList}\small\item\em Current pixel size of each cell. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_board_aea89cfb411ac32d07d8cac98c8fc6a96}{m\+\_\+offsetX}} \{ 0.f \}
+\begin{DoxyCompactList}\small\item\em Left offset from window edge to board start. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_board_a6f2ad5029c1172205de5f22bbe065e08}{m\+\_\+offsetY}} \{ 0.f \}
+\begin{DoxyCompactList}\small\item\em Top offset from window edge to board start. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -83,8 +99,32 @@ Draws the board by recalculating offsets then rendering the grid.
 {\em window} & The window to draw on. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:
-% FIG 0
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{class_board_a1fa67ca04a50dc4a17428848413b1549_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_board_ab53f40e997d3d413d9b0d245b9a630ff}\index{Board@{Board}!drawGrid@{drawGrid}}
+\index{drawGrid@{drawGrid}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{drawGrid()}{drawGrid()}}
+{\footnotesize\ttfamily \label{class_board_ab53f40e997d3d413d9b0d245b9a630ff} 
+void Board\+::draw\+Grid (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{m\+\_\+window}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Draws the individual grid lines and cells. 
+
+Draws grid cell outlines for the entire board.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & Window to draw the grid onto.\\
+\hline
+{\em m\+\_\+window} & The window to draw on. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{class_board_a2896834d7ccd0f4796161cfed23e4983}\index{Board@{Board}!getCellCenter@{getCellCenter}}
 \index{getCellCenter@{getCellCenter}!Board@{Board}}
 \doxysubsubsection{\texorpdfstring{getCellCenter()}{getCellCenter()}}
@@ -187,7 +227,52 @@ Adjusts the cell size proportionally when the window resizes.
 \end{DoxyParams}
 
 
+\label{doc-variable-members}
+\Hypertarget{class_board_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_board_a369f7ff49a25b863a2bf4b10ef60898c}\index{Board@{Board}!m\_cellSize@{m\_cellSize}}
+\index{m\_cellSize@{m\_cellSize}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{m\_cellSize}{m\_cellSize}}
+{\footnotesize\ttfamily \label{class_board_a369f7ff49a25b863a2bf4b10ef60898c} 
+float Board\+::m\+\_\+cell\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current pixel size of each cell. 
+
+\Hypertarget{class_board_aea89cfb411ac32d07d8cac98c8fc6a96}\index{Board@{Board}!m\_offsetX@{m\_offsetX}}
+\index{m\_offsetX@{m\_offsetX}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{m\_offsetX}{m\_offsetX}}
+{\footnotesize\ttfamily \label{class_board_aea89cfb411ac32d07d8cac98c8fc6a96} 
+float Board\+::m\+\_\+offsetX \{ 0.f \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Left offset from window edge to board start. 
+
+\Hypertarget{class_board_a6f2ad5029c1172205de5f22bbe065e08}\index{Board@{Board}!m\_offsetY@{m\_offsetY}}
+\index{m\_offsetY@{m\_offsetY}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{m\_offsetY}{m\_offsetY}}
+{\footnotesize\ttfamily \label{class_board_a6f2ad5029c1172205de5f22bbe065e08} 
+float Board\+::m\+\_\+offsetY \{ 0.f \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Top offset from window edge to board start. 
+
+\Hypertarget{class_board_a5644bdc0d08b82f81767c0084cacb87a}\index{Board@{Board}!m\_size@{m\_size}}
+\index{m\_size@{m\_size}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{m\_size}{m\_size}}
+{\footnotesize\ttfamily \label{class_board_a5644bdc0d08b82f81767c0084cacb87a} 
+int Board\+::m\+\_\+size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Width/height of the board in cells. 
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_board_8h}{Board.\+h}}\item 
-C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_board_8cpp}{Board.\+cpp}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{_board_8h}{Board.\+h}}\item 
+\mbox{\hyperlink{_board_8cpp}{Board.\+cpp}}\end{DoxyCompactItemize}

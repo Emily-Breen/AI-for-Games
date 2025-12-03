@@ -141,7 +141,13 @@ private:
 	 */
 	int checkForThreeInARow(Player p1, Player p2, Player p3, Player p4, Player player);
 
+	/**
+	 * @brief Calculates patterns of two in a row with two empty.
+	 */
 	int evaluateTwoInARow(const Boardstate& state, Player player);
+	/**
+	 * @brief Checks four tiles for a potential two-in-a-row.
+	 */
 	int checkForTwoInARow(Player p1, Player p2, Player p3, Player p4, Player player);
 
 	/**

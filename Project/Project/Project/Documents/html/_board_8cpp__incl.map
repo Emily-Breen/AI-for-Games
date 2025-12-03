@@ -1,0 +1,16 @@
+<map id="Board.cpp" name="Board.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="142,5,222,32"/>
+<area shape="rect" id="Node000002" href="$_board_8h.html" title="Declares the Board class, responsible for drawing and managing a square game grid." alt="" coords="149,80,215,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,30,185,65,179,64,181,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,229,143,256"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="174,105,136,156,93,218,89,215,132,153,170,109"/>
+<area shape="rect" id="Node000004" href="$_animal_8h.html" title=" " alt="" coords="146,155,218,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="183,105,184,140,180,138,181,109"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="243,155,300,181"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="198,105,247,144,241,145,197,110"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="166,181,107,223,104,218,161,183"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="167,229,221,256"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="186,180,192,215,187,213,182,184"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="245,229,316,256"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="200,179,254,220,249,220,198,184"/>
+</map>

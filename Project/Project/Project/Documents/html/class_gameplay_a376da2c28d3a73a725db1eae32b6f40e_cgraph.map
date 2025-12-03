@@ -1,0 +1,5 @@
+<map id="Gameplay::evaluateThreeInARow" name="Gameplay::evaluateThreeInARow">
+<area shape="rect" id="Node000001" title="Calculates threat patterns (3 in a row with one empty)." alt="" coords="5,5,223,32"/>
+<area shape="rect" id="Node000002" href="$class_gameplay.html#a911a53b66a99e2161ce68f61648de01a" title="Checks four tiles for a potential threat." alt="" coords="271,5,493,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,16,258,19,252,19,223,21"/>
+</map>

@@ -27,6 +27,34 @@ static \mbox{\hyperlink{struct_piece_state}{Piece\+State}} \mbox{\hyperlink{clas
 \begin{DoxyCompactList}\small\item\em Converts an \doxylink{class_animal}{Animal} instance into a \doxylink{struct_piece_state}{Piece\+State}. \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{class_animal}{Animal}} \mbox{\hyperlink{class_gameplay_a8d18d410c57e827962146a0d44bcff44}{to\+Animal}} (const \mbox{\hyperlink{struct_piece_state}{Piece\+State}} \&piece\+State)
 \begin{DoxyCompactList}\small\item\em Converts a \doxylink{struct_piece_state}{Piece\+State} into an \doxylink{class_animal}{Animal} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_gameplay_a18d8e116e550085670f18ea41a8b157b}{mini\+Max}} (const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&state, int depth, bool is\+Maximizing, int alpha, int beta)
+\begin{DoxyCompactList}\small\item\em Minimax algorithm with alpha-\/beta pruning. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_gameplay_ad7296cc2f90f36ef3ae336dc48c4b80c}{evaluate\+Board}} (const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&state, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} maximizing\+Player)
+\begin{DoxyCompactList}\small\item\em Heuristic board evaluation used when minimax depth ends. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_gameplay_a376da2c28d3a73a725db1eae32b6f40e}{evaluate\+Three\+In\+ARow}} (const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&state, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Calculates threat patterns (3 in a row with one empty). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_gameplay_a911a53b66a99e2161ce68f61648de01a}{check\+For\+Three\+In\+ARow}} (\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} p1, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} p2, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} p3, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} p4, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Checks four tiles for a potential threat. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_gameplay_a99ef56de7b72110716d6070963b043ce}{evaluate\+Two\+In\+ARow}} (const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&state, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Calculates patterns of two in a row with two empty. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_gameplay_a2384d786712dc45870b66c32bb55ba23}{check\+For\+Two\+In\+ARow}} (\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} p1, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} p2, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} p3, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} p4, \mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Checks four tiles for a potential two-\/in-\/a-\/row. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_move}{Move}} $>$ \mbox{\hyperlink{class_gameplay_a6d32cbd15c3c131e91b2b686252e559e}{generate\+Moves}} (const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&state)
+\begin{DoxyCompactList}\small\item\em Generates all legal moves for the current player. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_boardstate}{Boardstate}} \mbox{\hyperlink{class_gameplay_ab625a9fdc2dc68884e50786eba67f396}{make\+Move}} (const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&state, const \mbox{\hyperlink{struct_move}{Move}} \&move)
+\begin{DoxyCompactList}\small\item\em Applies a move to a board and returns the resulting state. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_gameplay_ab27e2ba44c89585ae32837fc7eb51b20}{is\+Valid\+Position}} (int row, int col) const
+\begin{DoxyCompactList}\small\item\em Checks whether a board coordinate is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} \mbox{\hyperlink{class_gameplay_aab31e7528a9fd28140072ace42b22a9c}{m\+\_\+maximizing\+Player}}
+\item 
+int \mbox{\hyperlink{class_gameplay_aae73b2abbc755e91ee34082e8bd458c7}{m\+\_\+nodes\+Evaluated}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -50,7 +78,27 @@ Constructs a \doxylink{class_gameplay}{Gameplay} object with default AI paramete
 \label{doc-func-members}
 \Hypertarget{class_gameplay_doc-func-members}
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_gameplay_a5b0cc99aaa3448fb8c300b5f5435e2f3}\index{Gameplay@{Gameplay}!checkWimCondition@{checkWimCondition}}
+\Hypertarget{class_gameplay_a911a53b66a99e2161ce68f61648de01a}\index{Gameplay@{Gameplay}!checkForThreeInARow@{checkForThreeInARow}}
+\index{checkForThreeInARow@{checkForThreeInARow}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{checkForThreeInARow()}{checkForThreeInARow()}}
+{\footnotesize\ttfamily \label{class_gameplay_a911a53b66a99e2161ce68f61648de01a} 
+int Gameplay\+::check\+For\+Three\+In\+ARow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{p1}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{p2}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{p3}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{p4}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks four tiles for a potential threat. 
+
+Checks whether 4 tiles form a threat condition. \Hypertarget{class_gameplay_a2384d786712dc45870b66c32bb55ba23}\index{Gameplay@{Gameplay}!checkForTwoInARow@{checkForTwoInARow}}
+\index{checkForTwoInARow@{checkForTwoInARow}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{checkForTwoInARow()}{checkForTwoInARow()}}
+{\footnotesize\ttfamily \label{class_gameplay_a2384d786712dc45870b66c32bb55ba23} 
+int Gameplay\+::check\+For\+Two\+In\+ARow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{p1}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{p2}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{p3}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{p4}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks four tiles for a potential two-\/in-\/a-\/row. 
+
+Checks whether 4 tiles contain exactly 2 of player\textquotesingle{}s pieces and 2 empty. \Hypertarget{class_gameplay_a5b0cc99aaa3448fb8c300b5f5435e2f3}\index{Gameplay@{Gameplay}!checkWimCondition@{checkWimCondition}}
 \index{checkWimCondition@{checkWimCondition}!Gameplay@{Gameplay}}
 \doxysubsubsection{\texorpdfstring{checkWimCondition()}{checkWimCondition()}}
 {\footnotesize\ttfamily \label{class_gameplay_a5b0cc99aaa3448fb8c300b5f5435e2f3} 
@@ -114,6 +162,113 @@ The best move found.
 \begin{DoxyReturn}{Returns}
 Selected best \doxylink{struct_move}{Move}. 
 \end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gameplay_a8b72181a6097357f75705b53d2f80ee0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_gameplay_ad7296cc2f90f36ef3ae336dc48c4b80c}\index{Gameplay@{Gameplay}!evaluateBoard@{evaluateBoard}}
+\index{evaluateBoard@{evaluateBoard}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{evaluateBoard()}{evaluateBoard()}}
+{\footnotesize\ttfamily \label{class_gameplay_ad7296cc2f90f36ef3ae336dc48c4b80c} 
+int Gameplay\+::evaluate\+Board (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&}]{state}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{maximizing\+Player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Heuristic board evaluation used when minimax depth ends. 
+
+Heuristic evaluation of the board state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Current board state. \\
+\hline
+{\em maximizing\+Player} & AI-\/controlled player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Numeric score (higher = better for AI).
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Current board. \\
+\hline
+{\em maximizing\+Player} & \doxylink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player} being evaluated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Numeric score for the board. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gameplay_ad7296cc2f90f36ef3ae336dc48c4b80c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_gameplay_a376da2c28d3a73a725db1eae32b6f40e}\index{Gameplay@{Gameplay}!evaluateThreeInARow@{evaluateThreeInARow}}
+\index{evaluateThreeInARow@{evaluateThreeInARow}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{evaluateThreeInARow()}{evaluateThreeInARow()}}
+{\footnotesize\ttfamily \label{class_gameplay_a376da2c28d3a73a725db1eae32b6f40e} 
+int Gameplay\+::evaluate\+Three\+In\+ARow (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&}]{state}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates threat patterns (3 in a row with one empty). 
+
+Calculates threats for a given player (3 in a row with an empty).
+
+\begin{DoxyReturn}{Returns}
+Number of threats. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gameplay_a376da2c28d3a73a725db1eae32b6f40e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_gameplay_a99ef56de7b72110716d6070963b043ce}\index{Gameplay@{Gameplay}!evaluateTwoInARow@{evaluateTwoInARow}}
+\index{evaluateTwoInARow@{evaluateTwoInARow}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{evaluateTwoInARow()}{evaluateTwoInARow()}}
+{\footnotesize\ttfamily \label{class_gameplay_a99ef56de7b72110716d6070963b043ce} 
+int Gameplay\+::evaluate\+Two\+In\+ARow (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&}]{state}{, }\item[{\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates patterns of two in a row with two empty. 
+
+Calculates number of 2-\/in-\/a-\/rows for a given player.
+
+\begin{DoxyReturn}{Returns}
+Number of 2-\/in-\/a-\/rows. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gameplay_a99ef56de7b72110716d6070963b043ce_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_gameplay_a6d32cbd15c3c131e91b2b686252e559e}\index{Gameplay@{Gameplay}!generateMoves@{generateMoves}}
+\index{generateMoves@{generateMoves}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{generateMoves()}{generateMoves()}}
+{\footnotesize\ttfamily \label{class_gameplay_a6d32cbd15c3c131e91b2b686252e559e} 
+std\+::vector$<$ \mbox{\hyperlink{struct_move}{Move}} $>$ Gameplay\+::generate\+Moves (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&}]{state}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generates all legal moves for the current player. 
+
+Generates all possible moves for current player in state. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gameplay_a6d32cbd15c3c131e91b2b686252e559e_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_gameplay_abec49da7249d41f91f22d17a25f32d9e}\index{Gameplay@{Gameplay}!getValidMovesForPiece@{getValidMovesForPiece}}
 \index{getValidMovesForPiece@{getValidMovesForPiece}!Gameplay@{Gameplay}}
 \doxysubsubsection{\texorpdfstring{getValidMovesForPiece()}{getValidMovesForPiece()}}
@@ -138,6 +293,82 @@ Returns all valid moves for the piece at (row, col).
 \begin{DoxyReturn}{Returns}
 List of valid moves. 
 \end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gameplay_abec49da7249d41f91f22d17a25f32d9e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_gameplay_ab27e2ba44c89585ae32837fc7eb51b20}\index{Gameplay@{Gameplay}!isValidPosition@{isValidPosition}}
+\index{isValidPosition@{isValidPosition}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{isValidPosition()}{isValidPosition()}}
+{\footnotesize\ttfamily \label{class_gameplay_ab27e2ba44c89585ae32837fc7eb51b20} 
+bool Gameplay\+::is\+Valid\+Position (\begin{DoxyParamCaption}\item[{int}]{row}{, }\item[{int}]{col}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks whether a board coordinate is valid. 
+
+Checks if board coordinate is within bounds. \Hypertarget{class_gameplay_ab625a9fdc2dc68884e50786eba67f396}\index{Gameplay@{Gameplay}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}}
+{\footnotesize\ttfamily \label{class_gameplay_ab625a9fdc2dc68884e50786eba67f396} 
+\mbox{\hyperlink{struct_boardstate}{Boardstate}} Gameplay\+::make\+Move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&}]{state}{, }\item[{const \mbox{\hyperlink{struct_move}{Move}} \&}]{move}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Applies a move to a board and returns the resulting state. 
+
+Applies a move to a board and returns updated state. \Hypertarget{class_gameplay_a18d8e116e550085670f18ea41a8b157b}\index{Gameplay@{Gameplay}!miniMax@{miniMax}}
+\index{miniMax@{miniMax}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{miniMax()}{miniMax()}}
+{\footnotesize\ttfamily \label{class_gameplay_a18d8e116e550085670f18ea41a8b157b} 
+int Gameplay\+::mini\+Max (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_boardstate}{Boardstate}} \&}]{state}{, }\item[{int}]{depth}{, }\item[{bool}]{is\+Maximizing}{, }\item[{int}]{alpha}{, }\item[{int}]{beta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Minimax algorithm with alpha-\/beta pruning. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Current board state. \\
+\hline
+{\em depth} & Remaining recursion depth. \\
+\hline
+{\em is\+Maximizing} & True if evaluating AI\textquotesingle{}s turn, false for opponent. \\
+\hline
+{\em alpha} & Alpha pruning value. \\
+\hline
+{\em beta} & Beta pruning value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The evaluated score.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & \doxylink{class_board}{Board} state. \\
+\hline
+{\em depth} & Remaining depth. \\
+\hline
+{\em is\+Maximizing} & Whether evaluating maximizing player. \\
+\hline
+{\em alpha} & Alpha bound. \\
+\hline
+{\em beta} & Beta bound. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Evaluation score. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_gameplay_a18d8e116e550085670f18ea41a8b157b_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{class_gameplay_a8d18d410c57e827962146a0d44bcff44}\index{Gameplay@{Gameplay}!toAnimal@{toAnimal}}
 \index{toAnimal@{toAnimal}!Gameplay@{Gameplay}}
 \doxysubsubsection{\texorpdfstring{toAnimal()}{toAnimal()}}
@@ -158,11 +389,33 @@ Converts a \doxylink{struct_piece_state}{Piece\+State} back into a full \doxylin
 
 Converts an \doxylink{class_animal}{Animal} instance into a \doxylink{struct_piece_state}{Piece\+State}. 
 
-Converts an \doxylink{class_animal}{Animal} object to a \doxylink{struct_piece_state}{Piece\+State} representation. Here is the call graph for this function\+:
-% FIG 0
+Converts an \doxylink{class_animal}{Animal} object to a \doxylink{struct_piece_state}{Piece\+State} representation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{class_gameplay_a867eb847894615ead59ed8131ccfacb6_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_gameplay_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_gameplay_aab31e7528a9fd28140072ace42b22a9c}\index{Gameplay@{Gameplay}!m\_maximizingPlayer@{m\_maximizingPlayer}}
+\index{m\_maximizingPlayer@{m\_maximizingPlayer}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{m\_maximizingPlayer}{m\_maximizingPlayer}}
+{\footnotesize\ttfamily \label{class_gameplay_aab31e7528a9fd28140072ace42b22a9c} 
+\mbox{\hyperlink{_animal_8h_a9c8780378078e51e7c9041cbac392db9}{Player}} Gameplay\+::m\+\_\+maximizing\+Player\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_gameplay_aae73b2abbc755e91ee34082e8bd458c7}\index{Gameplay@{Gameplay}!m\_nodesEvaluated@{m\_nodesEvaluated}}
+\index{m\_nodesEvaluated@{m\_nodesEvaluated}!Gameplay@{Gameplay}}
+\doxysubsubsection{\texorpdfstring{m\_nodesEvaluated}{m\_nodesEvaluated}}
+{\footnotesize\ttfamily \label{class_gameplay_aae73b2abbc755e91ee34082e8bd458c7} 
+int Gameplay\+::m\+\_\+nodes\+Evaluated\hspace{0.3cm}{\ttfamily [private]}}
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_gameplay_8h}{Gameplay.\+h}}\item 
-C\+:/\+Users/emily/source/repos/\+AI-\/for-\/\+Games/\+Project/\+Project/\+Project/\mbox{\hyperlink{_gameplay_8cpp}{Gameplay.\+cpp}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{_gameplay_8h}{Gameplay.\+h}}\item 
+\mbox{\hyperlink{_gameplay_8cpp}{Gameplay.\+cpp}}\end{DoxyCompactItemize}

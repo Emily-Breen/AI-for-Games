@@ -1,0 +1,7 @@
+<map id="Gameplay::toPieceState" name="Gameplay::toPieceState">
+<area shape="rect" id="Node000001" title="Converts an Animal instance into a PieceState." alt="" coords="5,31,169,57"/>
+<area shape="rect" id="Node000002" href="$class_animal.html#a36e7f70668605ebf27946415e315e2bc" title="Gets the owning player." alt="" coords="217,5,342,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,31,204,28,199,30,170,36"/>
+<area shape="rect" id="Node000003" href="$class_animal.html#a34d4028e12055ebde6047aa81e3b9f30" title="Gets the type of animal." alt="" coords="222,56,337,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="169,52,209,60,204,60,169,57"/>
+</map>
