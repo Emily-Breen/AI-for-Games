@@ -25,16 +25,6 @@ enum class GameState
 };
 
 /**
- * @enum GameMode
- * @brief Selected configuration of Human/AI involvement.
- */
-enum class GameMode {
-	HumanVSHuman, ///< Both players are human
-	HumanVSAI,    ///< P1 human, P2 AI
-	AIVSAI        ///< Both players controlled by AI
-};
-
-/**
  * @struct MenuButton
  * @brief UI button used on the main menu screen.
  */

@@ -162,7 +162,7 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
-		// Handle window resize *****STEPHEN THIS IS COOL! :D
+		// Handle window resize
 		if (newEvent->is<sf::Event::Resized>())
 		{
 			const sf::Event::Resized *resizeEvent = newEvent->getIf<sf::Event::Resized>();
@@ -580,9 +580,7 @@ void Game::update(sf::Time t_deltaTime)
 
 		// Apply the scale
 		m_menuCredits.setScale({ scale, scale });
-	}
-
-	//STEPHEN:: Updated both placement and movement phases to handle AI turns, checks which player's turn it is 
+	} 
 
 	if (m_currentGameState == GameState::Placement)
 	{
@@ -671,7 +669,7 @@ void Game::update(sf::Time t_deltaTime)
 			static sf::Clock aiThinkTimer;
 			static bool aiStarted = false;
 
-			if (!aiStarted && aiThinkTimer.getElapsedTime().asSeconds() > 0.3f) {
+			if (!aiStarted && aiThinkTimer.getElapsedTime().asSeconds() > 1.0f) {
 				aiStarted = true;
 				handleAITurn();
 				aiStarted = false;
@@ -1062,7 +1060,6 @@ void Game::resetGame()
  */
 void Game::handleAITurn()
 {
-	//STEPHEN:: Fleshed out the AI turns but needs a little tweeking but it plays with itself now LOL
 	
 	// Check if current player is AI
 	if ((m_currentPlayer == Player::Player1 && !m_player1IsAI) ||
@@ -1084,7 +1081,6 @@ void Game::handleAITurn()
 		return;
 	}
 
-	// Applys the move but its constantly playing the same move atm
 	m_grid[aiMove.row2][aiMove.col2] = m_grid[aiMove.row1][aiMove.col1];
 	m_grid[aiMove.row1][aiMove.col1] = Animal();
 
